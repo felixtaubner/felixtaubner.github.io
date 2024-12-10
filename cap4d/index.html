@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 
   <meta name="robots" content="noindex, nofollow">
-  
+
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
   <meta name="description" content="DESCRIPTION META TAG">
@@ -124,7 +124,7 @@
     <div class="container is-max-desktop">
       <!-- Your image here -->
       <!-- <h2 class="title is-3">Method Overview</h2> -->
-      <h2 class="title is-4" style="margin-bottom: -10px;">Overview</h2><br>
+      <h2 class="title is-3" style="margin-bottom: -10px;">Overview</h2><br>
       <video poster="" id="tree" autoplay muted loop height="100%">
         <!-- Your video here -->
         <source src="teaser/method_video.mp4"
@@ -164,13 +164,13 @@
   <div class="hero-body">
     <div class="container is-max-desktop">
       <!-- Paper video. -->
-      <h2 class="title is-4">Method</h2>
+      <h2 class="title is-3">Method</h2>
       <div class="container" style="text-align: left;">
         <img src="figures/main_figure.png" alt="method figure" width="100%"/>
       </div>
     <!-- <div class="content "></div> -->
       <h2 class="subtitle is-max-desktop" style="margin-top: 20px;">
-        Overview of CAP4D. (a) The method takes as input an arbitrary number of reference images \(\mathbf{I}_\text{ref}\) that are encoded into the latent
+        <b>Overview of CAP4D.</b> (a) The method takes as input an arbitrary number of reference images \(\mathbf{I}_\text{ref}\) that are encoded into the latent
         space of a variational autoencoder. An off-the-shelf face tracker estimates a 3DMM, \(\mathbf{M}_\text{ref}\), for each reference image, from which
         we derive conditioning signals that describe camera view direction, \(\mathbf{V}_\text{ref}\), head pose \(\mathbf{P}_\text{ref}\), and expression 
         \(\mathbf{E}_\text{ref}\). We associate additional
@@ -178,6 +178,36 @@
         generates images through a stochastic input–output conditioning procedure that randomly samples reference images and generated images
         during each step of the iterative image generation process. (b) The generated and reference images are used with the tracked and sampled
         3DMMs to reconstruct a 4D avatar based on a 3D Gaussian splatting representation.
+      <!-- </div> -->
+      </h2>
+      <!-- <h2 class="title is-4">3D Model Fitting</h2>
+      <div class="container" style="text-align: center;">
+        <img src="diagrams/3d_model_fitting.png" alt="3d model fitting" width="50%"/>
+      </div>
+      <div class="content">
+        Lorem ipsum second text if necessary
+      </div> -->
+    </div>
+  </div>
+
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <!-- Paper video. -->
+      <h2 class="title is-4">Morphable Multi-view Diffusion Model (MMDM)</h2>
+      <div class="container" style="text-align: left;">
+        <img src="figures/mmdm.webp" alt="method figure" width="100%"/>
+      </div>
+    <!-- <div class="content "></div> -->
+      <h2 class="subtitle is-max-desktop" style="margin-top: 20px;">
+        <b>MMDM architecture.</b> Our model is initialized from Stable Diffusion 2.1, 
+        and we adapt the architecture for multi-view generation following CAT3D. 
+        We use a pre-trained image encoder to map the input images into the latent space, and we use 
+        the latent diffusion model to process eight images in parallel. We replace 2D attention layers 
+        after 2D residual blocks with 3D attention to share information between frames. 
+        The model is conditioned using images that provide information such as head pose (\(\mathbf{P}_\text{ref/gen}\)), 
+        expression (\(\mathbf{E}_\text{ref/gen}\)), and camera view (\(\mathbf{V}_\text{ref/gen}\)). 
+        These images are obtained from a 3DMM and concatenated to the latent images. 
+        The denoised latent image is decoded using a pre-trained decoder.
       <!-- </div> -->
       </h2>
       <!-- <h2 class="title is-4">3D Model Fitting</h2>
