@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>CAP4D</title>
+  <link rel="icon" type="image/x-icon" href="static/images/cap4dicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/brush-canvas.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+
+
+<body>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container" style="text-align: center;">
+      <img src="static/images/cap4dicon.png" alt="cap4d logo" width="15%"/>
+    </div>
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">CAP4D: Creating Animatable 4D Portrait Avatars with Morphable Multi-View Diffusion Models</h1>
+          <div class="is-size-5 publication-authors">
+            <!-- Paper authors -->
+            <span class="author-block"> Felix Taubner<sup>1</sup>,</span>
+            <span class="author-block"> Ruihang Zhang<sup>1</sup>,</span>
+            <span class="author-block"> Mathieu Tuli<sup>2</sup>,</span>
+            <span class="author-block"> David B. Lindell<sup>1</sup></span>
+            </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Toronto,</span>
+            <span class="author-block"><sup>2</sup>LG Electronics</span>
+              <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- Teaser video-->
+<section class="hero is-small"></section>
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <!-- <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop >\
+            
+            <source src="teaser/teaser_0.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop  height="100%">\
+            <source src="teaser/teaser_1.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div> -->
+      <video poster="" id="tree" autoplay muted loop height="100%">
+        <source src="teaser/teaser_video_website.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered" style="margin-top: 5px;">
+        TL;DR: Our model can create realistic 4D avatars using any number of reference images.
+      </h2>
+    <!-- <div class="hero-body"> -->
+  </div>
+<!-- </div> -->
+  <!-- </div> -->
+<!-- </section> -->
+<!-- End teaser video -->
+
+
+<!-- Image carousel -->
+<!-- <section class="hero is-small"> -->
+  <div class="hero-body">
+    <!-- <div class="container is-max-desktop"> </div> style="text-align: center;"> -->
+    <div class="container is-max-desktop">
+      <!-- Your image here -->
+      <!-- <h2 class="title is-3">Method Overview</h2> -->
+      <h2 class="title is-4" style="margin-bottom: -10px;">Overview</h2><br>
+      <video poster="" id="tree" autoplay muted loop height="100%">
+        <!-- Your video here -->
+        <source src="teaser/method_video.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle is-max-desktop" style="margin-top: 10px;">
+        Our model works in two stages: First, a <b>morphable multi-view diffusion model (MMDM)</b> generates a large number of images from different views and expressions from the reference images. 
+        Then, we fit a 4D avatar to the generated images and the reference images. This avatar can be controlled via 3DMM and rendered in real time. 
+      </h2>
+    </div>
+  </div>
+<!-- </div> -->
+</section>
+
+<!-- Teaser video-->
+<section class="hero is-small is-light"></section>
+  <div class="the-canvas">
+    <h2 class="title is-4" style="text-align: center;">Interactive Viewer</h2>
+    <div id="webgpu-warning" style="height: 200px; width: 100px; display: none;">Webgpu not supported.</div>
+    <canvas id="brush_canvas" style="width: 100%; max-width: 450px; aspect-ratio: 1/1; text-align: center; display: block; position: relative; margin-left: auto; margin-right: auto;"></canvas>
+    <div class="previews">
+        <a onclick="window.viewer.load_url('https\:\/\/public.db.files.1drv.com/y4mYkYibwCNF9SB2ND7iYPOO8sQFvxDrSZDCYXksbywzrfF06IQxbktG6rMQgHcl-pjEYaI3gmGrQZFbczWh4dlp9qisAi-aw-X3mCrYlsSBl2w0HKGOG03xVUkvZqtJAl8ZgLCz2HdOBTIVQVTHVDdd_2gkWZ-Rm6hIYFzSDblpKkGIc_cXYYzIMlHIjY5Z9NR58Qrv2CncGyUB_PhFyWlRkvzRNls7MXBg8NLlp1Dfy8')">
+            <img class="card-img" src="brush_gallery/abraham_lincoln.png">
+        </a>
+        <a onclick="window.viewer.load_url('https\:\/\/public.db.files.1drv.com/y4mKOq7jmom-aO85iRSgyJUaxJgxXNYdVWdZe1hWJ-cErDLbzWYr-Gs8RFSTfgpWDM8VHSlfsHG6k-mtoBMvD0A4KBtyTG7Wl_LCvbLvP5KxwWwixZyWbM2mYvbn3vpQvqtC2nGCo3BtZGRG8JkAwVtSUTgX2TxbECGOJvMhNStcFcp7y7udoHLhtZaYscEvqffddqwqEiSEGNqwPpe9zY0MPZZXOBwSI8usVBg7_QgveE')">
+            <img class="card-img" src="brush_gallery/felix.png">
+        </a>
+    </div>
+  </div>
+<!-- </div> -->
+</section>
+<!-- End image carousel -->
+
+
+<!-- Youtube video -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <!-- Paper video. -->
+      <h2 class="title is-4">Method</h2>
+      <div class="container" style="text-align: left;">
+        <img src="figures/main_figure.png" alt="method figure" width="100%"/>
+      </div>
+    <!-- <div class="content "></div> -->
+      <h2 class="subtitle is-max-desktop" style="margin-top: 20px;">
+        Overview of CAP4D. (a) The method takes as input an arbitrary number of reference images \(\mathbf{I}_\text{ref}\) that are encoded into the latent
+        space of a variational autoencoder. An off-the-shelf face tracker estimates a 3DMM, \(\mathbf{M}_\text{ref}\), for each reference image, from which
+        we derive conditioning signals that describe camera view direction, \(\mathbf{V}_\text{ref}\), head pose \(\mathbf{P}_\text{ref}\), and expression 
+        \(\mathbf{E}_\text{ref}\). We associate additional
+        conditioning signals with each input noisy latent image based on the desired generated viewpoints, poses, and expressions. The MMDM
+        generates images through a stochastic input–output conditioning procedure that randomly samples reference images and generated images
+        during each step of the iterative image generation process. (b) The generated and reference images are used with the tracked and sampled
+        3DMMs to reconstruct a 4D avatar based on a 3D Gaussian splatting representation.
+      <!-- </div> -->
+      </h2>
+      <!-- <h2 class="title is-4">3D Model Fitting</h2>
+      <div class="container" style="text-align: center;">
+        <img src="diagrams/3d_model_fitting.png" alt="3d model fitting" width="50%"/>
+      </div>
+      <div class="content">
+        Lorem ipsum second text if necessary
+      </div> -->
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+<!-- Video carousel -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Gallery</h2>
+
+      <h2 class="subtitle is-max-desktop" style="margin-top: 20px;">
+        We show various avatars generated using CAP4D in different settings: avatars from few reference images, 
+        avatars from single reference images, and more challenging settings such as avatars from images generated 
+        via text-prompt and avatars from artwork. Note that while the MMDM inherits weights from Stable Diffusion, we do not train the MMDM on non-photoreal images.
+        Please click on the arrow buttons to the sides to view all results. 
+        <br><br>
+        Reference images are shown in the top row, images generated by the MMDM in the middle row and 
+        the final 4D avatar in the last row.
+      </h2>
+
+      <div id="results-carousel" class="carousel results-carousel" >
+        <div class="item item-video3">
+          <h2 class="title is-4" style="text-align: center;">Few images to avatar</h2>
+          <div class="container" style="text-align: center;">
+            <img src="videos/4imgs/4imgs_ref.png" alt="method figure" width="100%"/>
+            <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+              reference images <br>
+            </h2>
+            <hr style="border: none; height: 5px; background: transparent;">
+          </div>
+          <video poster="" id="video3" autoplay muted loop width="100%">\
+            <!-- Your video file here -->
+            <source src="videos/4imgs/4imgs_gen.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+            images generated with MMDM
+          </h2>
+          <hr style="border: none; height: 5px; background: transparent;">
+          <video poster="" id="video3" autoplay muted loop width="100%">\
+            <!-- Your video file here -->
+            <source src="videos/4imgs/4imgs_render.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+            CAP4D avatar
+          </h2>
+        </div>
+        <div class="item item-video3">
+          <h2 class="title is-4" style="text-align: center;">Single image to avatar</h2>
+          <div class="container" style="text-align: center;">
+            <img src="videos/single/single_ref.png" alt="method figure" width="100%"/>
+            <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+              reference images <br>
+            </h2>
+          </div>
+          <hr style="border: none; height: 5px; background: transparent;">
+          <video poster="" id="video3" autoplay muted loop width="100%">\
+            <!-- Your video file here -->
+            <source src="videos/single/single_gen.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+            images generated with MMDM
+          </h2>
+          <hr style="border: none; height: 5px; background: transparent;">
+          <video poster="" id="video3" autoplay muted loop width="100%">\
+            <!-- Your video file here -->
+            <source src="videos/single/single_render.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+            CAP4D avatar
+          </h2>
+        </div>
+        <div class="item item-video3">
+          <h2 class="title is-4" style="text-align: center;">Text to image to avatar</h2>
+          <div class="container" style="text-align: center;">
+            <img src="videos/ai/ai_ref.png" alt="method figure" width="100%"/>
+            <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+              reference images <br>
+            </h2>
+          </div>
+          <hr style="border: none; height: 5px; background: transparent;">
+          <video poster="" id="video3" autoplay muted loop width="100%">\
+            <!-- Your video file here -->
+            <source src="videos/ai/ai_gen.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+            images generated with MMDM
+          </h2>
+          <hr style="border: none; height: 5px; background: transparent;">
+          <video poster="" id="video3" autoplay muted loop width="100%">\
+            <!-- Your video file here -->
+            <source src="videos/ai/ai_render.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+            CAP4D avatar
+          </h2>
+        </div>
+        <div class="item item-video3">
+          <h2 class="title is-4" style="text-align: center;">Artwork to avatar</h2>
+          <div class="container" style="text-align: center;">
+            <img src="videos/misc/misc_ref.png" alt="method figure" width="100%"/>
+            <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+              reference images <br>
+            </h2>
+          </div>
+          <hr style="border: none; height: 5px; background: transparent;">
+          <video poster="" id="video3" autoplay muted loop width="100%">\
+            <!-- Your video file here -->
+            <source src="videos/misc/misc_gen.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+            images generated with MMDM
+          </h2>
+          <hr style="border: none; height: 5px; background: transparent;">
+          <video poster="" id="video3" autoplay muted loop width="100%">\
+            <!-- Your video file here -->
+            <source src="videos/misc/misc_render.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
+            CAP4D avatar
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Baseline Comparisons</h2>
+      <h2 class="subtitle is-max-desktop" style="margin-top: 20px;">
+        We conduct experiments on the cross-reenactment and self-reenactment tasks. 
+        For quanitative results, we refer to our paper.
+      </h2>
+
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="comparisons/self_reenactment/processed_sequence_240.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="comparisons/self_reenactment/processed_sequence_226.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/self_reenactment/processed_sequence_085.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/self_reenactment/processed_sequence_030.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/self_reenactment/processed_sequence_124.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/self_reenactment/processed_sequence_227.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/self_reenactment/processed_sequence_038.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/self_reenactment/processed_sequence_175.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/self_reenactment/processed_sequence_018.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <h2 class="subtitle is-max-desktop" style="margin-top: 20px;">
+        <b>Self-reenactment results.</b> We show more qualitative results from our self-reenactment evaluation with varying numbers of
+        reference frames. The top row shows single-, second row few- (10) and the last row shows many-image (100) reconstructions. 
+        Our 4D avatar can leverage additional reference images to produce details that are not visible
+        in the first reference image. Our results are significantly better compared to previous
+        methods, especially when the view direction differs greatly from the reference image.
+      </h2>
+
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/cross_reenactment/processed_pair_04.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="comparisons/cross_reenactment/processed_pair_00.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="comparisons/cross_reenactment/processed_pair_01.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/cross_reenactment/processed_pair_02.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/cross_reenactment/processed_pair_03.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/cross_reenactment/processed_pair_04.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/cross_reenactment/processed_pair_05.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/cross_reenactment/processed_pair_06.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/cross_reenactment/processed_pair_08.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="comparisons/cross_reenactment/processed_pair_09.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <h2 class="subtitle is-max-desktop" style="margin-top: 20px;">
+        <b>Cross-reenactment results.</b> We generate an avatar based on a single image from the FFHQ dataset. The camera orbits
+        around the head to allow a better assessment of 3D structure. Our method consistently produces 4D avatars 
+        of higher visual quality and
+        3D consistency even across challenging view deviations. 
+        Our avatar can also model realistic view-dependent lighting changes. 
+      </h2>
+      <!-- <h2 class="subtitle has-text-centered is-max-desktop">
+      </h2> -->
+
+      <!-- <div id="results-carousel2" class="carousel results-carousel">
+        <div class="item">
+          <img src="images/ffhq_1.png" alt="results on ffhq dataset"/>
+          <h2 class="subtitle has-text-centered">
+            First image description.
+          </h2>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+<!-- End video carousel -->
+
+
+<!-- Video carousel -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">More Results</h2>
+
+      <h2 class="title is-4">Effect of reference image quantity</h2>
+      <h2 class="subtitle is-max-desktop" style="margin-top: 20px;">
+        CAP4D generates realistic avatars from single reference images. The model can leverage additional available 
+        reference images and recover details and geometry that are not visible in the first view. This results in an 
+        overall improved reconstruction of the reference identity. We provide a side-by-side comparison with single image, few images
+        and many images below. The differences are subtle, however, notice freckles and birthmarks appearing with more reference 
+        images. 
+      </h2>
+
+      <div class="carousel-container" style="width: 75%; margin: 0 auto; text-align: center;">
+        <div id="results-carousel" class="carousel results-carousel">
+          
+
+          <div class="item item-video3">
+            <!-- <h2 class="title is-4" style="text-align: center;">Few images to avatar</h2> -->
+            <div class="container" style="text-align: center;">
+              <img src="comparisons/multiview/m01_ref.png" alt="method figure" width="100%"/>
+              <h2 class="subtitle has-text-centered is-max-desktop" style="display: flex; justify-content: space-between; margin-top: 5px;">
+                <span style="flex: 1; text-align: center;">single reference <br>image</span>
+                <span style="flex: 1; text-align: center;">4 reference <br> images</span>
+                <span style="flex: 1; text-align: center;">64 reference <br> images</span>
+              </h2>
+              <hr style="border: none; height: 5px; background: transparent;">
+            </div>
+            <video poster="" id="video3" autoplay muted loop width="100%">\
+              <!-- Your video file here -->
+              <source src="comparisons/multiview/m01_gen_processed.mp4"
+              type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered is-max-desktop"  style="margin-top: 5px;">
+              images generated with MMDM
+            </h2>
+            <hr style="border: none; height: 5px; background: transparent;">
+            <video poster="" id="video3" autoplay muted loop width="100%">\
+              <!-- Your video file here -->
+              <source src="comparisons/multiview/m01_render_processed.mp4"
+              type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered is-max-desktop"  style="margin-top: 5px;">
+              CAP4D avatar
+            </h2>
+          </div>
+
+
+
+          <div class="item item-video3">
+            <!-- <h2 class="title is-4" style="text-align: center;">Few images to avatar</h2> -->
+            <div class="container" style="text-align: center;">
+              <img src="comparisons/multiview/w01_ref.png" alt="method figure" width="100%"/>
+              <h2 class="subtitle has-text-centered is-max-desktop" style="display: flex; justify-content: space-between; margin-top: 5px;">
+                <span style="flex: 1; text-align: center;">single reference <br>image</span>
+                <span style="flex: 1; text-align: center;">4 reference <br> images</span>
+                <span style="flex: 1; text-align: center;">64 reference <br> images</span>
+              </h2>
+              <hr style="border: none; height: 5px; background: transparent;">
+            </div>
+            <video poster="" id="video3" autoplay muted loop width="100%">\
+              <!-- Your video file here -->
+              <source src="comparisons/multiview/w01_gen_processed.mp4"
+              type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered is-max-desktop"  style="margin-top: 5px;">
+              images generated with MMDM
+            </h2>
+            <hr style="border: none; height: 5px; background: transparent;">
+            <video poster="" id="video3" autoplay muted loop width="100%">\
+              <!-- Your video file here -->
+              <source src="comparisons/multiview/w01_render_processed.mp4"
+              type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered is-max-desktop"  style="margin-top: 5px;">
+              CAP4D avatar
+            </h2>
+          </div>
+
+
+
+        </div>
+        <!-- <h2 class="subtitle has-text-centered is-max-desktop">
+          Click on the arrows on the side to toggle between appearance changes.
+        </h2> -->
+      </div>
+
+      <h2 class="title is-4">Editing of appearance and lighting</h2>
+
+      <h2 class="subtitle is-max-desktop" style="margin-top: 5px;">
+        We can edit our avatars by applying off-the-shelf image editing models to the reference image.
+        Here, we demonstrate appearance editing and relighting.
+      </h2>
+
+      <div class="carousel-container" style="width: 100%; margin: 0 auto; text-align: center;">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-video1">
+            <video poster="" id="video1" autoplay muted loop width="100%">
+              <!-- Your video file here -->
+              <source src="videos/editing/edit_w02.mp4"
+              type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered is-max-desktop" style="display: grid; grid-template-columns: 1fr 4fr; gap: 10px; align-items: center; margin-top: 5px;">
+              <span style="grid-column: 1; text-align: center;">original</span>
+              <span style="grid-column: 2 / span 4; text-align: center;">edited avatars</span>
+            </h2>
+          </div>
+          <div class="item item-video3">
+            <video poster="" id="video3" autoplay muted loop width="100%">\
+              <!-- Your video file here -->
+              <source src="videos/editing/edit_w01.mp4"
+              type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered is-max-desktop" style="display: grid; grid-template-columns: 1fr 4fr; gap: 10px; align-items: center; margin-top: 5px;">
+              <span style="grid-column: 1; text-align: center;">original</span>
+              <span style="grid-column: 2 / span 4; text-align: center;">edited avatars</span>
+            </h2>
+          </div>
+        </div>
+        <!-- <h2 class="subtitle has-text-centered is-max-desktop">
+          Click on the arrows on the side to toggle between appearance changes.
+        </h2> -->
+      </div>
+      <!-- <h2 class="subtitle has-text-centered is-max-desktop">
+      </h2> -->
+
+      <!-- <div id="results-carousel2" class="carousel results-carousel">
+        <div class="item">
+          <img src="images/ffhq_1.png" alt="results on ffhq dataset"/>
+          <h2 class="subtitle has-text-centered">
+            First image description.
+          </h2>
+        </div>
+      </div> -->
+
+      <h2 class="title is-4">4D animation from audio</h2>
+
+      <h2 class="subtitle is-max-desktop"  style="margin-top: 20px;">
+        The generated avatar is controlled via FLAME 3DMM, hence we can leverage off-the-shelf speech-driven animation 
+        models such as CodeTalker to animate it from input audio. 
+      </h2>
+
+      <div class="item item-video3" style="width: 40%; margin: 0 auto; text-align: center;">
+        <video poster="" id="video3" controls width="100%">
+          <!-- Your video file here -->
+          <source src="videos/speech/hinton_speech.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+  
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+               <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  </body>
+</html>
+
+<script type="module">
+  // import init, * as bindings from '/assets/felix/brush-demo/brush-desktop-1e8867bc72c075f2.js';
+  import init, * as bindings from './static/wasm/brush-rigged-desktop.js';
+  const isWebGPUSupported = 'gpu' in navigator;
+  // Display a warning if WebGPU is not supported.
+  const warningElement = document.getElementById('webgpu-warning');
+  const canvasElement = document.getElementById('brush_canvas');
+
+  // Prevent Brush from stealing focus.
+  const originalFocus = HTMLElement.prototype.focus;
+  HTMLElement.prototype.focus = function () {
+      if (!this.matches('[id="brush_canvas"]')) {
+          originalFocus.apply(this, arguments);
+      }
+  };
+
+  if (isWebGPUSupported) {
+      // const wasm = await init({ module_or_path: '/assets/felix/brush-demo/brush-desktop-1e8867bc72c075f2_bg.wasm' });
+      const wasm = await init({ module_or_path: './static/wasm/brush-rigged-desktop.wasm' });
+      window.wasmBindings = bindings;
+      dispatchEvent(new CustomEvent("TrunkApplicationStarted", { detail: { wasm } }));
+  } else {
+      warningElement.style.display = 'block';
+      canvasElement.style.display = 'none';
+  }
+</script>
+
+<script type="module">
+  window.addEventListener("TrunkApplicationStarted", (e) => {
+      // Load with an initial URL.
+      console.log("starting")
+      // var start_url = "/assets/felix/brush-demo/model_1.ply"
+      // var start_url = "https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-forest-elf-fire_deform3dgs_pruned.ply"
+      var start_url = "https://public.db.files.1drv.com/y4mYkYibwCNF9SB2ND7iYPOO8sQFvxDrSZDCYXksbywzrfF06IQxbktG6rMQgHcl-pjEYaI3gmGrQZFbczWh4dlp9qisAi-aw-X3mCrYlsSBl2w0HKGOG03xVUkvZqtJAl8ZgLCz2HdOBTIVQVTHVDdd_2gkWZ-Rm6hIYFzSDblpKkGIc_cXYYzIMlHIjY5Z9NR58Qrv2CncGyUB_PhFyWlRkvzRNls7MXBg8NLlp1Dfy8"
+      const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=0.2&min_radius=1.3&max_radius=2.0&radius=1.5&min_pitch=-15.0&max_pitch=15.0&min_yaw=-50.0&max_yaw=50.0`)
+      window.viewer = viewer;
+  });
+</script>
