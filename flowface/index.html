@@ -4,23 +4,23 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
-  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <meta name="description" content="Our FlowFace 3D face tracker can accurately track faces across challenging poses and expressions.">
+  <meta property="og:title" content="3D Face Tracking from 2D Video through Iterative Dense UV to Image Flow"/>
+  <meta property="og:description" content="Our FlowFace 3D face tracker can accurately track faces across challenging poses and expressions."/>
+  <meta property="og:url" content="https://felixtaubner.github.io/flowface/"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <!-- <meta property="og:image" content="static/image/your_banner_image.png" /> -->
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
 
 
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <meta name="twitter:title" content="3D Face Tracking from 2D Video through Iterative Dense UV to Image Flow">
+  <meta name="twitter:description" content="Our FlowFace 3D face tracker can accurately track faces across challenging poses and expressions.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> -->
   <meta name="twitter:card" content="summary_large_image">
   <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="keywords" content="3D face tracking, face tracking, 3D face reconstruction, head reconstruction, avatar, paper">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -133,9 +133,9 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
+      <video poster="other_videos/felix_banner_poster.webp" id="tree" autoplay muted loop height="80%">
         <!-- Your video here -->
-        <source src="other_videos/felix_banner.mp4"
+        <source src="other_videos/felix_banner_c.mp4"
         type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
@@ -222,6 +222,66 @@
   </div>
 </section>
 <!-- End youtube video -->
+
+<!-- Video carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Gallery</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="other_videos/video_1_poster.webp" id="video1" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="other_videos/video_1_c.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="other_videos/video_2_c.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="other_videos/video_3_c.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="other_videos/video_4_c.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="other_videos/video_5_c.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="other_videos/video_6_c.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <h2 class="subtitle has-text-centered is-max-desktop">
+        Our head tracker applied to videos from the <a href="https://celebv-hq.github.io/" target="_blank">CelebV-HQ</a> dataset. Despite being trained only on images captured in controlled lab environments, our model generalizes well to videos captured in-the-wild.
+      </h2>
+      <h2 class="subtitle has-text-centered is-max-desktop">
+      </h2>
+
+    </div>
+  </div>
+</section>
+<!-- End video carousel -->
 
 
 <!-- Video carousel -->
@@ -345,11 +405,11 @@
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item">
         <!-- Your image here -->
-          <img src="images/ffhq_1.png" alt="results on ffhq dataset"/>
+          <img src="images/ffhq_1.webp" alt="results on ffhq dataset"/>
         </div>
         <div class="item">
         <!-- Your image here -->
-          <img src="images/ffhq_2.png" alt="results on ffhq dataset"/>
+          <img src="images/ffhq_2.webp" alt="results on ffhq dataset"/>
         </div>
       </div>
       <h2 class="subtitle has-text-centered is-max-desktop">
@@ -379,66 +439,6 @@
   </section>
 End paper poster -->
 
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">More Results</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="other_videos/video_1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="other_videos/video_2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="other_videos/video_3.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="other_videos/video_4.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="other_videos/video_5.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="other_videos/video_6.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <h2 class="subtitle has-text-centered is-max-desktop">
-        Our head tracker applied to videos from the <a href="https://celebv-hq.github.io/" target="_blank">CelebV-HQ</a> dataset. Despite being trained only on images captured in controlled lab environments, our model generalizes well to videos captured in-the-wild.
-      </h2>
-      <h2 class="subtitle has-text-centered is-max-desktop">
-      </h2>
-
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
-
 
 <!-- Youtube video -->
 <section class="hero is-small is-light">
@@ -467,7 +467,7 @@ End paper poster -->
       <h2 class="title">BibTeX</h2>
       <pre><code>@InProceedings{taubner2024flowface,
         author    = {Taubner, Felix and Raina, Prashant and Tuli, Mathieu and Teh, Eu Wern and Lee, Chul and Huang, Jinmiao},
-        title     = {3D Face Tracking from 2D Video through Iterative Dense UV to Image Flow},
+        title     = {{3D} Face Tracking from {2D} Video through Iterative Dense {UV} to Image Flow},
         booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
         month     = {June},
         year      = {2024},
