@@ -68,14 +68,20 @@
           <h1 class="title is-2 publication-title">CAP4D: Creating Animatable 4D Portrait Avatars with Morphable Multi-View Diffusion Models</h1>
           <div class="is-size-5 publication-authors">
             <!-- Paper authors -->
-            <span class="author-block"> Felix Taubner<sup>1</sup>,</span>
-            <span class="author-block"> Ruihang Zhang<sup>1</sup>,</span>
-            <span class="author-block"> Mathieu Tuli<sup>2</sup>,</span>
-            <span class="author-block"> David B. Lindell<sup>1</sup></span>
+            <span class="author-block"> 
+              <a href="https://felixtaubner.github.io" target="_blank">Felix Taubner</a><sup>1</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            </span>
+            <span class="author-block"> Ruihang Zhang<sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block"> 
+              <a href="https://mathieutuli.com/" target="_blank">Mathieu Tuli</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="author-block"> 
+              <a href="https://davidlindell.com/" target="_blank">David B. Lindell</a><sup>1</sup>
+            </span>
             </span>
           </div>
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Toronto,</span>
+            <span class="author-block"><sup>1</sup>University of Toronto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span class="author-block"><sup>2</sup>LG Electronics</span>
               <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
           </div>
@@ -103,7 +109,7 @@
           </video>
         </div>
       </div> -->
-      <video poster="" id="tree" autoplay muted loop height="100%">
+      <video poster="teaser/teaser_website_poster.webp" id="tree" autoplay muted loop height="100%">
         <source src="teaser/teaser_video_website.mp4"
         type="video/mp4">
       </video>
@@ -126,7 +132,7 @@
       <!-- Your image here -->
       <!-- <h2 class="title is-3">Method Overview</h2> -->
       <h2 class="title is-3" style="margin-bottom: -10px;">Overview</h2><br>
-      <video poster="" id="tree" autoplay muted loop height="100%">
+      <video poster="teaser/method_video.webp" id="tree" autoplay muted loop height="100%">
         <!-- Your video here -->
         <source src="teaser/method_video.mp4"
         type="video/mp4">
@@ -147,7 +153,7 @@
     <div id="webgpu-warning" style="height: 200px; width: 100px; display: none;">Webgpu not supported.</div>
     <canvas id="brush_canvas" style="width: 100%; max-width: 450px; aspect-ratio: 1/1; text-align: center; display: block; position: relative; margin-left: auto; margin-right: auto;"></canvas>
     <div class="previews">
-        <a onclick="window.viewer.load_url('https\:\/\/public.db.files.1drv.com/y4mx_Hp1ekUM6l5iC9TUr00EP77mamFglepnmGfMidavg5C4b0GXOgCo4Mji9kEuc3sI7GmwxcMm-Vku_Jg0UUz8BMAr1og7mE6Tx3HoA-ysO1DuWA3_YYqcIcyaXjoHJNC0yIdHQ7EbmPWIvfh5Z9xmrlB96Zj3ExdE7_zX21EUbgfK7O8TFoyxsxhyiiPduDXIJ5mA-OpHZg-0-r-I1jJfIIRKnu0SNLLzwLKqm8lDKY')">
+        <a onclick="window.viewer.load_url('https:\/\/public.db.files.1drv.com/y4mwIOlNzKpWiW_05d_JLOxidSmxB8EiqZAnCaCcAXFDG49LRV2uwLRkvh8YzlU7FgK6TEPCU_R3DEOraWrqPlGJEGOHDU5bbkwwdJONI4FZDWbCa_d3KABKl6T9IbsYxzL4HaEKko6Jzi0GXpkZvPCdqxvhgmuD2bBx3XZceMOJakp3Y_zsdUunm1SDJsEj8HvohtXYhMEPmouMH0oO0A4t9bBXtwHJgsCq20tESxC4sQ')">
             <img class="card-img" src="brush_gallery/abraham_lincoln.png">
         </a>
         <a onclick="window.viewer.load_url('https:\/\/sbo7ia.db.files.1drv.com/y4mBHwrgOlGV95zhLu_i-mreQIiKTkXqekI_8QnyM06hA04wogqbE7g3O6htPl4E-EAOrWtcHWl59ZveajAB2sSMVay9V1N7rH4XFECmMsqGxMEHNFXvVIX_vQziRyBoxYXCjbz0S1SYSY1dSmKYhWq9O5d-53m6Y6uUb3oJWk8Vkp7WvWjYtRW8-4mFbxvrk3rxCALKH_0rzYuPeZFN9m_Ug')">
@@ -654,7 +660,7 @@
             </h2>
           </div>
           <div class="item item-video3">
-            <video poster="" id="video3" autoplay muted loop width="100%">\
+            <video poster="" id="video3" autoplay muted loop width="100%" loading="lazy">\
               <!-- Your video file here -->
               <source src="videos/editing/edit_w01.mp4"
               type="video/mp4">
@@ -689,7 +695,7 @@
       </h2>
 
       <div class="item item-video3" style="width: 40%; margin: 0 auto; text-align: center;">
-        <video poster="" id="video3" controls width="100%">
+        <video poster="" id="video3" controls width="100%" loading="lazy">
           <!-- Your video file here -->
           <source src="videos/speech/hinton_speech.mp4"
           type="video/mp4">
@@ -727,7 +733,7 @@
   </body>
 </html>
 
-<script type="module">
+<script type="module" defer>
   // import init, * as bindings from '/assets/felix/brush-demo/brush-desktop-1e8867bc72c075f2.js';
   import init, * as bindings from './static/wasm/brush-rigged-desktop.js';
   const isWebGPUSupported = 'gpu' in navigator;
@@ -760,7 +766,7 @@
       console.log("starting")
       // var start_url = "/assets/felix/brush-demo/model_1.ply"
       // var start_url = "https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-forest-elf-fire_deform3dgs_pruned.ply"
-      var start_url = "https\:\/\/public.db.files.1drv.com/y4mx_Hp1ekUM6l5iC9TUr00EP77mamFglepnmGfMidavg5C4b0GXOgCo4Mji9kEuc3sI7GmwxcMm-Vku_Jg0UUz8BMAr1og7mE6Tx3HoA-ysO1DuWA3_YYqcIcyaXjoHJNC0yIdHQ7EbmPWIvfh5Z9xmrlB96Zj3ExdE7_zX21EUbgfK7O8TFoyxsxhyiiPduDXIJ5mA-OpHZg-0-r-I1jJfIIRKnu0SNLLzwLKqm8lDKY"
+      var start_url = "https://public.db.files.1drv.com/y4mwIOlNzKpWiW_05d_JLOxidSmxB8EiqZAnCaCcAXFDG49LRV2uwLRkvh8YzlU7FgK6TEPCU_R3DEOraWrqPlGJEGOHDU5bbkwwdJONI4FZDWbCa_d3KABKl6T9IbsYxzL4HaEKko6Jzi0GXpkZvPCdqxvhgmuD2bBx3XZceMOJakp3Y_zsdUunm1SDJsEj8HvohtXYhMEPmouMH0oO0A4t9bBXtwHJgsCq20tESxC4sQ"
       const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=0.2&min_radius=1.3&max_radius=2.0&radius=1.5&min_pitch=-15.0&max_pitch=15.0&min_yaw=-50.0&max_yaw=50.0`)
       window.viewer = viewer;
   });
