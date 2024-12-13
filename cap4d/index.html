@@ -118,7 +118,7 @@
           </video>
         </div>
       </div> -->
-      <video poster="teaser/teaser_website_poster.webp" id="tree" autoplay muted loop playsinline height="100%">
+      <video poster="teaser/teaser_website_poster.webp" id="video_teaser" autoplay muted controls loop playsinline style="width: 100%; object-fit: cover;">
         <source src="teaser/teaser_video_website.mp4"
         type="video/mp4">
       </video>
@@ -141,7 +141,7 @@
       <!-- Your image here -->
       <!-- <h2 class="title is-3">Method Overview</h2> -->
       <h2 class="title is-3" style="margin-bottom: -10px;">Overview</h2><br>
-      <video poster="teaser/method_video.webp" id="tree" autoplay muted loop playsinline height="100%">
+      <video poster="teaser/method_video.webp" id="video_overview" autoplay muted loop playsinline style="width: 100%; object-fit: cover;">
         <!-- Your video here -->
         <source src="teaser/method_video.mp4"
         type="video/mp4">
@@ -154,6 +154,22 @@
   </div>
 <!-- </div> -->
 </section>
+
+<!-- <script>
+  // Wait for the DOM to load
+  document.addEventListener("DOMContentLoaded", () => {
+      const video_teaser = document.getElementById('video_teaser');
+      const video_overview = document.getElementById('video_overview');
+      
+      // Remove poster when the video starts playing
+      video_teaser.onplay = () => {
+        video_teaser.poster = null;
+      };
+      video_overview.onplay = () => {
+        video_overview.poster = null;
+      };
+  });
+</script> -->
 
 <!-- Teaser video-->
 <section class="hero is-small is-light"></section>
