@@ -791,44 +791,44 @@
   alt="Web Analytics Made Easy - Statcounter"
   referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 
+  <script type="module" defer>
+    // import init, * as bindings from '/assets/felix/brush-demo/brush-desktop-1e8867bc72c075f2.js';
+    import init, * as bindings from './static/wasm/brush-rigged-desktop.js';
+    const isWebGPUSupported = 'gpu' in navigator;
+    // Display a warning if WebGPU is not supported.
+    const warningElement = document.getElementById('webgpu-warning');
+    const canvasElement = document.getElementById('brush_canvas');
+  
+    // Prevent Brush from stealing focus.
+    const originalFocus = HTMLElement.prototype.focus;
+    HTMLElement.prototype.focus = function () {
+        if (!this.matches('[id="brush_canvas"]')) {
+            originalFocus.apply(this, arguments);
+        }
+    };
+  
+    if (isWebGPUSupported) {
+        // const wasm = await init({ module_or_path: '/assets/felix/brush-demo/brush-desktop-1e8867bc72c075f2_bg.wasm' });
+        const wasm = await init({ module_or_path: './static/wasm/brush-rigged-desktop.wasm' });
+        window.wasmBindings = bindings;
+        dispatchEvent(new CustomEvent("TrunkApplicationStarted", { detail: { wasm } }));
+    } else {
+        warningElement.style.display = 'block';
+        canvasElement.style.display = 'none';
+    }
+  </script>
+  
+  <script type="module" defer>
+    window.addEventListener("TrunkApplicationStarted", (e) => {
+        // Load with an initial URL.
+        console.log("starting")
+        // var start_url = "/assets/felix/brush-demo/model_1.ply"
+        // var start_url = "https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-forest-elf-fire_deform3dgs_pruned.ply"
+        var start_url = "https://public.db.files.1drv.com/y4mwIOlNzKpWiW_05d_JLOxidSmxB8EiqZAnCaCcAXFDG49LRV2uwLRkvh8YzlU7FgK6TEPCU_R3DEOraWrqPlGJEGOHDU5bbkwwdJONI4FZDWbCa_d3KABKl6T9IbsYxzL4HaEKko6Jzi0GXpkZvPCdqxvhgmuD2bBx3XZceMOJakp3Y_zsdUunm1SDJsEj8HvohtXYhMEPmouMH0oO0A4t9bBXtwHJgsCq20tESxC4sQ"
+        const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=0.2&min_radius=1.3&max_radius=2.0&radius=1.5&min_pitch=-15.0&max_pitch=15.0&min_yaw=-50.0&max_yaw=50.0`)
+        window.viewer = viewer;
+    });
+  </script>
+
   </body>
 </html>
-
-<script type="module" defer>
-  // import init, * as bindings from '/assets/felix/brush-demo/brush-desktop-1e8867bc72c075f2.js';
-  import init, * as bindings from './static/wasm/brush-rigged-desktop.js';
-  const isWebGPUSupported = 'gpu' in navigator;
-  // Display a warning if WebGPU is not supported.
-  const warningElement = document.getElementById('webgpu-warning');
-  const canvasElement = document.getElementById('brush_canvas');
-
-  // Prevent Brush from stealing focus.
-  const originalFocus = HTMLElement.prototype.focus;
-  HTMLElement.prototype.focus = function () {
-      if (!this.matches('[id="brush_canvas"]')) {
-          originalFocus.apply(this, arguments);
-      }
-  };
-
-  if (isWebGPUSupported) {
-      // const wasm = await init({ module_or_path: '/assets/felix/brush-demo/brush-desktop-1e8867bc72c075f2_bg.wasm' });
-      const wasm = await init({ module_or_path: './static/wasm/brush-rigged-desktop.wasm' });
-      window.wasmBindings = bindings;
-      dispatchEvent(new CustomEvent("TrunkApplicationStarted", { detail: { wasm } }));
-  } else {
-      warningElement.style.display = 'block';
-      canvasElement.style.display = 'none';
-  }
-</script>
-
-<script type="module">
-  window.addEventListener("TrunkApplicationStarted", (e) => {
-      // Load with an initial URL.
-      console.log("starting")
-      // var start_url = "/assets/felix/brush-demo/model_1.ply"
-      // var start_url = "https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-forest-elf-fire_deform3dgs_pruned.ply"
-      var start_url = "https://public.db.files.1drv.com/y4mwIOlNzKpWiW_05d_JLOxidSmxB8EiqZAnCaCcAXFDG49LRV2uwLRkvh8YzlU7FgK6TEPCU_R3DEOraWrqPlGJEGOHDU5bbkwwdJONI4FZDWbCa_d3KABKl6T9IbsYxzL4HaEKko6Jzi0GXpkZvPCdqxvhgmuD2bBx3XZceMOJakp3Y_zsdUunm1SDJsEj8HvohtXYhMEPmouMH0oO0A4t9bBXtwHJgsCq20tESxC4sQ"
-      const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=0.2&min_radius=1.3&max_radius=2.0&radius=1.5&min_pitch=-15.0&max_pitch=15.0&min_yaw=-50.0&max_yaw=50.0`)
-      window.viewer = viewer;
-  });
-</script>
