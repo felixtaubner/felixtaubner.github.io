@@ -816,6 +816,27 @@
   alt="Web Analytics Made Easy - Statcounter"
   referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 
+  <script>
+    // Lazy loading for videos
+    document.addEventListener('DOMContentLoaded', () => {
+      const videos = document.querySelectorAll('video[data-src]');
+
+      videos.forEach((video) => {
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              video.src = video.dataset.src; // Load video source
+              video.previousElementSibling.remove(); // Remove placeholder
+              observer.unobserve(video); // Stop observing this video
+            }
+          });
+        });
+
+        observer.observe(video);
+      });
+    });
+  </script>
+
   <!-- <script type="module" defer>
     // import init, * as bindings from '/assets/felix/brush-demo/brush-desktop-1e8867bc72c075f2.js';
     import init, * as bindings from './static/wasm/brush-rigged-desktop.js';
