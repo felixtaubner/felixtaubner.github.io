@@ -53,24 +53,6 @@
   <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
-
-  <!-- <script>
-    // Function to detect if the user is on a mobile device
-    function isMobile() {
-      return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-    }
-
-    // Disable autoplay if on mobile
-    // if (isMobile()) {
-    const videos = document.querySelectorAll('video'); // Select all video elements
-    videos.forEach((video) => {
-      video.autoplay = false
-      video.removeAttribute('autoplay'); // Remove autoplay attribute
-      video.controls = true
-      // video.pause(); // Ensure video doesn't play
-    });
-    // }
-  </script> -->
 </head>
 
 
@@ -143,7 +125,7 @@
           </video>
         </div>
       </div> -->
-      <video poster="teaser/teaser_website_poster.webp" id="video_teaser" muted playsinline loop controls style="width: 100%; object-fit: cover;">
+      <video poster="teaser/teaser_website_poster.webp" id="video_teaser" autoplay muted playsinline loop style="width: 100%; object-fit: cover;">
         <source src="teaser/teaser_video_website.mp4"
         type="video/mp4">
       </video>
@@ -166,7 +148,7 @@
       <!-- Your image here -->
       <!-- <h2 class="title is-3">Method Overview</h2> -->
       <h2 class="title is-3" style="margin-bottom: -10px;">Overview</h2><br>
-      <video poster="teaser/method_video.webp" id="video_overview" muted playsinline loop controls style="width: 100%; object-fit: cover;">
+      <video poster="teaser/method_video.webp" id="video_overview" autoplay muted playsinline loop style="width: 100%; object-fit: cover;">
         <!-- Your video here -->
         <source src="teaser/method_video.mp4"
         type="video/mp4">
@@ -821,17 +803,20 @@
     // Function to detect if the user is on a mobile device
     function isMobile() {
       return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+      // return true;
     }
 
     // Disable autoplay if on mobile
     if (isMobile()) {
-    const videos = document.querySelectorAll('video'); // Select all video elements
-    videos.forEach((video) => {
-      video.autoplay = false
-      video.removeAttribute('autoplay'); // Remove autoplay attribute
-      video.controls = true
-      // video.pause(); // Ensure video doesn't play
-    });
+      const videos = document.querySelectorAll('video'); // Select all video elements
+      videos.forEach((video) => {
+        if (video.id !== 'video_teaser' && video.id !== 'video_overview') {
+          video.autoplay = false
+          video.removeAttribute('autoplay'); // Remove autoplay attribute
+          video.controls = true
+        }
+        // video.pause(); // Ensure video doesn't play
+      });
     }
   </script>
 
