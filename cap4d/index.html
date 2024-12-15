@@ -133,6 +133,7 @@
         TL;DR: Our model can create realistic 4D avatars using any number of reference images.
       </h2>
     <!-- <div class="hero-body"> -->
+    </div>
   </div>
 <!-- </div> -->
   <!-- </div> -->
@@ -799,7 +800,7 @@
   alt="Web Analytics Made Easy - Statcounter"
   referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 
-  <script>
+  <!-- <script>
     // Function to detect if the user is on a mobile device
     function isMobile() {
       return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
@@ -820,7 +821,7 @@
         // video.pause(); // Ensure video doesn't play
       });
     }
-  </script>
+  </script> -->
 
   <script type="module" defer>
     // import init, * as bindings from '/assets/felix/brush-demo/brush-desktop-1e8867bc72c075f2.js';
@@ -859,6 +860,27 @@
         const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=0.2&min_radius=1.3&max_radius=2.0&radius=1.5&min_pitch=-15.0&max_pitch=15.0&min_yaw=-50.0&max_yaw=50.0`)
         window.viewer = viewer;
     });
+  </script>
+
+  <script>
+
+
+    function loadContent(videoUrl, imageUrl, viewerUrl) {
+    // Set the video URL (you can implement your own logic for this)
+    const videoElement = document.querySelector('#videoElement'); // Assume you have a video element with an ID
+    if (videoElement) {
+        videoElement.src = videoUrl; // Set the video URL
+    }
+
+    // Set the image URL (if necessary)
+    const imageElement = document.querySelector('#imageElement'); // Assume you have an image element with an ID
+    if (imageElement) {
+        imageElement.src = imageUrl; // Set the image URL
+    }
+
+    // Load the viewer URL
+    window.viewer.load_url(viewerUrl); // This will trigger your viewer to load the content
+  }
   </script>
 
   </body>
