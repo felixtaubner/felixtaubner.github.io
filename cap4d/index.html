@@ -54,23 +54,23 @@
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
 
-  <script>
+  <!-- <script>
     // Function to detect if the user is on a mobile device
     function isMobile() {
       return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
     }
 
     // Disable autoplay if on mobile
-    if (isMobile()) {
-      const videos = document.querySelectorAll('video'); // Select all video elements
-      videos.forEach((video) => {
-        video.autoplay = false
-        video.removeAttribute('autoplay'); // Remove autoplay attribute
-        video.controls = true
-        // video.pause(); // Ensure video doesn't play
-      });
-    }
-  </script>
+    // if (isMobile()) {
+    const videos = document.querySelectorAll('video'); // Select all video elements
+    videos.forEach((video) => {
+      video.autoplay = false
+      video.removeAttribute('autoplay'); // Remove autoplay attribute
+      video.controls = true
+      // video.pause(); // Ensure video doesn't play
+    });
+    // }
+  </script> -->
 </head>
 
 
@@ -818,6 +818,24 @@
   referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 
   <script>
+    // Function to detect if the user is on a mobile device
+    function isMobile() {
+      return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    }
+
+    // Disable autoplay if on mobile
+    /if (isMobile()) {
+    const videos = document.querySelectorAll('video'); // Select all video elements
+    videos.forEach((video) => {
+      video.autoplay = false
+      video.removeAttribute('autoplay'); // Remove autoplay attribute
+      video.controls = true
+      // video.pause(); // Ensure video doesn't play
+    });
+    }
+  </script>
+
+  <!-- <script>
     // Lazy loading for videos
     document.addEventListener('DOMContentLoaded', () => {
       const videos = document.querySelectorAll('video[data-src]');
@@ -836,7 +854,7 @@
         observer.observe(video);
       });
     });
-  </script>
+  </script> -->
 
   <!-- <script type="module" defer>
     // import init, * as bindings from '/assets/felix/brush-demo/brush-desktop-1e8867bc72c075f2.js';
