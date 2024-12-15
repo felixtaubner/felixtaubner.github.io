@@ -191,38 +191,139 @@
       <a href="https://github.com/ArthurBrussee/brush">Brush</a>. Note that this is experimental and quality may be reduced. 
       Please ensure that your available VRAM is greater than 3GB. 
     </p>
-    <div id="webgpu-warning" class="warning">
-      <div class="warning-title">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="warning-icon">
-          <circle cx="12" cy="12" r="10"></circle>
-          <path d="M12 8v5"></path>
-          <circle cx="12" cy="16" r="0.5" fill="currentColor"></circle>
-        </svg>
-        Browser Not Supported
+    <div style="display: flex; align-items: center; justify-content: center; gap: 0px; flex-wrap: wrap; margin-top: 20px;">
+      <div class="controllable-image" style="width: 40%; text-align: center;  margin-left: auto; margin-right: auto;">
+        <img src="brush_gallery/abraham_lincoln.webp" id="reference_image" alt="Reference image" style="width: 100%;">
+        <p style="font-size: 18px; margin-top: 2px;">reference images</p>
       </div>
-      <p class="warning-message">
-        Your browser does not appear to support the interactive viewer. Currently, only Chrome (Desktop) Version 130+ is supported.
-      </p>
+      <div id="webgpu-warning" class="warning">
+        <div class="warning-title">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="warning-icon">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 8v5"></path>
+            <circle cx="12" cy="16" r="0.5" fill="currentColor"></circle>
+          </svg>
+          Browser Not Supported
+        </div>
+        <p class="warning-message">
+          Your browser does not appear to support the interactive viewer. Currently, only Chrome (Desktop) Version 130+ is supported. Displaying a video instead!
+        </p>
+        <video poster="brush_gallery/abraham_lincoln_247_poster.webp" id="video_animation" autoplay muted playsinline loop width="100%" style="margin-top: 10px;">
+          <!-- Your video file here -->
+          <source src="brush_gallery/abraham_lincoln_247_c.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+      <canvas id="brush_canvas" style="width: 100%; max-width: 450px; aspect-ratio: 1/1; text-align: center; display: block; position: relative; margin-left: auto; margin-right: auto;"></canvas>
     </div>
-    <canvas id="brush_canvas" style="width: 100%; max-width: 450px; aspect-ratio: 1/1; text-align: center; display: block; position: relative; margin-left: auto; margin-right: auto;"></canvas>
-    <div class="previews">
-      <a onclick="window.viewer.load_url('https:\/\/public.db.files.1drv.com/y4mwIOlNzKpWiW_05d_JLOxidSmxB8EiqZAnCaCcAXFDG49LRV2uwLRkvh8YzlU7FgK6TEPCU_R3DEOraWrqPlGJEGOHDU5bbkwwdJONI4FZDWbCa_d3KABKl6T9IbsYxzL4HaEKko6Jzi0GXpkZvPCdqxvhgmuD2bBx3XZceMOJakp3Y_zsdUunm1SDJsEj8HvohtXYhMEPmouMH0oO0A4t9bBXtwHJgsCq20tESxC4sQ')">
-          <img class="card-img" src="brush_gallery/abraham_lincoln_icon.webp">
+    <div class="previews">      
+      <a onclick="loadContent('abraham_lincoln')">
+        <img class="card-img" src="brush_gallery/abraham_lincoln_icon.webp">
       </a>
-      <a onclick="window.viewer.load_url('https:\/\/sbo7ia.db.files.1drv.com/y4mBHwrgOlGV95zhLu_i-mreQIiKTkXqekI_8QnyM06hA04wogqbE7g3O6htPl4E-EAOrWtcHWl59ZveajAB2sSMVay9V1N7rH4XFECmMsqGxMEHNFXvVIX_vQziRyBoxYXCjbz0S1SYSY1dSmKYhWq9O5d-53m6Y6uUb3oJWk8Vkp7WvWjYtRW8-4mFbxvrk3rxCALKH_0rzYuPeZFN9m_Ug')">
-          <img class="card-img" src="brush_gallery/felix_icon.webp">
+      <a onclick="loadContent('adrian')">
+        <img class="card-img" src="brush_gallery/adrian_icon.webp">
       </a>
-      <a onclick="window.viewer.load_url('https:\/\/uohamw.db.files.1drv.com/y4mxLxsZpo3OMkps_otjxRTqsRPVn6EYbKnRQ2cqDoydrKmrjU7SvODPAqb4pBTSmVOmRNwFYwpYL-e_YTybAeERydFdgWksyD1cKCzjzp_CCXtwHzQ-pwFaWUtuH1FL2fRkrKWrJhiFBJOcQAgratMcowZtObJujB4C-0w3SZty2MlvnFWDN5UNDyIM1NQ1kRQ87zP6vVsQf_xW_ktqJIJCQ')">
-          <img class="card-img" src="brush_gallery/michelle_obama_icon.webp">
+      <a onclick="loadContent('ai_man_7')">
+        <img class="card-img" src="brush_gallery/ai_man_7_icon.webp">
       </a>
-      <a onclick="window.viewer.load_url('https:\/\/hj8m7g.db.files.1drv.com/y4mN_nrOwA5hPNwHixCbWw9MHUoWC4S8bT5eaNjvr1yMAdULJcL0dUEWbyiF4Y7l9JARUf9Wv1-_-5rGoY-FiV4fiiJ5EsbYfYzKKP3-7Qfk6pE31Hvn6RzOgT8MDJOcLG6AbWelFFcwvofNI-rzKxNSbe7-5VUT33l4mhF1kVur16bBws669ySP8-vN8foWhyqLZ_4dpdx9QLL9IKEJDeFQQ')">
-          <img class="card-img" src="brush_gallery/geoffrey_hinton_icon.webp">
+      <a onclick="loadContent('ai_obama')">
+        <img class="card-img" src="brush_gallery/ai_obama_icon.webp">
       </a>
-      <a onclick="window.viewer.load_url('https:\/\/txozka.db.files.1drv.com/y4m5Ueds5v-VL9s7t4oCMEcQTb_mC6UYNckuHjFyHsHXlERe8RUNNKnc_5phHjGSNy-pAY5LjQWEqsDK5OjfWXuAhRLXoWelIptpE7fBV9YUCK8Sk6ehJZ_o12Xr9nzEwgjKDvcYFX1rX5XotAfjRCb4oOCyKCWTIoIW0bmylV4TIxJB3mZECT9mbdZ7T37TuSSCpB_zSx1HrBOyuQV_C-NNQ')">
-          <img class="card-img" src="brush_gallery/princess_diana_icon.webp">
+      <a onclick="loadContent('ai_woman_1')">
+        <img class="card-img" src="brush_gallery/ai_woman_1_icon.webp">
       </a>
-      <a onclick="window.viewer.load_url('https:\/\/5rw9qa.db.files.1drv.com/y4mNYhbVAPbn1o7bgTmkJ00pdMUjAk1maom8HVP8-AFQFrIIw01Do2m2geNI6IwLddEnwwjiafCcLp41r_GS5K10YhdAvfK8-n_B-hkf1VpkpQCXBHamLuJry16TW58Ohm06eXajsZiqTEbg1cgwYpKVsrlZUUmxOK4CBIK15z2n8U69HQb_8Vm79b5ONh5TNXXPzgM8-uAb8OKAARBSEcckw')">
-          <img class="card-img" src="brush_gallery/suim_icon.webp">
+      <a onclick="loadContent('ai_woman_2')">
+        <img class="card-img" src="brush_gallery/ai_woman_2_icon.webp">
+      </a>
+      <a onclick="loadContent('ai_woman_3')">
+        <img class="card-img" src="brush_gallery/ai_woman_3_icon.webp">
+      </a>
+      <a onclick="loadContent('ai_woman_4')">
+        <img class="card-img" src="brush_gallery/ai_woman_4_icon.webp">
+      </a>
+      <a onclick="loadContent('avatar_navi')">
+        <img class="card-img" src="brush_gallery/avatar_navi_icon.webp">
+      </a>
+      <a onclick="loadContent('bala')">
+        <img class="card-img" src="brush_gallery/bala_icon.webp">
+      </a>
+      <a onclick="loadContent('david_statue')">
+        <img class="card-img" src="brush_gallery/david_statue_icon.webp">
+      </a>
+      <a onclick="loadContent('dirk')">
+        <img class="card-img" src="brush_gallery/dirk_icon.webp">
+      </a>
+      <a onclick="loadContent('esther')">
+        <img class="card-img" src="brush_gallery/esther_icon.webp">
+      </a>
+      <a onclick="loadContent('felix')">
+        <img class="card-img" src="brush_gallery/felix_icon.webp">
+      </a>
+      <a onclick="loadContent('frida_kahlo')">
+        <img class="card-img" src="brush_gallery/frida_kahlo_icon.webp">
+      </a>
+      <a onclick="loadContent('gengsheng')">
+        <img class="card-img" src="brush_gallery/gengsheng_icon.webp">
+      </a>
+      <a onclick="loadContent('geoffrey_hinton')">
+        <img class="card-img" src="brush_gallery/geoffrey_hinton_icon.webp">
+      </a>
+      <a onclick="loadContent('george_clooney')">
+        <img class="card-img" src="brush_gallery/george_clooney_icon.webp">
+      </a>
+      <a onclick="loadContent('girl_with_pearl_earrings')">
+        <img class="card-img" src="brush_gallery/girl_with_pearl_earrings_icon.webp">
+      </a>
+      <a onclick="loadContent('malte')">
+        <img class="card-img" src="brush_gallery/malte_icon.webp">
+      </a>
+      <a onclick="loadContent('marie_curie')">
+        <img class="card-img" src="brush_gallery/marie_curie_icon.webp">
+      </a>
+      <a onclick="loadContent('martin_luther_king')">
+        <img class="card-img" src="brush_gallery/martin_luther_king_icon.webp">
+      </a>
+      <a onclick="loadContent('michelle_obama')">
+        <img class="card-img" src="brush_gallery/michelle_obama_icon.webp">
+      </a>
+      <a onclick="loadContent('michi')">
+        <img class="card-img" src="brush_gallery/michi_icon.webp">
+      </a>
+      <a onclick="loadContent('nersemble_018')">
+        <img class="card-img" src="brush_gallery/nersemble_018_icon.webp">
+      </a>
+      <a onclick="loadContent('nersemble_124')">
+        <img class="card-img" src="brush_gallery/nersemble_124_icon.webp">
+      </a>
+      <a onclick="loadContent('nersemble_175')">
+        <img class="card-img" src="brush_gallery/nersemble_175_icon.webp">
+      </a>
+      <a onclick="loadContent('nersemble_240')">
+        <img class="card-img" src="brush_gallery/nersemble_240_icon.webp">
+      </a>
+      <a onclick="loadContent('princess_diana')">
+        <img class="card-img" src="brush_gallery/princess_diana_icon.webp">
+      </a>
+      <a onclick="loadContent('salma')">
+        <img class="card-img" src="brush_gallery/salma_icon.webp">
+      </a>
+      <a onclick="loadContent('sam_altman')">
+        <img class="card-img" src="brush_gallery/sam_altman_icon.webp">
+      </a>
+      <a onclick="loadContent('sandra_bullock')">
+        <img class="card-img" src="brush_gallery/sandra_bullock_icon.webp">
+      </a>
+      <a onclick="loadContent('suim')">
+        <img class="card-img" src="brush_gallery/suim_icon.webp">
+      </a>
+      <a onclick="loadContent('tim')">
+        <img class="card-img" src="brush_gallery/tim_icon.webp">
+      </a>
+      <a onclick="loadContent('van_gogh')">
+        <img class="card-img" src="brush_gallery/van_gogh_icon.webp">
+      </a>
+      <a onclick="loadContent('wojtek')">
+        <img class="card-img" src="brush_gallery/wojtek_icon.webp">
       </a>
     </div>
   </div>
@@ -856,31 +957,258 @@
         console.log("starting")
         // var start_url = "/assets/felix/brush-demo/model_1.ply"
         // var start_url = "https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-forest-elf-fire_deform3dgs_pruned.ply"
-        var start_url = "https://public.db.files.1drv.com/y4mwIOlNzKpWiW_05d_JLOxidSmxB8EiqZAnCaCcAXFDG49LRV2uwLRkvh8YzlU7FgK6TEPCU_R3DEOraWrqPlGJEGOHDU5bbkwwdJONI4FZDWbCa_d3KABKl6T9IbsYxzL4HaEKko6Jzi0GXpkZvPCdqxvhgmuD2bBx3XZceMOJakp3Y_zsdUunm1SDJsEj8HvohtXYhMEPmouMH0oO0A4t9bBXtwHJgsCq20tESxC4sQ"
+        var start_url = "https://fz8t5g.db.files.1drv.com/y4m60T5YBxEOZSlrn1mVx0YGRcRQGrNLAHs8kWC60gBpYuyn4RUI2Whjdjx66bnMT-LEgFRfl66cSqQgecoN9uJE0nonIlmvnbz1f1Iae1HcIR3VuznrrwbsnzOIxT1DHVgWg4kd3jf_xUvXKHeePjBLxCVTr_PE8rOThQeUxX4OLxJbCK_CVUbNz75daS9J9FUXocWbYgJ80v2xv6wTfBTrQ"
         const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=0.2&min_radius=1.3&max_radius=2.0&radius=1.5&min_pitch=-15.0&max_pitch=15.0&min_yaw=-50.0&max_yaw=50.0`)
         window.viewer = viewer;
     });
   </script>
 
   <script>
-
-
-    function loadContent(videoUrl, imageUrl, viewerUrl) {
-    // Set the video URL (you can implement your own logic for this)
-    const videoElement = document.querySelector('#videoElement'); // Assume you have a video element with an ID
-    if (videoElement) {
-        videoElement.src = videoUrl; // Set the video URL
+    const liveItems = {
+      "abraham_lincoln": {
+        "ref": "brush_gallery/abraham_lincoln.webp",
+        "vid": "brush_gallery/abraham_lincoln_247_c.mp4",
+        "poster": "brush_gallery/abraham_lincoln_247_poster.webp",
+        "url": "https://fz8t5g.db.files.1drv.com/y4m60T5YBxEOZSlrn1mVx0YGRcRQGrNLAHs8kWC60gBpYuyn4RUI2Whjdjx66bnMT-LEgFRfl66cSqQgecoN9uJE0nonIlmvnbz1f1Iae1HcIR3VuznrrwbsnzOIxT1DHVgWg4kd3jf_xUvXKHeePjBLxCVTr_PE8rOThQeUxX4OLxJbCK_CVUbNz75daS9J9FUXocWbYgJ80v2xv6wTfBTrQ"
+      },
+      "adrian": {
+        "ref": "brush_gallery/adrian.webp",
+        "vid": "brush_gallery/adrian_236_c.mp4",
+        "poster": "brush_gallery/adrian_236_poster.webp",
+        "url": "https://8fwf1g.db.files.1drv.com/y4mZxkdMwsH2mS0uWu0zE9_2Ie92VEy5qIC048tTGgM5GID1Fl2burCBM2qf6fHfQt35HmloYgXY4NVUFw9ARWcInufr8mc3DwOxlMDrDBHsUGqJK8up5TJdP8APbB2sAxcPbCZ3J1PHSqgih9FYQ6CHDNIQ8OFX4xbN4JuVh94YGO3J_4WQgWL2TUfaj7A8AxYPfov0VFN9cEqdQXgEGJCfA"
+      },
+      "ai_man_7": {
+        "ref": "brush_gallery/ai_man_7.webp",
+        "vid": "brush_gallery/ai_man_7_067_c.mp4",
+        "poster": "brush_gallery/ai_man_7_067_poster.webp",
+        "url": "https://hsposw.db.files.1drv.com/y4marGT_nCgQxis9FmUODXE10OVR7u_-VWCQf2fT_FHsVukocetX3KOzKJY3lLbtartFuyrACYRpfdolJPnVw4S_9XP9lr8w2pW8t_HcoSRiYjynYF0mcIjggt-oExiv6yuB0i3G9o3fPRA06IIUeZ6PprxdphpJQqA1R2nZrfpS2mQ68g8Oa6UU6S11Q1SqNKA1PuSJSpCjgt48JclBO_-Gg"
+      },
+      "ai_obama": {
+        "ref": "brush_gallery/ai_obama.webp",
+        "vid": "brush_gallery/ai_obama_011_c.mp4",
+        "poster": "brush_gallery/ai_obama_011_poster.webp",
+        "url": "https://vohhmw.db.files.1drv.com/y4mZEdkn0gGPjLiM_b0B0qiGcnCGsm0o7Px0jl6qpvUMY47pOciAx7E6S8s8mkPEnGr3WFYDyZeWH_s9vxcT_EKM9skupPIy1WnNeawoyQFkoI950Y06VduI8FsB22kSe6YO6Bnrd7L1VovyVhcf9gK1pcb1cnKQILp1N45NSvGRwqBYfYoFahKRYvKu6KwGAHfPhPvwg8o-FS9K7OG5lP-Vg"
+      },
+      "ai_woman_1": {
+        "ref": "brush_gallery/ai_woman_1.webp",
+        "vid": "brush_gallery/ai_woman_1_193_c.mp4",
+        "poster": "brush_gallery/ai_woman_1_193_poster.webp",
+        "url": "https://ij8s7g.db.files.1drv.com/y4m0g1EpXrkvuLRA2Jux1RaqAZeIRvaDYmL-dM-TPcB0_oRCUBpLn9qtYNshnTrQIfyTbRhBuM71T6oncw_ZO7FS3pM10fY2PGQ0PuiNZNPZa-NbmwS6pMUCflIE_PPE4oGgSMXKiw0GW-JT49dVAs3f2kuhikEzftBxLguNPAJZJ7uo3JYPQ0SV-DA-aAgwveY1CZQaJfI9-wCoDxxHip0aA"
+      },
+      "ai_woman_2": {
+        "ref": "brush_gallery/ai_woman_2.webp",
+        "vid": "brush_gallery/ai_woman_2_121_c.mp4",
+        "poster": "brush_gallery/ai_woman_1_121_poster.webp",
+        "url": "https://uxo6ka.db.files.1drv.com/y4mw6FgFdC-kzkArUYoIQ_sTAAvY5p6gzbdjdDSOLf9XxkiOxZVlCtTfshIkQIms1OPstNjfz2B0OujqWMc91EhM8qCBHRrzHrKLh1nmjUqkNDcWIfD7NEzzGN4ZH_7vDtPy0SyvJdipJlLuptQ5C4I2MGPkOnwPsOZKA4zzDMM2M5VyvNBAeWDnd_3cV1eJK5VMP2--R0etdRZixTMbAILzw"
+      },
+      "ai_woman_3": {
+        "ref": "brush_gallery/ai_woman_3.webp",
+        "vid": "brush_gallery/ai_woman_3_011_c.mp4",
+        "poster": "brush_gallery/ai_woman_3_011_poster.webp",
+        "url": "https://sprq2a.db.files.1drv.com/y4m_AF3VRhmcF2f8cDm3mBm-z0pEZnxfBTzMLWloZGLeV2a-zby7LP9m-YeA68WcBXNUc4zwPjxvN3u8p0meFJNL2ZkeS792_M2LaSjYll8LsjQ3c9QVMsnZQnJ8dVZ8gYeruP5T4kXtAWwKu9TuX1xGBqQFtkQSBacS9qnm5EWucoqg77Y8avxToCdtFQhxq1sK0c6efS4Ov7-TPei_e7cBA"
+      },
+      "ai_woman_4": {
+        "ref": "brush_gallery/ai_woman_4.webp",
+        "vid": "brush_gallery/ai_woman_4_067_c.mp4",
+        "poster": "brush_gallery/ai_woman_4_067_poster.webp",
+        "url": "https://ryuvng.db.files.1drv.com/y4m00SOcHRcWXyJCEjLtTkBIgwfxTIhNBNkB0mIDnzzAZcHtxmWhtk1gbB5T618fBE0JieEPQ--HOADjLhJBpAi05CkcFVo4-lsBTQF1hpzl8hJIwZTtTRDaT3gZEn35JxVGPCdWP4j04GRjpaoHyyBe3uQv9gytjSu_MWlkGtt2FFUkCtwj1QrRhSP9Ky6dV-Cu2zYKLynvSuRGrA6Oj-Wtg"
+      },
+      "avatar_navi": {
+        "ref": "brush_gallery/avatar_navi.webp",
+        "vid": "brush_gallery/avatar_navi_079_c.mp4",
+        "poster": "brush_gallery/avatar_navi_079_poster.webp",
+        "url": "https://sprv2a.db.files.1drv.com/y4miDG7a5jchqVgd2YR5fR3ZYC2NDw69M54J27mpqxaAaRn1uaXKwjV_2PR-4olEZqlMuo1VnhZh5rBZoMSGbv-Lup-UnDBSYE_rX6vgGlJzb-4fTkvnsQd_ijrTE103qHwmCM_APmwgP131ipXAt-k2QlE_xv89UodGpi-OjyKmV7KC0h5e_85BQvu-psnt5rjVBdPLXBHj3Ga-oebbAvE2g"
+      },
+      "bala": {
+        "ref": "brush_gallery/bala.webp",
+        "vid": "brush_gallery/bala_112_c.mp4",
+        "poster": "brush_gallery/bala_112_poster.webp",
+        "url": "https://vohcmw.db.files.1drv.com/y4mN_m8qH15oLeIQXRHKLPChWhAxiHBRMq59Ju_JVu4b-wxU11Cn3z4P7MBnq4ZxhyJh6X09sZmCw6pes-XAfrT0_QVpWdi1xCCpMWO0BHW5rftGzSaqt5akocIkEfw7QmjJYQTBpv4iSqKd63bsXj8NBv1c5pmVxptOyROmHSJeibMScLjlo-QogGEIY0D7tP6ipKC54SZ7o7fGAn0CJmOXw"
+      },
+      "david_statue": {
+          "ref": "brush_gallery/david_statue.webp",
+          "vid": "brush_gallery/david_statue_117_c.mp4",
+          "poster": "brush_gallery/david_statue_117_poster.webp",
+          "url": "https://vohgmw.db.files.1drv.com/y4mfu1yPOH1JWvVEoFd4ykKwou01c48dVj47jdtin42RHau_c7xJyRrcWkCMETX6tUa_TQmoKin1xdenXr1nB8sK2JcpUjCqn3F_s9nSFfcT1QSdQQTrg_9NmkKjYbRfLnP3gKgOhw7URFyrFjuudgqj63JRq4RFSbhb0GzfLjfDlbq_IP6blqw-Ds_Gh0PbumbrSPLr0uj8nWsYrihtTJQLQ"
+      },
+      "dirk": {
+          "ref": "brush_gallery/dirk.webp",
+          "vid": "brush_gallery/dirk_112_c.mp4",
+          "poster": "brush_gallery/dirk_112_poster.webp",
+          "url": "https://jhguea.db.files.1drv.com/y4mPu4hpaleBUQ-7_jiCItJyI4ITyr52RW_wJLQ-PpByFBlm3SdSKWIogr0PESBhJTtwuWDdRgzvwfcDY-I_ePEsg6r0_HTCq7Hl5sxCrZQMbsKo64AzhAaRm3IoA2s3CdnzBgZjvuFHo0q2CuS05XyyR_kYiVz2q6WDgnGenqOrnfaR0AUc2So8MhlMNcvYyjMpcqDMhQs5rGU0SFD8qo1NA"
+      },
+      "esther": {
+          "ref": "brush_gallery/esther.webp",
+          "vid": "brush_gallery/esther_018_c.mp4",
+          "poster": "brush_gallery/esther_018_poster.webp",
+          "url": "https://uxo3ka.db.files.1drv.com/y4m9gFm4dyZjD82PN06fzPSmt4SqMogR5DEINQmFXoYi0WzJCj5eUjWXwunbNKs514B2wa-36J6Y1ia9j0oaGRu5HB43CKnSRZgd8PY9m08WqQpQokYqDcxwtE73vSNwtBImOlU5Em2MFalbKYh69nQ_lotTOzjJoe08UEct2_yUZwKJsbVDsxI1gQuPP_aL60SdxqEBgQsN7d5OIvOoEB3XQ"
+      },
+      "felix": {
+          "ref": "brush_gallery/felix.webp",
+          "vid": "brush_gallery/felix_112_c.mp4",
+          "poster": "brush_gallery/felix_112_poster.webp",
+          "url": "https://sbo7ia.db.files.1drv.com/y4mI7Po1dOuzjCPNiFIPNC_zN7IG_UErV3ckBnlYVAlwxW7WhnLX_7Bsg3yv4bzH0fnJ_Xptggeq9IkkjO2f8pszFRKt7aWjO0UT6ilP8ry178owYQodprS0pXW5h_LPqrx5Xd3_jJIKTMq7TRqf0YNYqO9iUDpt0Y1V3NGqUj6Soi1jwmyMZYma0jbjY-ITpXK0KBOgZYa2Gv2M3QRaaDJ5w"
+      },
+      "frida_kahlo": {
+          "ref": "brush_gallery/frida_kahlo.webp",
+          "vid": "brush_gallery/frida_kahlo_079_c.mp4",
+          "poster": "brush_gallery/frida_kahlo_079_poster.webp",
+          "url": "https://jhgvea.db.files.1drv.com/y4mPYvill8hijmpCfaAhlvYOGTgjhEJSuGV-ccJsXlBgpv4ukGx4jxdsewzskQ0zEI94_jPxT-KUfXLlu6TpB8zAXd6dBnwZ21SalWxlP4FYWynTlecjWgQoQwtezt_LX3GL30YL2TQBiXrvnX8t_l3vibwVLsSjR6ZFx9U3Aywp4JqeTFm7p-Kb56r8QRK7O3mdfl52lLvgZmLpOeStbUONA"
+      },
+      "gengsheng": {
+          "ref": "brush_gallery/gengsheng.webp",
+          "vid": "brush_gallery/gengsheng_053_c.mp4",
+          "poster": "brush_gallery/gengsheng_053_poster.webp",
+          "url": "https://t0eabg.db.files.1drv.com/y4m-3aZOB3c8w0Q_JffH6Q8cWThjEPIZcWh4yvaufDRca93hPRHYi-U96TGA7sGWdbvRX6_Lpnk4R91V1OBgEJ7TgispSfFzGWHgzphp4DuqXSzttfHahc36yXrPOawkmdKGjxjTWa23owwAG0BPoZ6FDQ8CHUc3YHneC8M-E415PjU-DJEgywnYFJibgOD6WUWwowpLk7Pk1KzjKfD2z4IDw"
+      },
+      "geoffrey_hinton": {
+          "ref": "brush_gallery/geoffrey_hinton.webp",
+          "vid": "brush_gallery/geoffrey_hinton_247_c.mp4",
+          "poster": "brush_gallery/geoffrey_hinton_247_poster.webp",
+          "url": "https://hj8m7g.db.files.1drv.com/y4m3GBgWgnfdH4g9NhZcXhGMoZDExBd_feJknpHefldzzBjgojXZr_C_y7uN5muZxW-r1xx4et-A7sTZYV05dMXDZRz_nzFooTtyJFD5r8C1JJEfgzlOFKqKImojwNFPhEcaw6b14ud16yuDVja0rMVmzv8Pjl2-UDHhWw9M3Rzvon3qHA_sM_VVFRyYhqPOyHwJRtQkWBl9Far2luv8tub"
+      },
+      "george_clooney": {
+          "ref": "brush_gallery/george_clooney.webp",
+          "vid": "brush_gallery/george_clooney_054_c.mp4",
+          "poster": "brush_gallery/george_clooney_054_poster.webp",
+          "url": "https://i3g3ea.db.files.1drv.com/y4mGAOVKap9CXkQDVX3T4Zvn2VAJhfre4sT3lzr2nbUy8U8wJ_V6kCcOm8osSWOBxjGxyrgSlFxl6eLozZU5bdM4FF9xgFK8rqj_BJfyT1mBZvv6LvZ6WIxpoU3E6RcPfHYwSMbw4iJ_MCmrpHGwNBidYXyMHT-SHmh5nnTt8ufP6Bzn2bZCIrRJZF3CreeltBkP2Ylq4iv-f4kueUsA3hZGQ"
+      },
+      "girl_with_pearl_earrings": {
+          "ref": "brush_gallery/girl_with_pearl_earrings.webp",
+          "vid": "brush_gallery/girl_with_pearl_earrings_261_c.mp4",
+          "poster": "brush_gallery/girl_with_pearl_earrings_261_poster.webp",
+          "url": "https://6rxcqa.db.files.1drv.com/y4mKPl61XGEudBECXHQZQpyVB-rJumnMfk4Vvcso_gDeGi7s2rMJVfeKSg5EmSGxOyiYRRTpTSHIgtJ6o9IB7TFk-BSNqmxb6WYdmDub5NdUCK9HwYXSE-RHwO7Dv4-m42Fbq96iUuKpHjGt4AyGO2wpvefHGJ0DOwxhudyecKc_CB_xsa4Mrqn28LQYkUOEGuNJ18gi-BA1nMzUvziIqtbLw"
+      },
+      "malte": {
+          "ref": "brush_gallery/malte.webp",
+          "vid": "brush_gallery/malte_236_c.mp4",
+          "poster": "brush_gallery/malte_236_poster.webp",
+          "url": "https://ij8q7g.db.files.1drv.com/y4mU_96w_V5S043tBK3_lpoJAnR_PRLNez48ln0D8kYOwZ7jALvwe_8msNhJTV64UwdWhIo58hwLfyx5S9KT1RBic2EHxy4dahr0YyN-XsBtqxTdl8lRe2boicS2GwNr5XanZ94x_ghURJtMvelwNZT12DAUbYS8KRQyJnUoyUCGf-2872vU30119YD_jBc00cIq7m_AWAVju3qHBdbMbULFg"
+      },
+      "marie_curie": {
+          "ref": "brush_gallery/marie_curie.webp",
+          "vid": "brush_gallery/marie_curie_247_c.mp4",
+          "poster": "brush_gallery/marie_curie_247_poster.webp",
+          "url": "https://rqre2a.db.files.1drv.com/y4mV85_yCb2GmRLHoCIhLTyHRAXPb5PZAPvbgyb8t2JkzOpInSETw5khlSF7OnU9wIqO7tIXIaLCFdLDFH8Nh941MkwtAkpJBc-gEM3NzrqFkt_MXvplwYRfsq9kuM_8hwbbHy8rKWZIyYaUzYeguM52zUcQs5kTfQKm2q0kfjg1sWVcUPm9OfACK3oaT1-iesau1uC-ki0iAXRddEt2FzJaQ"
+      },
+      "martin_luther_king": {
+          "ref": "brush_gallery/martin_luther_king.webp",
+          "vid": "brush_gallery/martin_luther_king_247_c.mp4",
+          "poster": "brush_gallery/martin_luther_king_247_poster.webp",
+          "url": "https://8pwq1g.db.files.1drv.com/y4mxzf1cly-IQ5EmuciHt8aB1QOUBXQokXpX3b6bbeCBV83hY1VWTTXTGaN3SqAtCuqZmGPsfWiexUUlFjUrczKRLOw-HuvefaACw_HMkSE34f66y4n4XuxRal7jmpLtnwT4ibB02PIkX3nvoz_L1ht0pph54yXtTEHjEUEkDbasrOy9wKph69c7b7mv9yDRGjEISyH5Zm2UzrUZUSxglu2gg"
+      },
+      "michelle_obama": {
+          "ref": "brush_gallery/michelle_obama.webp",
+          "vid": "brush_gallery/michelle_obama_247_c.mp4",
+          "poster": "brush_gallery/michelle_obama_247_poster.webp",
+          "url": "https://uohamw.db.files.1drv.com/y4mxLxsZpo3OMkps_otjxRTqsRPVn6EYbKnRQ2cqDoydrKmrjU7SvODPAqb4pBTSmVOmRNwFYwpYL-e_YTybAeERydFdgWksyD1cKCzjzp_CCXtwHzQ-pwFaWUtuH1FL2fRkrKWrJhiFBJOcQAgratMcowZtObJujB4C-0w3SZty2MlvnFWDN5UNDyIM1NQ1kRQ87zP6vVsQf_xW_ktqJIJCQ"
+      },
+      "michi": {
+          "ref": "brush_gallery/michi.webp",
+          "vid": "brush_gallery/michi_018_c.mp4",
+          "poster": "brush_gallery/michi_018_poster.webp",
+          "url": "https://6rxbqa.db.files.1drv.com/y4mh_XyFOKLBIGXvajaNDFxUHnJLmDwz-e1aFduBE3VcXlvGK2sYN_WX1Cn9DmU3Ln4GASAbice_tj0VlysCpk-0GVh0SGWwpsnnVjEE_rnXfV5TKBHKsVXeZWh0j4v2jxj9FZgcUSzdCqPGCOABpleQnpsEPiA5gYw7kOjVXf5qCxAshSgw3T0-qz6z0CoRM4gtPPULX0pkfVpQCNFHGDsnQ"
+      },
+      "nersemble_018": {
+          "ref": "brush_gallery/nersemble_018.webp",
+          "vid": "brush_gallery/nersemble_018_202_c.mp4",
+          "poster": "brush_gallery/nersemble_018_202_poster.webp",
+          "url": "https://sprs2a.db.files.1drv.com/y4mclEs3-D09C6o8n7UQLQK-xjCDGkwQ2JDtX-ceu9TDQ-0u9ZsRmbW734_yGpH1ascGViNIlNkW9UFP2m5l9gdRYntfZsrFVQSmZXm_4abs_czUCbCVJuy2VgXXC896yq8kJLs2kMpXpv0N7WOWFjmN7QWIYAkAWPkwjblFrj3Wn8WLQn3VPlhVpam3jgudPP3_CGJa5HIDCdp-1C0x_E16A"
+      },
+      "nersemble_124": {
+          "ref": "brush_gallery/nersemble_124.webp",
+          "vid": "brush_gallery/nersemble_124_202_c.mp4",
+          "poster": "brush_gallery/nersemble_124_202_poster.webp",
+          "url": "https://ij8l7g.db.files.1drv.com/y4mw4gWeYQpORLGPZX5dVXzCW-lTZN9_1ecmsyXfCgn1lkg4kGT-CEuFys63QIhw-WHlQHzIHJj5zAo-us81zBc0bq3i_rNr8YARptQgHfhT1nBsrtv02KdGNH2ivqqChpiXZ1nYwBwbcPwTZSMjk62-PoMxZYw8EQOlMdgLSWRdQ9plpIbuMPek6zPYsmQos2hepQSP2tjWSzm_5qpE2MILQ"
+      },
+      "nersemble_175": {
+          "ref": "brush_gallery/nersemble_175.webp",
+          "vid": "brush_gallery/nersemble_175_202_c.mp4",
+          "poster": "brush_gallery/nersemble_175_202_poster.webp",
+          "url": "https://ryuong.db.files.1drv.com/y4m2ETpWim8ugaN8Nj4JWvPE_g15bxB9LbjG21gBT-HmAwszxig2HLUL3lUFoJezhsX45vVWdX-y1uh9ca__N-XLEsWRLho7mJo9A2BRMW-oCxjEbLD1S13-aSBLuP5yiyrD2be-NBY2rCG7geG9utB6EIrVdq17E6tQz-uLhNPSAVLgeJtSjlIsK-TX3qyDZTFgYEGHIDpyYjLAZ3cSbseGg"
+      },
+      "nersemble_226": {
+          "ref": "brush_gallery/nersemble_226.webp",
+          "vid": "brush_gallery/nersemble_226_173_c.mp4",
+          "poster": "brush_gallery/nersemble_226_173_poster.webp",
+          "url": "https://ryupng.db.files.1drv.com/y4mUlFr1dJQiJmNgVBcUlVpDChSRKb94eMLcZ1CrReCtGBBh9m-oKVXkM1xqelGmYUoAuPVUNNsilrm_Pcr0P1tteHuRfusl7NMHOu9Nyj_rxNJN7du7Juhyz0Zrx5Bau3Pb2heYCHyFK2LJFTg8dzYGFFyupGflwDIBmzOFqwLEi41TTiQdplDXmClVQqY6zSn9bEGPq7lheWyo-X4LeEd4A"
+      },
+      "nersemble_240": {
+          "ref": "brush_gallery/nersemble_240.webp",
+          "vid": "brush_gallery/nersemble_240_173_c.mp4",
+          "poster": "brush_gallery/nersemble_240_173_poster.webp",
+          "url": "https://8fwb1g.db.files.1drv.com/y4m_RYTXrr9i_mlp-9Y5YgqOZb0DKliWhlyQ2qpZjyxjRZMzPYgW0JGLvtcdso559nYOH-NcsPshIEFpP7SJPoA5Qy1ke_6h4XPpzS7ARzMsUhCnG6A0VXTK_57HHNtG9fx81seiQJuRlHtwhGKMEiklMDjGga-_IQuBdXWtRZfOIojyfDnMAGy0hSz_4dZ00HHNSNwstsHZRG4aQtuqiKdBA"
+      },
+      "princess_diana": {
+          "ref": "brush_gallery/princess_diana.webp",
+          "vid": "brush_gallery/princess_diana_054_c.mp4",
+          "poster": "brush_gallery/princess_diana_054_poster.webp",
+          "url": "https://txozka.db.files.1drv.com/y4m5Ueds5v-VL9s7t4oCMEcQTb_mC6UYNckuHjFyHsHXlERe8RUNNKnc_5phHjGSNy-pAY5LjQWEqsDK5OjfWXuAhRLXoWelIptpE7fBV9YUCK8Sk6ehJZ_o12Xr9nzEwgjKDvcYFX1rX5XotAfjRCb4oOCyKCWTIoIW0bmylV4TIxJB3mZECT9mbdZ7T37TuSSCpB_zSx1HrBOyuQV_C-NNQ"
+      },
+      "salma": {
+          "ref": "brush_gallery/salma.webp",
+          "vid": "brush_gallery/salma_018_c.mp4",
+          "poster": "brush_gallery/salma_018_poster.webp",
+          "url": "https://vohfmw.db.files.1drv.com/y4mo0PCBgwREuvW9hWuvQv4NGT_loLTdmFlgA7KOJ6h-JFWbhsWrIGUo71Ye5wD7S-ym4o-GwBdRZXhF86m1djI0-RfGZqAAXdNxUq-k3SnurFxtOYZihdgkSf4EuH9Y99bKyoog3BeKOW-w880dwKsJprPYQEXkPUBt-dakT8Uvp3HsZhEGCO7kw1QU5vCUoof_HysPfO_zDsi-kAJIxMa0Q"
+      },
+      "sam_altman": {
+          "ref": "brush_gallery/sam_altman.webp",
+          "vid": "brush_gallery/sam_altman_257_c.mp4",
+          "poster": "brush_gallery/sam_altman_257_poster.webp",
+          "url": "https://6bxlqa.db.files.1drv.com/y4ml-0ilh9IiYZnF3BESYGtuRabqNiFBHe8nVkvH9EtpJqnrf8MSZ_WpCZ5LPoOhVoYq3yHfTEunVCisJJlP7zdIVKCRVWfqN8dL0IG4WFZuXPCz_29qUwEF0FZSlDZXXoaOBdkyXKqNsovZgSf0G1NP08vS2W0RKWyMGuZT7o7nldDaEADjoyR_M0HBcKiJPNZ9FTaq4O7WfIefb5i04d6aQ"
+      },
+      "sandra_bullock": {
+          "ref": "brush_gallery/sandra_bullock.webp",
+          "vid": "brush_gallery/sandra_bullock_054_c.mp4",
+          "poster": "brush_gallery/sandra_bullock_054_poster.webp",
+          "url": "https://rqrd2a.db.files.1drv.com/y4m3ks2PmsHKkMLBs4z2tldkQx16C_2bhjx0OtxS5pNKgzdkKPUMmB5nT5_92FAzyhpDCC5MCacpxpc_Y3enxZqBhT9JKWX0fpEd8NajRPVs-DQG6PfoHv6UAqYJ55cdCfRV0YjIY2tZVR-VvxDa9nU_VMl4yPUcO846pmMI_B5OOqa--POLydmY0ztf68UsG0IsKu1hlk2FsQ5EDWEL-LCsQ"
+      },
+      "suim": {
+          "ref": "brush_gallery/suim.webp",
+          "vid": "brush_gallery/suim_053_c.mp4",
+          "poster": "brush_gallery/suim_053_poster.webp",
+          "url": "https://5rw9qa.db.files.1drv.com/y4mNYhbVAPbn1o7bgTmkJ00pdMUjAk1maom8HVP8-AFQFrIIw01Do2m2geNI6IwLddEnwwjiafCcLp41r_GS5K10YhdAvfK8-n_B-hkf1VpkpQCXBHamLuJry16TW58Ohm06eXajsZiqTEbg1cgwYpKVsrlZUUmxOK4CBIK15z2n8U69HQb_8Vm79b5ONh5TNXXPzgM8-uAb8OKAARBSEcckw"
+      },
+      "tim": {
+          "ref": "brush_gallery/tim.webp",
+          "vid": "brush_gallery/tim_112_c.mp4",
+          "poster": "brush_gallery/tim_112_poster.webp",
+          "url": "https://t0eybg.db.files.1drv.com/y4mOCrqT8Oku0Ut9fokOh0OoUhYXxhAT9-WTReoOO4vbkA2p_oxnYurRKyBp7lwYX_F7tFzPzJGxKhRgAJG_NMouL36MadtavccuJsah3R0WTTGOzv16cO4k5NvZdJ790zuOPAjQLK3x_2GS_auGTqCphWZGseHOn-uXkAb0dzhMZbQpnftrCdGV9tbeyEPjeTd8_k3sjNP5BRhIqZdLzi8Yw"
+      },
+      "van_gogh": {
+          "ref": "brush_gallery/van_gogh.webp",
+          "vid": "brush_gallery/van_gogh_237_c.mp4",
+          "poster": "brush_gallery/van_gogh_237_poster.webp",
+          "url": "https://ij8r7g.db.files.1drv.com/y4m1OwlvLDT2seZT-FH2cbsRyxBbItImSiUIqn3lt8A21c6BAbJWpapRjGzJTZ7T1gGSXJF1ua43VQfjCL0VhzhPsVe87qWst2QF-BKusbadl3FZBZI5uqNvHJ-wQop1VxbOjEtz8m-kwqK1JusINA9dehlkOaJ2zHTKckkB5oZPnQhFV-XRHwdxHQniuLzXen8HWOpYkpmq68notu2ZQFytA"
+      },
+      "wojtek": {
+          "ref": "brush_gallery/wojtek.webp",
+          "vid": "brush_gallery/wojtek_236_c.mp4",
+          "poster": "brush_gallery/wojtek_236_poster.webp",
+          "url": "https://uxo2ka.db.files.1drv.com/y4mrD8DO0Egig7aEqoZIlf6F8anoLO2Eze6PYwfM6KF1bnr7i-O86DjPf35GkaC_u4Ag0eLW-Q2dho0y7u0EZbXukPHT2sd-4DW8Yy__4aZjvhPZ7corZ0nfhcTNF9z-FL1eNt3s_9IaPmzEw_wVrSP294CWN9gQic5sUp0cZcXBWyZojD0UHd05iv6MzgMHqFcjZ5-lGNmp7AdXuSVnc_qyA"
+      }
     }
 
-    // Set the image URL (if necessary)
-    const imageElement = document.querySelector('#imageElement'); // Assume you have an image element with an ID
-    if (imageElement) {
-        imageElement.src = imageUrl; // Set the image URL
+    function loadContent(subject_id) {
+
+      // Set the video URL (you can implement your own logic for this)
+      const videoElement = document.querySelector('#video_animation'); // Assume you have a video element with an ID
+      if (videoElement) {
+          videoElement.src = liveItems[subject_id]["vid"]; // Set the video URL
+          videoElement.poster = liveItems[subject_id]["poster"]; // Set the video poster
+      }
+
+      // Set the image URL (if necessary)
+      const imageElement = document.querySelector('#reference_image'); // Assume you have an image element with an ID
+      if (imageElement) {
+          imageElement.src = liveItems[subject_id]["ref"]; // Set the image URL
+      }
+
+      // Load the viewer URL
+      window.viewer.load_url(liveItems[subject_id]["url"]); // This will trigger your viewer to load the content
     }
 
-    // Load the viewer URL
-    window.viewer.load_url(viewerUrl); // This will trigger your viewer to load the content
-  }
+    loadContent("abraham")
   </script>
 
   </body>
