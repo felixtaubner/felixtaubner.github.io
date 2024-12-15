@@ -54,7 +54,7 @@
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
 
-  <!-- <script>
+  <script>
     // Function to detect if the user is on a mobile device
     function isMobile() {
       return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
@@ -64,12 +64,13 @@
     if (isMobile()) {
       const videos = document.querySelectorAll('video'); // Select all video elements
       videos.forEach((video) => {
+        video.autoplay = false
         video.removeAttribute('autoplay'); // Remove autoplay attribute
-        video.addAttribute
-        video.pause(); // Ensure video doesn't play
+        video.controls = true
+        // video.pause(); // Ensure video doesn't play
       });
     }
-  </script> -->
+  </script>
 </head>
 
 
@@ -781,24 +782,24 @@
 
     <!-- End of Statcounter Code -->
 
-  <footer class="footer">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content">
-  
-            <p>
-              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-              Some elements were inspired by the <a href="https://cat-4d.github.io" target="_blank">CAT4D</a> project page.
-               <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-              Commons Attribution-ShareAlike 4.0 International License</a>.
-            </p>
-  
-          </div>
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            Some elements were inspired by the <a href="https://cat-4d.github.io" target="_blank">CAT4D</a> project page.
+              <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
   <!-- End of Statcounter Code -->
   <!-- Default Statcounter code for CAP4D https://felixtaubner.github.io/cap4d/
