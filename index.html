@@ -14,6 +14,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+
+  <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+  <link rel="shortcut icon" href="favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon/site.webmanifest" />
 </head>
 <body>
 
@@ -30,13 +36,11 @@
 					</button>
 		</div>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
 				  <li><a href="index.html">Home</a></li>
-				  <!-- <li><a href="#">Projects</a></li> -->
 				  <li><a href="#publications">Publications</a></li> 
-				  <!-- <li><a href="#">CV</a></li>  -->
+				  <li><a href="cv_felix_taubner_16122024.pdf">CV</a></li> 
 		  </ul>
 		</div>
 	  </div>
@@ -53,17 +57,18 @@
                 <!-- Main Image -->
                 
                 <div style="margin-top:3%; text-align:justify;">                
-					<p>Hi!</p>
-          <p>I am a PhD student (Computer Science) at the University of Toronto under the supervision of <a href="https://davidlindell.com/">David Lindell</a>, working on 4D generative models with a focus on digital humans.</p>
-          <p>Prior to this, I was employed at LG Electronics as an AI Research Scientist, working on 3D human face reconstruction and animation.</p>
-					<p>I completed my BSc. (Mechanical Engineering) and MSc. (Robotics) at ETH Zurich, specializing in computer vision and control. 
-            Previously, I conducted research at the <a href="https://asl.ethz.ch/">Autonomous Systems Lab</a> at <a href="https://ethz.ch/en.html">ETH</a> under the 
-            supervision of <a href="https://asl.ethz.ch/the-lab/people/person-detail.Mjk5ODE=.TGlzdC8yMDI4LDEyMDExMzk5Mjg=.html">Roland Siegwart</a> 
-            and the <a href="https://tisl.cs.utoronto.ca/">Toronto Intelligent Systems Lab</a> at <a href="https://www.utoronto.ca/">U of T</a> 
-            under the supervision of <a href="https://www.gilitschenski.org/igor/">Igor Gilitschenski</a>.
-          </p>
-					
-					<p>My research interests are 3D computer vision, 4D generative AI and human face animation.</p>
+                  <p>Hi!</p>
+                  <p>I am a PhD student (Computer Science) at the University of Toronto under the supervision of <a href="https://davidlindell.com/">David Lindell</a>, 
+                    working on 4D generative models with a focus on digital humans.</p>
+                  <p>Prior to this, I was employed at LG Electronics as an AI Research Scientist, working on 3D human face reconstruction and animation.</p>
+                  <p>I completed my BSc. (Mechanical Engineering) and MSc. (Robotics) at ETH Zurich, specializing in computer vision and control. 
+                    Previously, I conducted research at the <a href="https://asl.ethz.ch/">Autonomous Systems Lab</a> at <a href="https://ethz.ch/en.html">ETH</a> under the 
+                    supervision of <a href="https://asl.ethz.ch/the-lab/people/person-detail.Mjk5ODE=.TGlzdC8yMDI4LDEyMDExMzk5Mjg=.html">Roland Siegwart</a> 
+                    and the <a href="https://tisl.cs.utoronto.ca/">Toronto Intelligent Systems Lab</a> at <a href="https://www.utoronto.ca/">U of T</a> 
+                    under the supervision of <a href="https://www.gilitschenski.org/igor/">Igor Gilitschenski</a>.
+                  </p>
+                  
+                  <p>My research interests are 3D computer vision, 4D generative AI and human face animation.</p>
                 </div>
             </div> 
 
@@ -76,28 +81,58 @@
                 PhD in Computer Science at University of Toronto<br>
                 </p>
                 <dd><a href="https://www.linkedin.com/in/ftaubner/">LinkedIn</a></dd>
+                <dd><a href="https://x.com/taubnerfelix">Twitter</a></dd>
+                <dd><a href="cv_felix_taubner_16122024.pdf">CV</a></dd>
             </div>
-            
-            
+
             <!-- Publications -->
-            <div class="col-md-8" style="height: 100vh;">    
-                <h2 id="publications">Publications</h2>
-                
-                <!-- <strong>Peer-reviewed</strong><br/> -->
-                <!-- <p> -->
-                
-                <!-- <li class="paper" words="4D generative modelling, diffusion models, 3D computer vision"><a href="cap4d/">CAP4D: Creating Animatable 4D Portrait Avatars with Morphable Multi-View Diffusion Models</a>, <b>Felix Taubner</b>, Ruihang Zhang, Mathieu Tuli, David B. Lindell<i>Preprint</i> </li> -->
-                <li class="paper" words="4D generative modelling, diffusion models, 3D computer vision"><a href="cap4d/">CAP4D: Creating Animatable 4D Portrait Avatars with Morphable Multi-View Diffusion Models</a>, <b>Felix Taubner</b>, Ruihang Zhang, Mathieu Tuli, David B. Lindell, <i>Preprint</i> </li>
+            <div class="col-md-8" style="height: 100vh;">
+              <h2 id="publications">Publications</h2>
 
-                <li class="paper" words="face tracking, 3D reconstruction, 3D computer vision"><a href="flowface/">3D Face Tracking from 2D Video through Iterative Dense UV to Image Flow</a>, <b>Felix Taubner</b>, Prashant Raina, Mathieu Tuli, Eu Wern Teh, Chul Lee, Jinmiao Huang, <i>CVPR 2024</i> </li>
+              <!-- Publication List -->
+              <ul style="list-style: none; padding: 0;">
+                  <!-- Publication 1 -->
+                  <li class="publication-item" style="display: flex; margin-bottom: 20px; align-items: flex-start;">
+                      <img src="cap4d/static/images/cap4dbanner.webp" alt="Teaser for CAP4D" style="width: 240px; height: auto; margin-right: 15px; border-radius: 4px;">
+                      <div>
+                          <a href="cap4d/" style="font-size: 18px; font-weight: bold; color: #0056b3; text-decoration: none;">CAP4D: Creating Animatable 4D Portrait Avatars with Morphable Multi-View Diffusion Models</a>
+                          <p style="margin: 5px 0;">Felix Taubner, Ruihang Zhang, Mathieu Tuli, David B. Lindell</p>
+                          <p> <i>arXiv 2024</i> </p>
+                          <div>
+                              <a href="https://arxiv.org/abs/XXXX" style="font-size: 14px; color: #880808; text-decoration: none; margin-right: 10px;">[arXiv]</a>
+                              <a href="cap4d/" style="font-size: 14px; color: #880808; text-decoration: none;">[Project Page]</a>
+                          </div>
+                      </div>
+                  </li>
 
-                <li class="paper" words="place recognition, 3D computer vision"><a href="https://arxiv.org/abs/2010.10867">LCD - Line Clustering and Description for Place Recognition</a>, <b>Felix Taubner</b>, Florian Tschopp, Tonci Novkovic, Roland Siegwart, Fadri Furrer, <i>3DV 2020</i> </li>
-                <!-- </p> -->
-            
-                <!-- <strong>Technical Reports</strong><br/>
-                <ul>
-                <li class="paper" words="add, your, keywords, here"><a href="#">Full title</a>. Details of the report</li>
-                </ul> -->
+                  <!-- Publication 2 -->
+                  <li class="publication-item" style="display: flex; margin-bottom: 20px; align-items: flex-start;">
+                      <img src="teasers/flowface.webp" alt="Teaser for 3D Face Tracking" style="width: 240px; height: auto; margin-right: 15px; border-radius: 4px;">
+                      <div>
+                          <a href="flowface/" style="font-size: 18px; font-weight: bold; color: #0056b3; text-decoration: none;">3D Face Tracking from 2D Video through Iterative Dense UV to Image Flow</a>
+                          <p style="margin: 5px 0;">Felix Taubner, Prashant Raina, Mathieu Tuli, Eu Wern Teh, Chul Lee, Jinmiao Huang</p>
+                          <p> <i>CVPR 2024</i> </p>
+                          <div>
+                              <a href="https://arxiv.org/abs/2404.09819" style="font-size: 14px; color: #880808; text-decoration: none; margin-right: 10px;">[arXiv]</a>
+                              <a href="flowface/" style="font-size: 14px; color: #880808; text-decoration: none;">[Project Page]</a>
+                          </div>
+                      </div>
+                  </li>
+
+                  <!-- Publication 3 -->
+                  <li class="publication-item" style="display: flex; margin-bottom: 20px; align-items: flex-start;">
+                      <img src="teasers/lcd.webp" alt="Teaser for LCD" style="width: 240px; height: auto; margin-right: 15px; border-radius: 4px;">
+                      <div>
+                          <a href="https://arxiv.org/abs/2010.10867" style="font-size: 18px; font-weight: bold; color: #0056b3; text-decoration: none;">LCD - Line Clustering and Description for Place Recognition</a>
+                          <p style="margin: 5px 0;">Felix Taubner, Florian Tschopp, Tonci Novkovic, Roland Siegwart, Fadri Furrer </p>
+                          <p> <i>3DV 2020</i> </p>
+                          <div>
+                              <a href="https://arxiv.org/abs/2010.10867" style="font-size: 14px; color: #880808; text-decoration: none; margin-right: 10px;">[arXiv]</a>
+                              <a href="https://projectpage.com" style="font-size: 14px; color: #880808; text-decoration: none;">[Project Page]</a>
+                          </div>
+                      </div>
+                  </li>
+              </ul>
             </div>
 
             

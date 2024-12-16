@@ -9,16 +9,16 @@
   <meta property="og:description" content="Our FlowFace 3D face tracker can accurately track faces across challenging poses and expressions."/>
   <meta property="og:url" content="https://felixtaubner.github.io/flowface/"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <!-- <meta property="og:image" content="static/image/your_banner_image.png" /> -->
+  <meta property="og:image" content="static/images/flowface.webp"/>
   <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
+  <meta property="og:image:height" content="600"/>
 
 
   <meta name="twitter:title" content="3D Face Tracking from 2D Video through Iterative Dense UV to Image Flow">
   <meta name="twitter:description" content="Our FlowFace 3D face tracker can accurately track faces across challenging poses and expressions.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> -->
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="static/images/flowface.webp"> 
+  <!-- <meta name="twitter:card" content="summary_large_image"> -->
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="3D face tracking, face tracking, 3D face reconstruction, head reconstruction, avatar, paper">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -118,6 +118,13 @@
                     <i class="ai ai-arxiv"></i>
                   </span>
                   <span>arXiv</span>
+                </a>
+                <a href="https://github.com/felixtaubner/flowface/" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code (Coming Soon)</span>
                 </a>
               </span>
             </div>
@@ -230,7 +237,7 @@
       <h2 class="title is-3">Gallery</h2>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-video1">
-          <video poster="other_videos/video_1_poster.webp" id="video1" autoplay controls muted playsinline loop height="100%">
+          <video poster="other_videos/video_1_poster.webp" id="video1" autoplay muted playsinline loop height="100%">
             <!-- Your video file here -->
             <source src="other_videos/video_1_c.mp4"
             type="video/mp4">
@@ -465,14 +472,15 @@ End paper poster -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@InProceedings{taubner2024flowface,
-        author    = {Taubner, Felix and Raina, Prashant and Tuli, Mathieu and Teh, Eu Wern and Lee, Chul and Huang, Jinmiao},
-        title     = {{3D} Face Tracking from {2D} Video through Iterative Dense {UV} to Image Flow},
-        booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-        month     = {June},
-        year      = {2024},
-        pages     = {1227-1237}
-    }</code></pre>
+      <pre><code>
+@InProceedings{taubner2024flowface,
+  author    = {Taubner, Felix and Raina, Prashant and Tuli, Mathieu and Teh, Eu Wern and Lee, Chul and Huang, Jinmiao},
+  title     = {{3D} Face Tracking from {2D} Video through Iterative Dense {UV} to Image Flow},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month     = {June},
+  year      = {2024},
+  pages     = {1227-1237}
+}</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <meta name="robots" content="noindex, nofollow">
+  <!-- <meta name="robots" content="noindex, nofollow"> -->
   <meta http-equiv="Origin-Trial" content="AuEteKxoiWyEJdhy8fHXnBDiaqAexWgpiLmHYjMoFQCFPtO8pJLzmxFdgHubfKLg3/CfjRjornLcNWNxo6ps2AAAAAB6eyJvcmlnaW4iOiJodHRwczovL2ZlbGl4dGF1Ym5lci5naXRodWIuaW86NDQzIiwiZmVhdHVyZSI6IldlYkdQVVN1Ymdyb3Vwc0ZlYXR1cmVzIiwiZXhwaXJ5IjoxNzQ0NzYxNTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
 
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="Our model can create realistic 4D avatars using any number of reference images.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
   <meta name="twitter:image" content="static/images/cap4dbanner.webp">
-  <meta name="twitter:card" content="summary_large_image">
+  <!-- <meta name="twitter:card" content="summary_large_image"> -->
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="digital human, avatar, 4D generative model, multi-view diffusion, 4D reconstruction, 3D reconstruction, 3D face animation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,20 +69,21 @@
           <div class="is-size-5 publication-authors">
             <!-- Paper authors -->
             <span class="author-block"> 
-              <a href="https://felixtaubner.github.io" target="_blank">Felix Taubner</a><sup>1</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              <a href="https://felixtaubner.github.io" target="_blank">Felix Taubner</a><sup>1,2</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
             </span>
             <span class="author-block"> Ruihang Zhang<sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span class="author-block"> 
-              <a href="https://mathieutuli.com/" target="_blank">Mathieu Tuli</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://mathieutuli.com/" target="_blank">Mathieu Tuli</a><sup>3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </span>
             <span class="author-block"> 
-              <a href="https://davidlindell.com/" target="_blank">David B. Lindell</a><sup>1</sup>
+              <a href="https://davidlindell.com/" target="_blank">David B. Lindell</a><sup>1,2</sup>
             </span>
             </span>
           </div>
           <div class="is-size-5 publication-authors" style="padding-top: 5px;">
             <span class="author-block"><sup>1</sup>University of Toronto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="author-block"><sup>2</sup>LG Electronics</span>
+            <span class="author-block"><sup>2</sup>Vector Institute &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block"><sup>3</sup>LG Electronics</span>
               <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
           </div>
 
@@ -91,7 +92,7 @@
               <span class="icon">
                 <i class="ai ai-arxiv"></i>
               </span>
-              <span>arXiv</span>
+              <span>arXiv (Coming Soon)</span>
             </a>
             <a href="https://github.com/felixtaubner/cap4d/" target="_blank"
             class="external-link button is-normal is-rounded is-dark">
@@ -112,19 +113,6 @@
 <section class="hero is-small"></section>
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <!-- <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay muted loop >\
-            
-            <source src="teaser/teaser_0.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay muted loop  height="100%">\
-            <source src="teaser/teaser_1.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div> -->
       <video poster="teaser/teaser_website_poster.webp" id="video_teaser" autoplay muted playsinline loop style="width: 100%; object-fit: cover;">
         <source src="teaser/teaser_video_website.mp4"
         type="video/mp4">
@@ -837,6 +825,23 @@
     </div>
   </div>
 </section>
+
+<!--BibTex citation -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+@InProceedings{taubner2024flowface,
+  author    = {Taubner, Felix and Raina, Prashant and Tuli, Mathieu and Teh, Eu Wern and Lee, Chul and Huang, Jinmiao},
+  title     = {{3D} Face Tracking from {2D} Video through Iterative Dense {UV} to Image Flow},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month     = {June},
+  year      = {2024},
+  pages     = {1227-1237}
+}  </code></pre>
+  </div>
+</section>
+<!--End BibTex citation -->
 
 <!-- Statcounter tracking code -->
   
