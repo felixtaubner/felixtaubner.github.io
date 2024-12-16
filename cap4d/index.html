@@ -163,22 +163,6 @@
 <!-- </div> -->
 </section>
 
-<!-- <script>
-  // Wait for the DOM to load
-  document.addEventListener("DOMContentLoaded", () => {
-      const video_teaser = document.getElementById('video_teaser');
-      const video_overview = document.getElementById('video_overview');
-      
-      // Remove poster when the video starts playing
-      video_teaser.onplay = () => {
-        video_teaser.poster = null;
-      };
-      video_overview.onplay = () => {
-        video_overview.poster = null;
-      };
-  });
-</script> -->
-
 <!-- Teaser video-->
 <section class="hero is-small is-light"></section>
   <!-- <div class="the-canvas" style="max-width: 800px; margin: auto"> -->
@@ -192,8 +176,8 @@
       Please ensure that your available VRAM is greater than 3GB. 
     </p>
     <div style="display: flex; align-items: center; justify-content: center; gap: 0px; flex-wrap: wrap; margin-top: 20px;">
-      <div class="controllable-image" style="width: 40%; text-align: center;  margin-left: auto; margin-right: auto;">
-        <img src="brush_gallery/abraham_lincoln.webp" id="reference_image" alt="Reference image" style="width: 100%;  min-width: 250px">
+      <div class="controllable-image" style="flex: 1 1 40%; min-width: 250px; max-width: 40%; text-align: center;  margin-left: auto; margin-right: auto;">
+        <img src="brush_gallery/abraham_lincoln.webp" id="reference_image" alt="Reference image" style="width: 100%; margin: auto;">
         <p style="font-size: 18px; margin-top: 2px;">reference image(s)</p>
       </div>
       <div id="webgpu-warning" class="warning">
@@ -869,7 +853,7 @@
           <p>
             This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
             Some elements were inspired by the <a href="https://cat-4d.github.io" target="_blank">CAT4D</a> project page.
-              <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
 
