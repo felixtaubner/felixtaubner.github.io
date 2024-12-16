@@ -193,8 +193,8 @@
     </p>
     <div style="display: flex; align-items: center; justify-content: center; gap: 0px; flex-wrap: wrap; margin-top: 20px;">
       <div class="controllable-image" style="width: 40%; text-align: center;  margin-left: auto; margin-right: auto;">
-        <img src="brush_gallery/abraham_lincoln.webp" id="reference_image" alt="Reference image" style="width: 100%;">
-        <p style="font-size: 18px; margin-top: 2px;">reference images</p>
+        <img src="brush_gallery/abraham_lincoln.webp" id="reference_image" alt="Reference image" style="width: 100%;  min-width: 250px">
+        <p style="font-size: 18px; margin-top: 2px;">reference image(s)</p>
       </div>
       <div id="webgpu-warning" class="warning">
         <div class="warning-title">
@@ -247,8 +247,8 @@
       <a onclick="loadContent('bala')">
         <img class="card-img" src="brush_gallery/bala_icon.webp">
       </a>
-      <a onclick="loadContent('david_statue')">
-        <img class="card-img" src="brush_gallery/david_statue_icon.webp">
+      <a onclick="loadContent('ai_man_1')">
+        <img class="card-img" src="brush_gallery/ai_man_1.webp">
       </a>
       <a onclick="loadContent('dirk')">
         <img class="card-img" src="brush_gallery/dirk_icon.webp">
@@ -344,13 +344,14 @@
     <!-- <div class="content "></div> -->
       <h2 class="subtitle is-max-desktop" style="margin-top: 20px;">
         <b>Overview of CAP4D.</b> (a) The method takes as input an arbitrary number of reference images \(\mathbf{I}_\text{ref}\) that are encoded into the latent
-        space of a variational autoencoder. An off-the-shelf face tracker estimates a 3DMM, \(\mathbf{M}_\text{ref}\), for each reference image, from which
+        space of a variational autoencoder. An off-the-shelf face tracker (<a href="https://felixtaubner.github.io/flowface/" target="_blank">FlowFace</a>) estimates 
+        a 3DMM (<a href="https://flame.is.tue.mpg.de/" target="_blank">FLAME</a>), \(\mathbf{M}_\text{ref}\), for each reference image, from which
         we derive conditioning signals that describe camera view direction, \(\mathbf{V}_\text{ref}\), head pose \(\mathbf{P}_\text{ref}\), and expression 
         \(\mathbf{E}_\text{ref}\). We associate additional
         conditioning signals with each input noisy latent image based on the desired generated viewpoints, poses, and expressions. The MMDM
         generates images through a stochastic input–output conditioning procedure that randomly samples reference images and generated images
         during each step of the iterative image generation process. (b) The generated and reference images are used with the tracked and sampled
-        3DMMs to reconstruct a 4D avatar based on a 3D Gaussian splatting representation.
+        3DMMs to reconstruct a 4D avatar based on a deformable 3D Gaussian splatting representation (<a href="https://github.com/ShenhanQian/GaussianAvatars" target="_blank">GaussianAvatars</a>).
       <!-- </div> -->
       </h2>
       <!-- <h2 class="title is-4">3D Model Fitting</h2>
@@ -372,8 +373,8 @@
       </div>
     <!-- <div class="content "></div> -->
       <h2 class="subtitle is-max-desktop" style="margin-top: 20px;">
-        <b>MMDM architecture.</b> Our model is initialized from Stable Diffusion 2.1, 
-        and we adapt the architecture for multi-view generation following CAT3D. 
+        <b>MMDM architecture.</b> Our model is initialized from <a href="https://github.com/Stability-AI/stablediffusion" target="_blank">Stable Diffusion 2.1</a>, 
+        and we adapt the architecture for multi-view generation following <a href="https://cat3d.github.io/" target="_blank">CAT3D</a>. 
         We use a pre-trained image encoder to map the input images into the latent space, and we use 
         the latent diffusion model to process eight images in parallel. We replace 2D attention layers 
         after 2D residual blocks with 3D attention to share information between frames. 
@@ -422,19 +423,19 @@
             </h2>
             <hr style="border: none; height: 5px; background: transparent;">
           </div>
-          <video poster="videos/4imgs/4imgs_gen_poster.webp" id="video1" autoplay muted playsinline loop width="100%">
+          <video poster="videos/4imgs/4imgs_gen_poster.webp" data-src="videos/4imgs/4imgs_gen.mp4" id="video1" autoplay muted playsinline loop width="100%">
             <!-- Your video file here -->
-            <source src="videos/4imgs/4imgs_gen.mp4"
-            type="video/mp4">
+            <source type="video/mp4">
           </video>
           <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
             images generated with MMDM
           </h2>
           <hr style="border: none; height: 5px; background: transparent;">
-          <video poster="videos/4imgs/4imgs_render_poster.webp" id="video2" autoplay muted playsinline loop width="100%">
+          <video poster="videos/4imgs/4imgs_render_poster.webp" data-src="videos/4imgs/4imgs_render.mp4" id="video2" autoplay muted playsinline loop width="100%">
             <!-- Your video file here -->
-            <source src="videos/4imgs/4imgs_render.mp4"
-            type="video/mp4">
+            <!-- <source src="videos/4imgs/4imgs_render.mp4"
+            type="video/mp4"> -->
+            <source type="video/mp4">
           </video>
           <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
             CAP4D avatar
@@ -449,19 +450,17 @@
             </h2>
           </div>
           <hr style="border: none; height: 5px; background: transparent;">
-          <video poster="videos/single/single_gen_poster.webp" id="video3" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="videos/single/single_gen_poster.webp" data-src="videos/single/single_gen.mp4" id="video3" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="videos/single/single_gen.mp4"
-            type="video/mp4">
+            <source type="video/mp4">
           </video>
           <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
             images generated with MMDM
           </h2>
           <hr style="border: none; height: 5px; background: transparent;">
-          <video poster="videos/single/single_render_poster.webp" id="video4" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="videos/single/single_render_poster.webp" data-src="videos/single/single_render.mp4" id="video4" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="videos/single/single_render.mp4"
-            type="video/mp4">
+            <source type="video/mp4">
           </video>
           <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
             CAP4D avatar
@@ -476,19 +475,17 @@
             </h2>
           </div>
           <hr style="border: none; height: 5px; background: transparent;">
-          <video poster="videos/ai/ai_gen_poster.webp" id="video5" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="videos/ai/ai_gen_poster.webp" data-src="videos/ai/ai_gen.mp4" id="video5" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="videos/ai/ai_gen.mp4"
-            type="video/mp4">
+            <source type="video/mp4">
           </video>
           <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
             images generated with MMDM
           </h2>
           <hr style="border: none; height: 5px; background: transparent;">
-          <video poster="videos/ai/ai_render_poster.webp" id="video6" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="videos/ai/ai_render_poster.webp" data-src="videos/ai/ai_render.mp4" id="video6" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="videos/ai/ai_render.mp4"
-            type="video/mp4">
+            <source type="video/mp4">
           </video>
           <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
             CAP4D avatar
@@ -503,19 +500,17 @@
             </h2>
           </div>
           <hr style="border: none; height: 5px; background: transparent;">
-          <video poster="videos/misc/misc_gen_poster.webp" id="video7" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="videos/misc/misc_gen_poster.webp" data-src="videos/misc/misc_gen.mp4" id="video7" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="videos/misc/misc_gen.mp4"
-            type="video/mp4">
+            <source type="video/mp4">
           </video>
           <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
             images generated with MMDM
           </h2>
           <hr style="border: none; height: 5px; background: transparent;">
-          <video poster="videos/misc/misc_render_poster.webp" id="video8" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="videos/misc/misc_render_poster.webp" data-src="videos/misc/misc_render.mp4" id="video8" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="videos/misc/misc_render.mp4"
-            type="video/mp4">
+            <source type="video/mp4">
           </video>
           <h2 class="subtitle has-text-centered is-max-desktop" style="margin-top: 5px;">
             CAP4D avatar
@@ -537,65 +532,64 @@
 
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-video1">
-          <video poster="comparisons/self_reenactment/processed_sequence_240_poster.webp" id="video9" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/self_reenactment/processed_sequence_240_poster.webp" data-src="comparisons/self_reenactment/processed_sequence_240.mp4" id="video9" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/self_reenactment/processed_sequence_240.mp4"
-            type="video/mp4">
+            <source type="video/mp4">
           </video>
         </div>
         <div class="item item-video2">
-          <video poster="comparisons/self_reenactment/processed_sequence_226_poster.webp" id="video10" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/self_reenactment/processed_sequence_226_poster.webp" data-src="comparisons/self_reenactment/processed_sequence_226.mp4" id="video10" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/self_reenactment/processed_sequence_226.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/self_reenactment/processed_sequence_085_poster.webp" id="video11" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/self_reenactment/processed_sequence_085_poster.webp" data-src="comparisons/self_reenactment/processed_sequence_085.mp4" id="video11" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/self_reenactment/processed_sequence_085.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/self_reenactment/processed_sequence_030_poster.webp" id="video12" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/self_reenactment/processed_sequence_030_poster.webp" data-src="comparisons/self_reenactment/processed_sequence_030.mp4" id="video12" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/self_reenactment/processed_sequence_030.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/self_reenactment/processed_sequence_124_poster.webp" id="video13" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/self_reenactment/processed_sequence_124_poster.webp" data-src="comparisons/self_reenactment/processed_sequence_124.mp4" id="video13" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/self_reenactment/processed_sequence_124.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/self_reenactment/processed_sequence_227_poster.webp" id="video14" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/self_reenactment/processed_sequence_227_poster.webp" data-src="comparisons/self_reenactment/processed_sequence_227.mp4" id="video14" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/self_reenactment/processed_sequence_227.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/self_reenactment/processed_sequence_038_poster.webp" id="video15" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/self_reenactment/processed_sequence_038_poster.webp" data-src="comparisons/self_reenactment/processed_sequence_038.mp4" id="video15" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/self_reenactment/processed_sequence_038.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/self_reenactment/processed_sequence_175_poster.webp" id="video16" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/self_reenactment/processed_sequence_175_poster.webp" data-src="comparisons/self_reenactment/processed_sequence_175.mp4" id="video16" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/self_reenactment/processed_sequence_175.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/self_reenactment/processed_sequence_018_poster.webp" id="video17" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/self_reenactment/processed_sequence_018_poster.webp" data-src="comparisons/self_reenactment/processed_sequence_018.mp4" id="video17" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/self_reenactment/processed_sequence_018.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
@@ -610,72 +604,72 @@
 
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-video3">
-          <video poster="comparisons/cross_reenactment/processed_pair_04_poster.webp" id="video18" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/cross_reenactment/processed_pair_04_poster.webp" data-src="comparisons/cross_reenactment/processed_pair_04.mp4" id="video18" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/cross_reenactment/processed_pair_04.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video1">
-          <video poster="comparisons/cross_reenactment/processed_pair_00_poster.webp" id="video19" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/cross_reenactment/processed_pair_00_poster.webp" data-src="comparisons/cross_reenactment/processed_pair_00.mp4" id="video19" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/cross_reenactment/processed_pair_00.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video2">
-          <video poster="comparisons/cross_reenactment/processed_pair_01_poster.webp" id="video20" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/cross_reenactment/processed_pair_01_poster.webp" data-src="comparisons/cross_reenactment/processed_pair_01.mp4" id="video20" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/cross_reenactment/processed_pair_01.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/cross_reenactment/processed_pair_02_poster.webp" id="video21" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/cross_reenactment/processed_pair_02_poster.webp" data-src="comparisons/cross_reenactment/processed_pair_02.mp4" id="video21" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/cross_reenactment/processed_pair_02.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/cross_reenactment/processed_pair_03_poster.webp" id="video22" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/cross_reenactment/processed_pair_03_poster.webp" data-src="comparisons/cross_reenactment/processed_pair_03.mp4" id="video22" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/cross_reenactment/processed_pair_03.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/cross_reenactment/processed_pair_04_poster.webp" id="video23" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/cross_reenactment/processed_pair_04_poster.webp" data-src="comparisons/cross_reenactment/processed_pair_04.mp4" id="video23" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/cross_reenactment/processed_pair_04.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/cross_reenactment/processed_pair_05_poster.webp" id="video24" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/cross_reenactment/processed_pair_05_poster.webp" data-src="comparisons/cross_reenactment/processed_pair_05.mp4" id="video24" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/cross_reenactment/processed_pair_05.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/cross_reenactment/processed_pair_06_poster.webp" id="video25" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/cross_reenactment/processed_pair_06_poster.webp" data-src="comparisons/cross_reenactment/processed_pair_06.mp4" id="video25" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/cross_reenactment/processed_pair_06.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/cross_reenactment/processed_pair_08_poster.webp" id="video26" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/cross_reenactment/processed_pair_08_poster.webp" data-src="comparisons/cross_reenactment/processed_pair_08.mp4" id="video26" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/cross_reenactment/processed_pair_08.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="comparisons/cross_reenactment/processed_pair_09_poster.webp" id="video27" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+          <video poster="comparisons/cross_reenactment/processed_pair_09_poster.webp" data-src="comparisons/cross_reenactment/processed_pair_09.mp4" id="video27" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
             <!-- Your video file here -->
-            <source src="comparisons/cross_reenactment/processed_pair_09.mp4"
+            <source 
             type="video/mp4">
           </video>
         </div>
@@ -734,18 +728,18 @@
               </h2>
               <hr style="border: none; height: 5px; background: transparent;">
             </div>
-            <video poster="comparisons/multiview/m01_gen_processed_poster.webp" id="video28" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+            <video poster="comparisons/multiview/m01_gen_processed_poster.webp" data-src="comparisons/multiview/m01_gen_processed.mp4" id="video28" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
               <!-- Your video file here -->
-              <source src="comparisons/multiview/m01_gen_processed.mp4"
+              <source 
               type="video/mp4">
             </video>
             <h2 class="subtitle has-text-centered is-max-desktop"  style="margin-top: 5px;">
               images generated with MMDM
             </h2>
             <hr style="border: none; height: 5px; background: transparent;">
-            <video poster="comparisons/multiview/m01_render_processed_poster.webp" id="video29" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+            <video poster="comparisons/multiview/m01_render_processed_poster.webp" data-src="comparisons/multiview/m01_render_processed.mp4" id="video29" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
               <!-- Your video file here -->
-              <source src="comparisons/multiview/m01_render_processed.mp4"
+              <source 
               type="video/mp4">
             </video>
             <h2 class="subtitle has-text-centered is-max-desktop"  style="margin-top: 5px;">
@@ -766,18 +760,18 @@
               </h2>
               <hr style="border: none; height: 5px; background: transparent;">
             </div>
-            <video poster="comparisons/multiview/w01_gen_processed_poster.webp" id="video30" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+            <video poster="comparisons/multiview/w01_gen_processed_poster.webp" data-src="comparisons/multiview/w01_gen_processed.mp4" id="video30" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
               <!-- Your video file here -->
-              <source src="comparisons/multiview/w01_gen_processed.mp4"
+              <source 
               type="video/mp4">
             </video>
             <h2 class="subtitle has-text-centered is-max-desktop"  style="margin-top: 5px;">
               images generated with MMDM
             </h2>
             <hr style="border: none; height: 5px; background: transparent;">
-            <video poster="comparisons/multiview/w01_render_processed_poster.webp" id="video31" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+            <video poster="comparisons/multiview/w01_render_processed_poster.webp" data-src="comparisons/multiview/w01_render_processed.mp4" id="video31" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
               <!-- Your video file here -->
-              <source src="comparisons/multiview/w01_render_processed.mp4"
+              <source 
               type="video/mp4">
             </video>
             <h2 class="subtitle has-text-centered is-max-desktop"  style="margin-top: 5px;">
@@ -797,15 +791,15 @@
 
       <h2 class="subtitle is-max-desktop" style="margin-top: 5px;">
         We can edit our avatars by applying off-the-shelf image editing models to the reference image.
-        Here, we demonstrate appearance editing and relighting.
+        Here, we demonstrate appearance editing (<a href="https://xiaojiu-z.github.io/Stable-Makeup.github.io/" target="_blank">Stable-Makeup</a>) and relighting (<a href="https://github.com/lllyasviel/IC-Light" target="_blank">IC-Light</a>).
       </h2>
 
       <div class="carousel-container" style="width: 100%; margin: 0 auto; text-align: center;">
         <div id="results-carousel" class="carousel results-carousel">
           <div class="item item-video1">
-            <video poster="videos/editing/edit_w02_poster.webp" id="video32" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+            <video poster="videos/editing/edit_w02_poster.webp" data-src="videos/editing/edit_w02.mp4" id="video32" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
               <!-- Your video file here -->
-              <source src="videos/editing/edit_w02.mp4"
+              <source 
               type="video/mp4">
             </video>
             <h2 class="subtitle has-text-centered is-max-desktop" style="display: grid; grid-template-columns: 1fr 4fr; gap: 10px; align-items: center; margin-top: 5px;">
@@ -814,9 +808,9 @@
             </h2>
           </div>
           <div class="item item-video3">
-            <video poster="videos/editing/edit_w01_poster.webp" id="video33" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
+            <video poster="videos/editing/edit_w01_poster.webp" data-src="videos/editing/edit_w01.mp4" id="video33" autoplay muted playsinline loop width="100%" data-disable-autoplay="true">
               <!-- Your video file here -->
-              <source src="videos/editing/edit_w01.mp4"
+              <source 
               type="video/mp4">
             </video>
             <h2 class="subtitle has-text-centered is-max-desktop" style="display: grid; grid-template-columns: 1fr 4fr; gap: 10px; align-items: center; margin-top: 5px;">
@@ -845,13 +839,13 @@
 
       <h2 class="subtitle is-max-desktop"  style="margin-top: 20px;">
         The generated avatar is controlled via FLAME 3DMM, hence we can leverage off-the-shelf speech-driven animation 
-        models such as CodeTalker to animate it from input audio. 
+        models such as <a href="https://github.com/Doubiiu/CodeTalker" target="_blank">CodeTalker</a> to animate it from input audio. 
       </h2>
 
       <div class="item item-video3" style="width: 40%; margin: 0 auto; text-align: center;">
-        <video poster="videos/speech/hinton_speech_poster.webp" id="video34" controls width="100%" playsinline>
+        <video poster="videos/speech/hinton_speech_poster.webp" data-src="videos/speech/hinton_speech.mp4" id="video34" controls width="100%" playsinline>
           <!-- Your video file here -->
-          <source src="videos/speech/hinton_speech.mp4"
+          <source 
           type="video/mp4">
         </video>
       </div>
@@ -958,8 +952,45 @@
         // var start_url = "/assets/felix/brush-demo/model_1.ply"
         // var start_url = "https://storage.googleapis.com/realtime-nerf-360/cat4d/kling-forest-elf-fire_deform3dgs_pruned.ply"
         var start_url = "https://fz8t5g.db.files.1drv.com/y4m60T5YBxEOZSlrn1mVx0YGRcRQGrNLAHs8kWC60gBpYuyn4RUI2Whjdjx66bnMT-LEgFRfl66cSqQgecoN9uJE0nonIlmvnbz1f1Iae1HcIR3VuznrrwbsnzOIxT1DHVgWg4kd3jf_xUvXKHeePjBLxCVTr_PE8rOThQeUxX4OLxJbCK_CVUbNz75daS9J9FUXocWbYgJ80v2xv6wTfBTrQ"
-        const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=0.2&min_radius=1.3&max_radius=2.0&radius=1.5&min_pitch=-15.0&max_pitch=15.0&min_yaw=-50.0&max_yaw=50.0`)
+        const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=0.2&min_radius=1.3&max_radius=2.0&radius=1.5&min_pitch=-15.0&max_pitch=15.0&min_yaw=-45.0&max_yaw=45.0`)
         window.viewer = viewer;
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const videos = document.querySelectorAll('video[data-src]'); // Select videos with `data-src` attribute
+
+      const observer = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            const video = entry.target;
+
+            if (entry.isIntersecting) {
+              // Load video source
+              if (video.dataset.src) {
+                video.src = video.dataset.src; // Assign the actual source
+                video.removeAttribute('data-src'); // Clean up attribute
+              }
+
+              // Play video when visible
+              if (video.hasAttribute("autoplay")) {
+                video.play();
+              }
+            } else {
+              // Pause video when not visible
+              video.pause();
+            }
+          });
+        },
+        {
+          root: null, // Use the viewport
+          threshold: 0.5, // Trigger when 50% of the video is visible
+        }
+      );
+
+      // Observe each video
+      videos.forEach((video) => observer.observe(video));
     });
   </script>
 
@@ -976,6 +1007,12 @@
         "vid": "brush_gallery/adrian_236_c.mp4",
         "poster": "brush_gallery/adrian_236_poster.webp",
         "url": "https://8fwf1g.db.files.1drv.com/y4mZxkdMwsH2mS0uWu0zE9_2Ie92VEy5qIC048tTGgM5GID1Fl2burCBM2qf6fHfQt35HmloYgXY4NVUFw9ARWcInufr8mc3DwOxlMDrDBHsUGqJK8up5TJdP8APbB2sAxcPbCZ3J1PHSqgih9FYQ6CHDNIQ8OFX4xbN4JuVh94YGO3J_4WQgWL2TUfaj7A8AxYPfov0VFN9cEqdQXgEGJCfA"
+      },
+      "ai_man_1": {
+        "ref": "brush_gallery/ai_man_1.webp",
+        "vid": "brush_gallery/ai_man_1_c.mp4",
+        "poster": "brush_gallery/ai_man_7_c_poster.webp",
+        "url": "https://t0ezbg.db.files.1drv.com/y4mHo5TirdUCL2GQnUOq017s0NU_JMHXsRdCg4aNIrpSoPVbP0SsFAi0e0k2s49UcC-oSaL04hpRrttS53A417ieF9sLoVdxA_F2PVHpuPzPS-5MdosB4KMJNjHNFNKiNUlNyMMjiRb-Fl7hc7c8BO11YMHtZY6RYYZdY2h_fHq-R3Hp_0mxGTn7l03yxK0NvNEbEtEZk7rpFvK7sGExZg77A"
       },
       "ai_man_7": {
         "ref": "brush_gallery/ai_man_7.webp",
@@ -1205,10 +1242,12 @@
       }
 
       // Load the viewer URL
-      window.viewer.load_url(liveItems[subject_id]["url"]); // This will trigger your viewer to load the content
+      if (window) {
+        window.viewer.load_url(liveItems[subject_id]["url"]); // This will trigger your viewer to load the content
+      }
     }
 
-    loadContent("abraham")
+    // loadContent("abraham")
   </script>
 
   </body>
