@@ -894,7 +894,7 @@
   referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 
   <script type="module" defer>
-    import init, * as bindings from './static/wasm/brush-rigged-desktop.js';
+    import init, * as bindings from './static/wasm/brush_app.js';
     const isWebGPUSupported = 'gpu' in navigator;
     // Display a warning if WebGPU is not supported.
     const warningElement = document.getElementById('webgpu-warning');
@@ -909,7 +909,7 @@
     };
   
     if (isWebGPUSupported) {
-        const wasm = await init({ module_or_path: './static/wasm/brush-rigged-desktop.wasm' });
+        const wasm = await init({ module_or_path: './static/wasm/brush_app_bg.wasm' });
         window.wasmBindings = bindings;
         dispatchEvent(new CustomEvent("TrunkApplicationStarted", { detail: { wasm } }));
     } else {
@@ -920,11 +920,25 @@
   
   <script type="module" defer>
     window.addEventListener("TrunkApplicationStarted", (e) => {
-        // Load with an initial URL.
-        console.log("starting")
-        var start_url = "https://qou4hg.db.files.1drv.com/y4mGpMH4PqKTuF31R_R-8IIEmoRiOTeNAphaIrY0Tc6PDQ8G9aElIGR2UXb8AUpbHFbJ6HEZjtp8YZH-dQAo1bCf8HQxYnv6BDf3Nitpf622C_kihZ_GpImqkfiFYGKgiugQ3lm6ECsM9YKgu4N2EwLhvfFHdGyjLxzFNRBD3vdnNywDbfu5INRMuSLc9rUYrRI_TMld896f0SjPVCCjyO4aw"
-        const viewer = new window.wasmBindings.EmbeddedViewer("brush_canvas", `?url=${start_url}&zen=true&focal=0.2&min_radius=1.3&max_radius=2.0&radius=1.5&min_pitch=-15.0&max_pitch=15.0&min_yaw=-45.0&max_yaw=45.0`)
-        window.viewer = viewer;
+      // Load with an initial URL.
+      console.log("starting")
+      var start_url = "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-920b06000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTUwOTQifQ.DU2HDO5f8laOOqjNTvlYaPLx42lqTbIdWW1Osv3hUMlhEcgpqAIwkQEk-wbZyKZpR5y4BsBn8xf0RupRMz4mC0YTL1sU_l95y_oUQo8V3ofs7ROzZ90vpSGJEWKIPkF6oRWQyxsy9hIeFTD171H5y0s2GxyYBuEQY_F0HKlyIZxe9Nnb3P5P4NQDWSsJts8GcyTvI0em2nDwgEyNso80Cdwzr9B7JyNv-Iyt6X5qVh9ORsWD_UuVEQ_me0OJj257jm7uBPS0GqOEgnuMZ2Af1CRYHkzLcua4dLeDc-gFFg1PBaBGeJMas3nfUN6C0yKuy129fAq5eoVH1qATBGd1VSJPY1ohHAYg-Ee_LTYaZI8igcCdPLfD3NYpYLUk8JWZxOhNy5Xb0drkgLxp8dHsfiDhEoD0O-PgUZvPXCfaF4g.PtK6EnZe8tjDgGKkDnH3IEmemYNvwDvYzozLUeopeZ8&ApiVersion=2.0&AVOverride=1"
+      // const viewer = new window.wasmBindings.EmbeddedApp("brush_canvas", `?url=${start_url}&zen=true&focal=0.2&min_radius=1.3&max_radius=2.0&radius=1.5&min_pitch=-15.0&max_pitch=15.0&min_yaw=-45.0&max_yaw=45.0`)
+      const viewer = new window.wasmBindings.EmbeddedApp("brush_canvas", `?url=${start_url}&zen=true`)
+      window.viewer = viewer;
+
+      window.viewer.load_url(start_url);
+      const settings = new window.wasmBindings.CameraSettings(
+        0.3,           // fov_y (f64)
+        0.0, 0.0, -1.0, // position x, y, z (f32)
+        0.0, 0.0, 0.0, // euler_x, euler_y, euler_z (f32, radians)
+        1.0,           // focus_distance (f32)
+        2.0,           // speed_scale (f32 | null)
+        0.66, 1.33,    // min_focus_distance, max_focus_distance
+        -15, 15,    // min_pitch, max_pitch
+        -45, 45,    // min_yaw, max_yaw
+      );
+      window.viewer.set_camera_settings(settings);
     });
   </script>
 
@@ -971,235 +985,229 @@
         "ref": "brush_gallery/abraham_lincoln.webp",
         "vid": "brush_gallery/abraham_lincoln_247_c.mp4",
         "poster": "brush_gallery/abraham_lincoln_247_poster.webp",
-        "url": "https://fz8t5g.db.files.1drv.com/y4m60T5YBxEOZSlrn1mVx0YGRcRQGrNLAHs8kWC60gBpYuyn4RUI2Whjdjx66bnMT-LEgFRfl66cSqQgecoN9uJE0nonIlmvnbz1f1Iae1HcIR3VuznrrwbsnzOIxT1DHVgWg4kd3jf_xUvXKHeePjBLxCVTr_PE8rOThQeUxX4OLxJbCK_CVUbNz75daS9J9FUXocWbYgJ80v2xv6wTfBTrQ"
+        "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-340a06000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTE3NjYifQ.-FF6DUtiCKYm5jcnpYLa5TcWRqZF5Nfo3zVgAuDSgaKJH8tcfuawfJPdl9NUAway63bWMAID86Ff8npy4d8TOnAxRRpUZxscpA9ASGWfSo1tSxecg0bFUo8YPYExZxcO-Oo0WdtIfEnft00a4WpFkbROZisvhD9VgvhFpBoFcaYoD0P5CPbxSmYEUJLmwjtflJvNO0MQeUaBXEPF7LZd7agbvIdP7DE-XnV93p5RzdcGIS0xFF5z1kwNlW5_fw7c77gdqg-OOisc1nGhgmbBak23a-9greD1by6cdeGY9wYFFPz3D_YM_6utS2KpAJ-swkSZSNADI21jYzJix-WhOW2M3QXHbcVgLdVFsW1zEW83CdfOBuhOrFsBq8b4o2pMul1PNdSS4puX1dp7iO4A_TKyd1N46v-jgLRAASCRL8E.EcofEIGJvIv7bMRv6N-9qtn0GEF_LQhF7BsRqHMfVUc&ApiVersion=2.0&AVOverride=1"
       },
       "adrian": {
         "ref": "brush_gallery/adrian.webp",
         "vid": "brush_gallery/adrian_236_c.mp4",
         "poster": "brush_gallery/adrian_236_poster.webp",
-        "url": "https://8fwf1g.db.files.1drv.com/y4mZxkdMwsH2mS0uWu0zE9_2Ie92VEy5qIC048tTGgM5GID1Fl2burCBM2qf6fHfQt35HmloYgXY4NVUFw9ARWcInufr8mc3DwOxlMDrDBHsUGqJK8up5TJdP8APbB2sAxcPbCZ3J1PHSqgih9FYQ6CHDNIQ8OFX4xbN4JuVh94YGO3J_4WQgWL2TUfaj7A8AxYPfov0VFN9cEqdQXgEGJCfA"
+        "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-a00806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTUxNDkifQ.Gpdt0jHVvoPpSmqCfdhwviEkzJ5XWLHbrEbVGClobKlMaVHxU7PbWNSdRrhueQKF2NkBlsrE4_gfZ4z1vy4TXrAuJigxzuZkiDT29OPrmH0FPRKAWzTC4VvyUNAgz5eRPZpPGST2bOgd7dlVlAvFSBzD1UwPdWRu3MYV7mCGTtf_iu3hukDh1WZ9w_AvXo5D3xKtbf-WpK6lDRehmKBNnjXZKrwa2l7KVfKIkEdkSYFmw5IPkvgbcEtj5mIGK1_OtDhjzTlYsfGM78myqcniTncUTiCBnmi0UJZTGhdBETzRPxyedRlMqMvdLSspYUm2owJgfLYmBXMBpHgRaw3x-bytm65yyuyoJn-NbrAXxWbz80NZqNzDljfNHxt9eQ_xXSc0biiZzX3xwXRtmKy7VCEKL9eqVXakvbzM27DFl5M.1NaVclhFv5XrVHRkpXTNpmmzVo2pHdhOyMZ6Ra_0zZM&ApiVersion=2.0&AVOverride=1"
       },
       "ai_man_1": {
         "ref": "brush_gallery/ai_man_1.webp",
         "vid": "brush_gallery/ai_man_1_c.mp4",
         "poster": "brush_gallery/ai_man_7_c_poster.webp",
-        "url": "https://t0ezbg.db.files.1drv.com/y4mHo5TirdUCL2GQnUOq017s0NU_JMHXsRdCg4aNIrpSoPVbP0SsFAi0e0k2s49UcC-oSaL04hpRrttS53A417ieF9sLoVdxA_F2PVHpuPzPS-5MdosB4KMJNjHNFNKiNUlNyMMjiRb-Fl7hc7c8BO11YMHtZY6RYYZdY2h_fHq-R3Hp_0mxGTn7l03yxK0NvNEbEtEZk7rpFvK7sGExZg77A"
+        "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-9e0806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTUxOTIifQ.SPWiWU3CKZ7FadR3f0jtnq-JtWG_hbdi0zZb6nN6QLticZU1zRU-1sm4bZ263CkzqiPGlkv2WZM3M7Of3Ks0PArMshGcxhLutprxowpSW5X7tBDi16gTUkXYMH8aBCECEzn6oYqIExYGO35uec-mbiRS-cXmC3qDnSabwmcoUq5_2cZNzGAp-l2Jpu1LIpnAU3_BLPU1CmI-ZO4M-JO4nuBIVzIKf8VHuTcJzjVW2pOU4DIYs6GKZ0YZ7h7rYog2zeTauYIHz0SmcX43FEd0O55B3ME2T1Mk3SbY4h2bA7XsvYwmCZl5DRxxcspJs4GpjcjU_aVJfbZjlyT2-IXeT1Brto3ik8-UCSlusraoG5-tddEFpstGvlJGlt83nAfTmSQfkni67YJh33th0cOE-f6LySV6fK1c1vicH7GMkqw.OkL5NJRQJWiKIpq1SGbNBJvHldytWdENbX4yLC559XY&ApiVersion=2.0&AVOverride=1"
       },
       "ai_man_7": {
         "ref": "brush_gallery/ai_man_7.webp",
         "vid": "brush_gallery/ai_man_7_067_c.mp4",
         "poster": "brush_gallery/ai_man_7_067_poster.webp",
-        "url": "https://hsposw.db.files.1drv.com/y4marGT_nCgQxis9FmUODXE10OVR7u_-VWCQf2fT_FHsVukocetX3KOzKJY3lLbtartFuyrACYRpfdolJPnVw4S_9XP9lr8w2pW8t_HcoSRiYjynYF0mcIjggt-oExiv6yuB0i3G9o3fPRA06IIUeZ6PprxdphpJQqA1R2nZrfpS2mQ68g8Oa6UU6S11Q1SqNKA1PuSJSpCjgt48JclBO_-Gg"
+        "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-9c0806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTUyNDcifQ.7hYAdym8v8QcyaUi4bQ9UvsNcWBK6B5qQOprdeQlBPVhxzFfP72zrvD2xbpK1y40F2e0ASeFoT7rG4oLnhLLHhxHm5iMUZMJGacgeXcpXcz_xzEgOYXAgoN7aPZstuqxR_gDwFS8TZGGtmtKiIxPutv-G2kte_JcoWQkumkKDd351R7vQMCSp2HGo17414x4WIzVHJ7ScwUZXzDgLwwAGHhoQknXRyDR-BMXNRXMgYAmpiNYYYJi-gh2PMAVdnIG1xDRVLLb9aAPDqXsWlixxTW9bNrlehwU6G3Odl06CNkTOAIJnc27go4vJAwCPsU-uxP1JtCksIW1DgAeog9hthIyA2NqivHcN4fjL9SsbfIc-pkhL0jOI_wx1TdguI1RrdCcx_UbxU09jM2EEpcYMDc8BMWKe5G3h6y9lgWG9o0.zA9drhK-u0R9Q3lInvxnApN-QXwJ3Bv71tJuiZGF4V0&ApiVersion=2.0&AVOverride=1"
       },
       "ai_obama": {
         "ref": "brush_gallery/ai_obama.webp",
         "vid": "brush_gallery/ai_obama_011_c.mp4",
         "poster": "brush_gallery/ai_obama_011_poster.webp",
-        "url": "https://vohhmw.db.files.1drv.com/y4mZEdkn0gGPjLiM_b0B0qiGcnCGsm0o7Px0jl6qpvUMY47pOciAx7E6S8s8mkPEnGr3WFYDyZeWH_s9vxcT_EKM9skupPIy1WnNeawoyQFkoI950Y06VduI8FsB22kSe6YO6Bnrd7L1VovyVhcf9gK1pcb1cnKQILp1N45NSvGRwqBYfYoFahKRYvKu6KwGAHfPhPvwg8o-FS9K7OG5lP-Vg"
+        "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-990806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTUyODkifQ.8n54p-Ek-6SuMhtPFLDSnEHG0P2vpn6De4YY3kwzEFljD75LNRxWC6ts3DgaT4hQG0AWw3fI6Y6-kCA7KwueU-qX9-wVVhst9jt5r11fmZ3mS4kV8TZoLwT-UIQOFXCAOBQ0gBIA_s167kkiOwxy51cnDyjxbmXXe12rIqWaD_4SlK7gFNFFbZQFbq1LQMW9T9J3a1HyaFLNc1P69Pvp4moHu5vc_N56sHZNK9F-yqEZ8LvcRKJy-3YGmz5MvYwwMgZdh1G1hu93oN2Fmrdwb-SisqyDao7szraqEeUWpZ7Mq0hC7FxVAvsv2UPbfjkx3kSyjr27_yzZyFL2DYX-Dm8pibxDQlrhPyqdCYWuG0-yXdqm0KRQcYqRd07JA_qKkKFO3_45xK5jxxbpNQAPHXkhIcy71lAdqNwknfv7ByA.ZHVGVkw0IBk9wQzJmUdz3TX3aDjJd1di48VXUry9sgE&ApiVersion=2.0&AVOverride=1"
       },
       "ai_woman_1": {
         "ref": "brush_gallery/ai_woman_1.webp",
         "vid": "brush_gallery/ai_woman_1_193_c.mp4",
         "poster": "brush_gallery/ai_woman_1_193_poster.webp",
-        "url": "https://ij8s7g.db.files.1drv.com/y4m0g1EpXrkvuLRA2Jux1RaqAZeIRvaDYmL-dM-TPcB0_oRCUBpLn9qtYNshnTrQIfyTbRhBuM71T6oncw_ZO7FS3pM10fY2PGQ0PuiNZNPZa-NbmwS6pMUCflIE_PPE4oGgSMXKiw0GW-JT49dVAs3f2kuhikEzftBxLguNPAJZJ7uo3JYPQ0SV-DA-aAgwveY1CZQaJfI9-wCoDxxHip0aA"
+        "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-930806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTUzMzIifQ.Y36E_4FjaEMCkft09VGlcWyTf07rIphk8WMa3_D5GhWB1DgICiFsCksiK7lsqdSx-0rBmcQrbZBBRLDx0957HOQnbrCBDarUV82ERdoMHrkhi_dC0fISFm_gNRIOuBfZNLHv5xLiMda0k52pmj6tPFcEFwI2daWsVzBVo7C4Bs3pltuKvXjDh0QIeQiH0PtTnCEVfbRyy767Ffo_TBopXv2xnQry-WPE3BX_KwwvzaAN0Da0nSQFFYw7nbfldAHurmU3RBZEdCmIjnNCQ5Szzz-nFgMkA-qk4IASfJC_Yz2lXGuEvk7w6uMTcjqya6fLZdQq-NYkM7yE0X_CO59s0xOhR3aRst3Qj7wFr1Y8UF7K2DyCaxSS-Rk9w_s7K949jGuoniNc5Zb5VsqIhjAxl1sWLe7rfbN5G9lhkiLOTIs.5gREFbF8HU813EoJzPGrw5ldiUErG8F3sPqW7kj2XQQ&ApiVersion=2.0&AVOverride=1"
       },
       "ai_woman_2": {
         "ref": "brush_gallery/ai_woman_2.webp",
         "vid": "brush_gallery/ai_woman_2_121_c.mp4",
         "poster": "brush_gallery/ai_woman_1_121_poster.webp",
-        "url": "https://uxo6ka.db.files.1drv.com/y4mw6FgFdC-kzkArUYoIQ_sTAAvY5p6gzbdjdDSOLf9XxkiOxZVlCtTfshIkQIms1OPstNjfz2B0OujqWMc91EhM8qCBHRrzHrKLh1nmjUqkNDcWIfD7NEzzGN4ZH_7vDtPy0SyvJdipJlLuptQ5C4I2MGPkOnwPsOZKA4zzDMM2M5VyvNBAeWDnd_3cV1eJK5VMP2--R0etdRZixTMbAILzw"
+        "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-980806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTUzOTUifQ.G6NzESKMagmOy7StBOq6eEAoCb8dj62TIXTNPefnv4CncS-mUb1A9475ff375Ax6MlHWFYaCAww_8LRQe24sb5cwPimRfmeRKzef1QtLTZmvCO4xAwy9WTmg4Mb3tc9yuxFopggo76f1vQOnKEEIENyiYAZBfGghYVsgOu-iqUQGNmh-Ia-Hv87y7ml_NNrfwre8_1bZ9dqbl9ctFEqPPoN-uTWQTDq564Kh2HoybgYgNYH57pTzsNozxkCo3SRmXte0CawkZgfJPvITJvqLdetiM92x1nHgX-cougrS8BRWoWQsloR-r8AF3ey47jVuMc9gGRwOLlT-WlxAdXF60MLBkBcY8uVHzk6vf2WgDnek-MAAsjU76BzW8GK260bT0k11K420M3lig2x0sIVXBs20gRNyQ04gUGfuF_6-GlE.uhcRDYa4n5o-XO2chsLzgp3RFgHemPBSZLBfPUa1z9o&ApiVersion=2.0&AVOverride=1"
       },
       "ai_woman_3": {
         "ref": "brush_gallery/ai_woman_3.webp",
         "vid": "brush_gallery/ai_woman_3_011_c.mp4",
         "poster": "brush_gallery/ai_woman_3_011_poster.webp",
-        "url": "https://sprq2a.db.files.1drv.com/y4m_AF3VRhmcF2f8cDm3mBm-z0pEZnxfBTzMLWloZGLeV2a-zby7LP9m-YeA68WcBXNUc4zwPjxvN3u8p0meFJNL2ZkeS792_M2LaSjYll8LsjQ3c9QVMsnZQnJ8dVZ8gYeruP5T4kXtAWwKu9TuX1xGBqQFtkQSBacS9qnm5EWucoqg77Y8avxToCdtFQhxq1sK0c6efS4Ov7-TPei_e7cBA"
+        "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-d70806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTU0NTUifQ.cq1do_xql-Uqq25PQbnU-sups708mBlhJZA37cCyy1SljNEIrsI62wIvFbPdbKyiR9NLbCb4lMcnv-SgAiYWty2_mC7rSls2AJ7_Riet0R0gMwhMgwhO-ig7Z-441c6MPM2i52-fHenf3f4XxUPQhOXUEtC3dQS__jOlcQn7GeFbp8tILqg0OpG7VkaUen6K_ahlpi48vaF5ONasN5g3MgPguKqpfUiX43lRkrSxXS9B-liZIvfUuz37sMGgJ7WvAPMS1rxmRu1QQ6jb3RjElqHqkmmto2V0VEw2-Z34KSuGhPr0rKNvgTIe4e0k6XWbMvllNFb2TBWAj78PzDe2iv41_uuKLOCDbiI464N_UEjVh0EZ0dGrE_w8Y9m72t2QtAfjDl0JafmQGKffbHGJGg.XAZhee9_siIil6KVHsE3UQF8iYNolZ6PwyxniyROfTQ&ApiVersion=2.0&AVOverride=1"
       },
       "ai_woman_4": {
         "ref": "brush_gallery/ai_woman_4.webp",
         "vid": "brush_gallery/ai_woman_4_067_c.mp4",
         "poster": "brush_gallery/ai_woman_4_067_poster.webp",
-        "url": "https://ryuvng.db.files.1drv.com/y4m00SOcHRcWXyJCEjLtTkBIgwfxTIhNBNkB0mIDnzzAZcHtxmWhtk1gbB5T618fBE0JieEPQ--HOADjLhJBpAi05CkcFVo4-lsBTQF1hpzl8hJIwZTtTRDaT3gZEn35JxVGPCdWP4j04GRjpaoHyyBe3uQv9gytjSu_MWlkGtt2FFUkCtwj1QrRhSP9Ky6dV-Cu2zYKLynvSuRGrA6Oj-Wtg"
+        "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-9a0806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTU0OTMifQ.hkBimtkdFXo6SSNhbzngCRFa0AD5x4aYSUC4mZmue8yFfC6b0FLn1MivofhmY5aouGjN6qKQtJJ23Zvf4q7xAVXRFscD9UPUad7n_A5Px6vtUK0sc7wKuc1ruea0fEEeoeKHtpdjP5xf0xfanqGPOWMFIf8KI3DiJZqm5NgguuwNrFEZeavAD6aLSk3Bcenm1nyhl1Kj9u5xSs_maUkSTMFaRAgF_HXLFOppfq3UUACPZUh1O8kMJkEtjxybcl1eEk73MbuEk8lrWvjS43HbYazX_gpbdDSI-39UBFaf79ncFBp6rpxhgm7yiiKUZqYRxlT9detY2Mg5Ip46iLvszeNdv0yolFo56dHdqGcSZhoh17RSXSjCGt-68BmJAVPCRVzkRVmvf5mPbjaD6vKTmg.2DKt6g7gJN9OjQCYZfbxaFB7hhfcVaCXWA-_RMhey-k&ApiVersion=2.0&AVOverride=1"
       },
       "avatar_navi": {
         "ref": "brush_gallery/avatar_navi.webp",
         "vid": "brush_gallery/avatar_navi_079_c.mp4",
         "poster": "brush_gallery/avatar_navi_079_poster.webp",
-        "url": "https://sprv2a.db.files.1drv.com/y4miDG7a5jchqVgd2YR5fR3ZYC2NDw69M54J27mpqxaAaRn1uaXKwjV_2PR-4olEZqlMuo1VnhZh5rBZoMSGbv-Lup-UnDBSYE_rX6vgGlJzb-4fTkvnsQd_ijrTE103qHwmCM_APmwgP131ipXAt-k2QlE_xv89UodGpi-OjyKmV7KC0h5e_85BQvu-psnt5rjVBdPLXBHj3Ga-oebbAvE2g"
+        "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-910806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTU1MzgifQ.96T9aAc0WRVZBgwDG2UwDXCfNwuikmPkyCR2GskiwAIHNhDdIR6MZOqXG-YAqSiJ06i4UblCt_Jp5Rx65iomO0tjATgbbR4betcnanh4qPmX4kHvDb8-l9Zv_kFOBLpMtLbrnMhJywbxgFerOgzqjRVvg7Vs-w8F45dFsnOvPh42zxBka35mihkQnaSbKZGViO26_e-jYvKVYv3yKF0-3rhhZV_sZZQJWjAm64eEKCDkZProR8cSETjPxhpBIZdKDRwnd7iiFR83WhGemkygBR3HwGZFnIJrJzQUEqy-jgTdLygCaGZrX4YPNgEa1WN4JothhdHxiJBYNvYKHtWAMGzHHB1r0tq1Yk3hGRRDNwpitnn39j0jROk7kyoGyyI5BObqJdYhRoUEmnB2bSTJROKbA7WwhjfR1-f-c7RdUEQ.TbWlCA2NnPNyrQMrWE_pWjOhj15Y82SsOFz1LrpKuDU&ApiVersion=2.0&AVOverride=1"
       },
       "bala": {
         "ref": "brush_gallery/bala.webp",
         "vid": "brush_gallery/bala_112_c.mp4",
         "poster": "brush_gallery/bala_112_poster.webp",
-        "url": "https://vohcmw.db.files.1drv.com/y4mN_m8qH15oLeIQXRHKLPChWhAxiHBRMq59Ju_JVu4b-wxU11Cn3z4P7MBnq4ZxhyJh6X09sZmCw6pes-XAfrT0_QVpWdi1xCCpMWO0BHW5rftGzSaqt5akocIkEfw7QmjJYQTBpv4iSqKd63bsXj8NBv1c5pmVxptOyROmHSJeibMScLjlo-QogGEIY0D7tP6ipKC54SZ7o7fGAn0CJmOXw"
+        "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-b70806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTU1OTgifQ.oQVcIdDQvgwwheLrdAy69BBZ4Nf1iwGZZDy6lew8FnuLUXL58ZxcJQKeizF6WmS38RTAD7CZd5zg0NIMlsVUcnbyu6gK0sCn4665EM1l_QPE-2O8gdqbZJCaZr6-Osd-gXBYf9YYPGncWtx5GPg2V1s5TqXNwMg2pCXkv023HLpVYczazThYqvWsgosdfquSprsuxm5IiqvakSwKtqmwXziX2FPvZweFiQIJJwS7NntErpqjm6ZZJdS35qEMn1WR3zb1N68N2frmV1RUItJ7ViXODbQZapR7TMNhFvIY_owaWVdwBT84WCF3Yg0DG0ui6pHnOdzly9wbaaGiDR-aWfZxBt9Ki4Rr2s4hzwZxsD9lNlcZD6aukZGKz1sg8rq1g14wHyOvcBsc_EMgJHiGiPT4fQScw6nGu5sgCkxbOeA.2vOJMyaJtfOUIihYhQi6HElOM5kNVJqm7w1dny16Hsk&ApiVersion=2.0&AVOverride=1"
       },
       "david_statue": {
           "ref": "brush_gallery/david_statue.webp",
           "vid": "brush_gallery/david_statue_117_c.mp4",
           "poster": "brush_gallery/david_statue_117_poster.webp",
-          "url": "https://vohgmw.db.files.1drv.com/y4mfu1yPOH1JWvVEoFd4ykKwou01c48dVj47jdtin42RHau_c7xJyRrcWkCMETX6tUa_TQmoKin1xdenXr1nB8sK2JcpUjCqn3F_s9nSFfcT1QSdQQTrg_9NmkKjYbRfLnP3gKgOhw7URFyrFjuudgqj63JRq4RFSbhb0GzfLjfDlbq_IP6blqw-Ds_Gh0PbumbrSPLr0uj8nWsYrihtTJQLQ"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-8f0806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTU2MzIifQ.9SP0kWjHsH2nTF55KVll13an49R8wJVIcTMMWJi5iQ0X-Rb7QfUBFtRHdJV6Yibc9vm8jZU6Wbze03hjWnoBGqR2t2ZuKFFsab1KOMf_7dTDN8TiZHen2r2k5XZI2bzX2BqhkmDS1ZQOJnBIDrKz5Ei_k08PZ-ms_Y0L7Xrmur5OEjhy2kr4cNX1YWMHXirbkHCZtdeMjOwwbi8qGej8SVSaY6Ptb3G96gtIgDqWJqEYeX0R_NC10PQvfJ8-O7FgKmpmnKcUj30aUgTGW_xzHgRyfqllWM77SFNG000BjRcoa6zDa8fPRsInah_Jpjs1UoS1ZWfnIws4rsa5awpZHVxp6RNTqPItKAwNpxE3Hkx_7_Sd0LsjoHDS646kWdeGkQQwx6kIZHcCwtuPGAluWF_IDCUPNPaDOJzWvmzlXmQ.SmFeC2eG7ExTRYB6ms4gfVtVCQuY2urHDrw0rANwUBc&ApiVersion=2.0&AVOverride=1"
       },
       "dirk": {
           "ref": "brush_gallery/dirk.webp",
           "vid": "brush_gallery/dirk_112_c.mp4",
           "poster": "brush_gallery/dirk_112_poster.webp",
-          "url": "https://jhguea.db.files.1drv.com/y4mPu4hpaleBUQ-7_jiCItJyI4ITyr52RW_wJLQ-PpByFBlm3SdSKWIogr0PESBhJTtwuWDdRgzvwfcDY-I_ePEsg6r0_HTCq7Hl5sxCrZQMbsKo64AzhAaRm3IoA2s3CdnzBgZjvuFHo0q2CuS05XyyR_kYiVz2q6WDgnGenqOrnfaR0AUc2So8MhlMNcvYyjMpcqDMhQs5rGU0SFD8qo1NA"
-      },
-      "esther": {
-          "ref": "brush_gallery/esther.webp",
-          "vid": "brush_gallery/esther_018_c.mp4",
-          "poster": "brush_gallery/esther_018_poster.webp",
-          "url": "https://uxo3ka.db.files.1drv.com/y4m9gFm4dyZjD82PN06fzPSmt4SqMogR5DEINQmFXoYi0WzJCj5eUjWXwunbNKs514B2wa-36J6Y1ia9j0oaGRu5HB43CKnSRZgd8PY9m08WqQpQokYqDcxwtE73vSNwtBImOlU5Em2MFalbKYh69nQ_lotTOzjJoe08UEct2_yUZwKJsbVDsxI1gQuPP_aL60SdxqEBgQsN7d5OIvOoEB3XQ"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-ab0806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTU2NzEifQ.KsmefE-bashxyNtIL22A_9rPaI1OY5QKdocFyhHedvPaL6LUQCGrsRAmRJxTETjP6eHUytchOrgkHSMJIe3N30hEthYBygjCFGSLvv4QxnPhPiTJWM58ZDUKiMRe__jtPtwlUQM3CWKSLMEt2_3RZnYMoGzlNlY7JBfqAs3nPnjAR0DVUonSVmuBUwvsj8v_z77tUinskYvorU3y3oLcioSGJ4JkRR9oROjK500ivwBAAT38OuLYzJFyv14rwqo-oiV-JXnHpLjwyM5ClZrzSpmXTgkdTiWBTxcgN9B9yWbPO5UadXiytR5VGYDqnZ8uz2_WZVYMlvI_dh0G_Q_D8A0NqVNVZ4B81nUHVSV_aWl4UL-Y7BKDN6c-NfwfhlulgzrmnLM3VIc9iHSHxD0VojWD6JoDAunXd-2CvYZ6XjU.KNMKu5bRpMTbaOr_0OqiqvAp3dz1LcNbj3v6vP36eFw&ApiVersion=2.0&AVOverride=1"
       },
       "felix": {
           "ref": "brush_gallery/felix.webp",
           "vid": "brush_gallery/felix_112_c.mp4",
           "poster": "brush_gallery/felix_112_poster.webp",
-          "url": "https://sbo7ia.db.files.1drv.com/y4mI7Po1dOuzjCPNiFIPNC_zN7IG_UErV3ckBnlYVAlwxW7WhnLX_7Bsg3yv4bzH0fnJ_Xptggeq9IkkjO2f8pszFRKt7aWjO0UT6ilP8ry178owYQodprS0pXW5h_LPqrx5Xd3_jJIKTMq7TRqf0YNYqO9iUDpt0Y1V3NGqUj6Soi1jwmyMZYma0jbjY-ITpXK0KBOgZYa2Gv2M3QRaaDJ5w"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-cc0606000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTU3MjAifQ.9TGOw4qmMDwwMkjasuKyKe0K-E5Vsyu2xuRj_BdeByGsvAc6bbpwdOgw4h5wJI2ifWkeX_CQ2nWN40BR3zZmDNpq0NCLhGF8vmpsP3hOpccj_ndJr-_7DWFw3P6n4Q7Wv9f-so_OmbAh5VdU2sd06nu2q5Y4B-XoU3Fc3DpvU4RPAPOLU5aMl514lxqm9_L6GL9sUzPsNx8GB5RJFvgZVzm6bIkmfFdZekdHOsA-DNSBal_bc9w7TrTVLBRex3lQ5mlinXuPplhnEIwS7UIvTTKMl69htjceTdd0KGNiqyUKZ8mnly35BY19vj4gDBLXYw041eRvwws0p18WUKAvu0v8ce89Qvmv-AFlNqCKf561z1p55rDJSQU1P0M50OQ84QCP7k7oonUKl_CMbn3xapHd9AupK3nVLbf30_WxlEM.5Um4-kTFK4eNwM_73_u5EgtH7-sGEsDf6Z9sVLyJ_KQ&ApiVersion=2.0&AVOverride=1"
       },
       "frida_kahlo": {
           "ref": "brush_gallery/frida_kahlo.webp",
           "vid": "brush_gallery/frida_kahlo_079_c.mp4",
           "poster": "brush_gallery/frida_kahlo_079_poster.webp",
-          "url": "https://jhgvea.db.files.1drv.com/y4mPYvill8hijmpCfaAhlvYOGTgjhEJSuGV-ccJsXlBgpv4ukGx4jxdsewzskQ0zEI94_jPxT-KUfXLlu6TpB8zAXd6dBnwZ21SalWxlP4FYWynTlecjWgQoQwtezt_LX3GL30YL2TQBiXrvnX8t_l3vibwVLsSjR6ZFx9U3Aywp4JqeTFm7p-Kb56r8QRK7O3mdfl52lLvgZmLpOeStbUONA"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-8d0806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTU4MDUifQ.ysWLZ4du2ZsG_hNZhiHgwuo63JGUxpbHQpnjRMEJXixnl85_2UGfJppoG306pS_RjHHsShpB6VuEwvSw9dZu66SbxKjVYrUlE9B6yDwhJrbR-6GghaYso4VPJuMO6_nCPoxtswysuInxwJQzQ58JncZdRRshHJWUAo_i6n2Zr9roItnLgTlnpgbtp9RSwYKWlU2C3npkMLgUA8o02trgv8OMBgi2qZeLkeqBr43p6emUJLmcMLrAKv7xbJkrUhOBV7g__Zx0ZrnIpBeddMSNN6wYyDOKkRXvZvWdfh09kk2EIiy7zcV33O1cTIuWKlyHt7eHxvtTN_3FmWpqdsyor3qKzAZtcqKIwG1No-vETPWs50s_67YvHa36PSPWxqS4AjiyXdOlHZN8HU1tvvPMPg.yiWDsNM6Nc0uvAgGR_VC0EIIqLb-_xjmCMmimgdAXdM&ApiVersion=2.0&AVOverride=1"
       },
       "gengsheng": {
           "ref": "brush_gallery/gengsheng.webp",
           "vid": "brush_gallery/gengsheng_053_c.mp4",
           "poster": "brush_gallery/gengsheng_053_poster.webp",
-          "url": "https://t0eabg.db.files.1drv.com/y4m-3aZOB3c8w0Q_JffH6Q8cWThjEPIZcWh4yvaufDRca93hPRHYi-U96TGA7sGWdbvRX6_Lpnk4R91V1OBgEJ7TgispSfFzGWHgzphp4DuqXSzttfHahc36yXrPOawkmdKGjxjTWa23owwAG0BPoZ6FDQ8CHUc3YHneC8M-E415PjU-DJEgywnYFJibgOD6WUWwowpLk7Pk1KzjKfD2z4IDw"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-a80806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTU4NjIifQ.rgDZAylTCF4iQL-2jjj7lnDA8XZRKe5iDKNKBjAntcqCWHal1NDbOhIvZ4VoDNFYjjD3h4_WUKaoLlhU1OFxuiNpV5coKqw1y7Kd1s6DQozBKoz705xNuJLRXk20kz1S11CHXTN_jilg4TXsrSAv_1oOWk1xIUwbQNxFfNESl2Rdp8HaWrrgZYmhpGfPFWc_VyAHihzw098P2ni2F99qYPzlgdAYkRl9SHyjEmYFCOlYmvuETpF6ksIv7OIvMeI6YpJMYQpl2RxjEQ2-z_NMa_-DAkLduaPGaFH11rWqsE6n4i7IQStcEtDatXMHqkxjfROL1v1yRlzdj7jj5dIizmjMJCL2yBy0mMIrto2tjwk8YYkoHOgTd13WOgcyVi9RWseb_hV70wdVHQevbU_o9Q.9_AO-9N9xlmSuvjlIlOY6o18KIkPMdflHE-oGbFDURg&ApiVersion=2.0&AVOverride=1"
       },
       "geoffrey_hinton": {
           "ref": "brush_gallery/geoffrey_hinton.webp",
           "vid": "brush_gallery/geoffrey_hinton_247_c.mp4",
           "poster": "brush_gallery/geoffrey_hinton_247_poster.webp",
-          "url": "https://hj8m7g.db.files.1drv.com/y4mZ-1_C5YnBI7pYYg87mBOx_wQOW_jA_lTM9z708D4MwzKV7QT9SxONCdlasn8FITHMqonfX2yFX9o7YeqNhtJhOOxXfYZZAU8owdQH2G9WED_2cr3n3GB9xnoqBt9BjItcqPgWSVNDqKOKUnoSrl_7OhLiWsywtoSK0j-pcnX_m1Uhr64zcfADl9WKvE3eAldMpfbzVP7VWRkXYvIzZzjtQ"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-3f0706000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTU5MTAifQ.t5xyDNObU3jtQ6_oaFZ6U1N9-y0LgywJU98XnBvd7_wRJ3N3SWrEB5cIUpBsGNsFX-eZFqzu7XppopQvgUgc5Rq2zJ1puwzZn2SKsmYJma2qnhWh2FCE5Pzg-KfNMXzaf1pYPkmf1K2uE2QaRoUKBJJryPvgjD9SfZMqJn0jJh-eUrpKHOtvUyeC541Knul-QVsCvu9MSfFDcUCkm05EhbqYI364l8FzTDERWstCdUlI0dH-Wock_eddPU0wWZYEkx1B-2UBMwUTiEY9_Cu5Et9OCWL_zMaIgR4RB5SqbMgnK7pbft7UILku8HjHrWyitS00mIv7y1FyHpmOj9gkwj8hvmvg9ma8A8jBQ38bl92jC49nDAq-EjLpQoVVqyX0-Y0rCoaRsxFFXJuukSiEGw.YZIuI6LGfD8w9OB6MFRjOYmGDCdGLJMxRhrrhDtqXiU&ApiVersion=2.0&AVOverride=1"
       },
       "george_clooney": {
           "ref": "brush_gallery/george_clooney.webp",
           "vid": "brush_gallery/george_clooney_054_c.mp4",
           "poster": "brush_gallery/george_clooney_054_poster.webp",
-          "url": "https://i3g3ea.db.files.1drv.com/y4mGAOVKap9CXkQDVX3T4Zvn2VAJhfre4sT3lzr2nbUy8U8wJ_V6kCcOm8osSWOBxjGxyrgSlFxl6eLozZU5bdM4FF9xgFK8rqj_BJfyT1mBZvv6LvZ6WIxpoU3E6RcPfHYwSMbw4iJ_MCmrpHGwNBidYXyMHT-SHmh5nnTt8ufP6Bzn2bZCIrRJZF3CreeltBkP2Ylq4iv-f4kueUsA3hZGQ"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-790806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTU5NzQifQ.Gf-TycNHRwNhPti6k4QScIygTXZUTBh52IDK5RvF7lZv7unJJMtqvjGyTkteh0ZII-HV6m2Y9HmxLyw8JOOdKxn7I7fNQEol3xD4sAFBvBmdtu0wmuZqEeQZsr6_zC2gw-EUQjMpxTtaJl3QsbKQYV8YeZA2szHDZS8mOYKGhd50Us1cHQjh89Cq9JxkEJSd8pk2h87oLPERDrn4SnNVViasGpla-MIxowWll2swp0SnGmAUmK6rASvY5vIqIlDd4tMOpqxiJEALFqNPzy7MNAxUVSh-SZnPIw50UzRKRXxrCwScXLdxvXvXk0zrakVutoUTu50rLiGf2vXWFX8YSB1a5Jg5uSc65iHNpiYmxTLroGbNwPl3Y-S1qHypG9aURNhT_IupPfETQg473QtF-Bhk3tcW1XqeMDuISOf5kQ4.1llDl-NEttyY3c0krLd80VwjOzKKGkZoXPbA6z_sxgM&ApiVersion=2.0&AVOverride=1"
       },
       "girl_with_pearl_earrings": {
           "ref": "brush_gallery/girl_with_pearl_earrings.webp",
           "vid": "brush_gallery/girl_with_pearl_earrings_261_c.mp4",
           "poster": "brush_gallery/girl_with_pearl_earrings_261_poster.webp",
-          "url": "https://6rxcqa.db.files.1drv.com/y4mKPl61XGEudBECXHQZQpyVB-rJumnMfk4Vvcso_gDeGi7s2rMJVfeKSg5EmSGxOyiYRRTpTSHIgtJ6o9IB7TFk-BSNqmxb6WYdmDub5NdUCK9HwYXSE-RHwO7Dv4-m42Fbq96iUuKpHjGt4AyGO2wpvefHGJ0DOwxhudyecKc_CB_xsa4Mrqn28LQYkUOEGuNJ18gi-BA1nMzUvziIqtbLw"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-8b0806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTYwMzUifQ.is-Ki1g8io6tB-qyjXywICTRvjvaN1pdRexiNT7okMatVdHAjv5mf4FoJ4KShWJICVMjRub7YhdIpPkHMUOrRTANNfFUuIJDXHVl-V0jgaD08gKGEDNsCG6ukt_33LJ72n2_EgBmAVgEAWSrzI55ao8rDkZivXMYNhA-YVN6Nx5T-vD-TbUrloS47Sf8WiBKEcFHGq0et1ph26RYqGbtgJ8xlDRaK7ciNlpRgvUhKvdykvr9fUiuU9bvKhJ8WGjPJFgG6T_x9SN0u_HkbfeqBVjb7gnEDghFKY3KZcgbLQchvuPWY8SX1Xv0Z0WvjVsJcBx7_GTYpHGNiY90MEB67VJPJ8nEvi3IgE0hzEufDC9tHZngVSxM7uBMnTTR6ATuIDwR0Lu7iXiukBKhZEtSma_hZXK0tRcWmRnm-6eB09M.RcGeZnmLzw4o1ayBDWladGesO4cUJelGYAcRcp892Q0&ApiVersion=2.0&AVOverride=1"
       },
       "malte": {
           "ref": "brush_gallery/malte.webp",
           "vid": "brush_gallery/malte_236_c.mp4",
           "poster": "brush_gallery/malte_236_poster.webp",
-          "url": "https://ij8q7g.db.files.1drv.com/y4mU_96w_V5S043tBK3_lpoJAnR_PRLNez48ln0D8kYOwZ7jALvwe_8msNhJTV64UwdWhIo58hwLfyx5S9KT1RBic2EHxy4dahr0YyN-XsBtqxTdl8lRe2boicS2GwNr5XanZ94x_ghURJtMvelwNZT12DAUbYS8KRQyJnUoyUCGf-2872vU30119YD_jBc00cIq7m_AWAVju3qHBdbMbULFg"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-a70806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTYwOTYifQ.rktSOqk9S4UFqTYpNYF9ZzEWLAo55WhNe6HKWPEXVb950qnYc-a09X3sGTh2CSJLW_y77r2RgnbkK76PJGcT507d25hIQg4WTo0YShakQkhT9FiAe4tNyd9vL8k4h8UhhpVYhwLDl7_Rl7-uctC4Bs5OYRAocX6QFQSo0Hs6DiM9z9SR_JVXFM48HOACYzVacsYHPt0k7ucmJgV7teEQCL2tUG1QH97q24nURY3_5uI9giEfOKJKmwoWyA8tLyxhvHVAd0BVeKflYnWUXv2ttFw1I2DbR9cC-3gfIK5_Qrk__A-0lD0lK4USivJIKMoibmuZFULAPUT5WqVzua0qDc6bWP8D2Zl_cTG3aBLQFJ-2ozElqqpBKGoRiMXNc7m4H9CZcfgUQu10xjB8KKL4IqqgW3XF-BXcrOXo_ESFbxs.HY0tMndlxrr3oFEGfUN7LIhGknU373k4pk6PRkOpsQQ&ApiVersion=2.0&AVOverride=1"
       },
       "marie_curie": {
           "ref": "brush_gallery/marie_curie.webp",
           "vid": "brush_gallery/marie_curie_247_c.mp4",
           "poster": "brush_gallery/marie_curie_247_poster.webp",
-          "url": "https://rqre2a.db.files.1drv.com/y4mV85_yCb2GmRLHoCIhLTyHRAXPb5PZAPvbgyb8t2JkzOpInSETw5khlSF7OnU9wIqO7tIXIaLCFdLDFH8Nh941MkwtAkpJBc-gEM3NzrqFkt_MXvplwYRfsq9kuM_8hwbbHy8rKWZIyYaUzYeguM52zUcQs5kTfQKm2q0kfjg1sWVcUPm9OfACK3oaT1-iesau1uC-ki0iAXRddEt2FzJaQ"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-870806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTYxNTYifQ.JAwVlh74SW5SqmH1CoH8IhtZVj_KvWNSsPDgTvsl7kEqskNhzCtcFESGopvUavALnPRWOpbtXyKtH2IsiZ-zWeAGC3Q_-xgz-NjfPC0SrS8JFCEbwp6uPN3nxzpb99zwkqgR1MCHqxVVx_m_TPDiWumbpwwFXHaCiIPlOISN-16kWhPru4VIT3YcPwgreuVauzXK3PIQB-Ry9BtiOr0hHStwTvZwwLTvXu_Qe4tUr9nose4IDhPeG0lzVJ7C0d6bPj-pPTG3tq40NAKkfGNhO4ShcTmbg_9YzXz3s7H1m4-OhsYkSNsFxX4K6lgAB9vDP6xp3vcHvxdDkvP4Cg3rIxJguRYSWWsL0agE_SdZksVSo_QdDK6wNXTKzNWlPiCUHIOHkEZtqoAIYV9dKK1PMABTbH2S3zhEPfdOBBdAm1s.-DDEf0DZ_YCf2cW65golUiJn2Wc5raYonyNgUTGBckA&ApiVersion=2.0&AVOverride=1"
       },
       "martin_luther_king": {
           "ref": "brush_gallery/martin_luther_king.webp",
           "vid": "brush_gallery/martin_luther_king_247_c.mp4",
           "poster": "brush_gallery/martin_luther_king_247_poster.webp",
-          "url": "https://8pwq1g.db.files.1drv.com/y4mxzf1cly-IQ5EmuciHt8aB1QOUBXQokXpX3b6bbeCBV83hY1VWTTXTGaN3SqAtCuqZmGPsfWiexUUlFjUrczKRLOw-HuvefaACw_HMkSE34f66y4n4XuxRal7jmpLtnwT4ibB02PIkX3nvoz_L1ht0pph54yXtTEHjEUEkDbasrOy9wKph69c7b7mv9yDRGjEISyH5Zm2UzrUZUSxglu2gg"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-820806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTYyMDEifQ.GDr3x9qFmW1W3o_obv7uMy_FGROnk_dgoxmDOttFykYHYp7Hbw1GwcHujqChKIyaDgBVO2smCrv92o3M3YuM01CfCyI10n-yttS4b-njRbSQwXtEybkPiyXERYd51YbBs7eKVhAFbNeVc4UNJvfVzLb2IaX_PkCrqyIDFZcg-xeZ8a4oJO33dAIc8EHf_pzrHM263ZUXvOlpyN6wslViLmqxzp0ix_svQbwnOcTCTG3D_djIBvVms8qylEspMhrXG2mnSXRHt7jiTaj1JdUmYgD-9Cpj0RBCTRnipVcfPsWaqaOqYTAt_y_nUzRi4ZC3RDIhR2RIE3XOoKp0FJb4pmLJqC0b9enGq3tkFQHpnoYelZUtkZkV6CfOsjelJfeBCzBuy3PsrOHvJ01dUuwAy6O5jme5_BnwFptUqa854I4.5sHXD8M4f0zf7AgbodJWJ7By5reRphOX0rSD6GcmwIc&ApiVersion=2.0&AVOverride=1"
       },
       "mead_1": {
           "ref": "brush_gallery/mead_1.webp",
           "vid": "brush_gallery/mead_1_018_c.mp4",
           "poster": "brush_gallery/mead_1_018_poster.webp",
-          "url": "https://q4u9hg.db.files.1drv.com/y4mvJjPFGOk9UYFY2X4tmQ2RqMxfvNQw-j2xx5JXycIGlhlrP7opz-VCn9drBhHvGdXz4lM2sYbRvPeSkxDuQqLyb8B-FF3mdLRBdJJtoqzZAx2g8e5OAW4UNGePxXl_Sox4u3yH8DTSQzK9imyFZLB-KfZUQ9xuFO5c6dZkdz8lHjZovMQLok1RwhdeCt55I-A0yb3q_7gC7bT1Jvs2mZP7w"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-b00b06000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTYyNTYifQ.m40mMMlpVdLsE3D1dykEzC8mqHEa90oTe4-7oBiXPnB3rGlM3pvMYwW6IxEt7DyR_kpGMZEccrPmPFcS0YOtwXTl9I6gn6VlL_EO3rzVVbGL_sJF0GhuIYCLJ_1BQ6huN9NMphVg5CG5_482TKFXAO3O2FkREJY-s9tckQfRX1OzIu3ncoUd-PHVVkpzZPY-nBXF1pHQsf56ynUP2eO-IZQ4Tqrgd94t7qO5w7AKpaYjowujAmo2vRksx4QOnLD0rLmcHIBjOu4EnLmF9kYiWpBl744zU46_eADxQ2okS8sUb5UQSMXjkqIXrT5HjZTTCWVlNaW1QVHffR0pDUFHbVrAs8TU19ERmnFZssA8rJeC5Dmr-f_kLTBfrkvZ6Zt_ZNliRA5EeTNUvOJ25TIKhEPDIKuRB-PdfO1w93PqDsE.Q6wcIy3Uheu7hORgTPyfMrJBn_XBmEM5NN9Lcfq8T9g&ApiVersion=2.0&AVOverride=1"
       },
       "michelle_obama": {
           "ref": "brush_gallery/michelle_obama.webp",
           "vid": "brush_gallery/michelle_obama_247_c.mp4",
           "poster": "brush_gallery/michelle_obama_247_poster.webp",
-          "url": "https://uohamw.db.files.1drv.com/y4mxLxsZpo3OMkps_otjxRTqsRPVn6EYbKnRQ2cqDoydrKmrjU7SvODPAqb4pBTSmVOmRNwFYwpYL-e_YTybAeERydFdgWksyD1cKCzjzp_CCXtwHzQ-pwFaWUtuH1FL2fRkrKWrJhiFBJOcQAgratMcowZtObJujB4C-0w3SZty2MlvnFWDN5UNDyIM1NQ1kRQ87zP6vVsQf_xW_ktqJIJCQ"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-3b0706000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTYzMDIifQ.HmXx9WU6BTxBCfCxkd7e_h_vDMw1HT4bfyiDvx8VMw2mzVRGkt2wKxOSZ2aJCNvCtQvvP1q3NC06uDEyJep-21tHKxpWNcWvyUmdryTWjKObZHQHrVLA29qrzct9rf6x-vJQIg3GlwkHPsehStBQBsYweEq2FiH7AuA9Lbj6J6BuMC0CBMkyold1XUZwM79Ob-UOikJMKe0sUPChK6cExXJGc6W1VUuxOV0xxUQ3gBIWirZapSI21MnJWO2oez3RcwVXvdhja7kxbSoobZHtaBSwcQ3LECgSmFedk5hn9p87-lS6fuOn4-EQ528mwQgowYn3Ld-E_GtW73NgkFFrpPfkuT_2OxdMbODYOy0t4LS92gpejvZdonq6wOxxOFAm94eCnU3ChRUPIY4xSlULBLDCYmbZoj7K5vGg1zMBFbs.jUXNFPuS-WWfUHbB0qaaMXDEmyDjGoVANnhjZp6UYfo&ApiVersion=2.0&AVOverride=1"
       },
       "michi": {
           "ref": "brush_gallery/michi.webp",
           "vid": "brush_gallery/michi_018_c.mp4",
           "poster": "brush_gallery/michi_018_poster.webp",
-          "url": "https://6rxbqa.db.files.1drv.com/y4mh_XyFOKLBIGXvajaNDFxUHnJLmDwz-e1aFduBE3VcXlvGK2sYN_WX1Cn9DmU3Ln4GASAbice_tj0VlysCpk-0GVh0SGWwpsnnVjEE_rnXfV5TKBHKsVXeZWh0j4v2jxj9FZgcUSzdCqPGCOABpleQnpsEPiA5gYw7kOjVXf5qCxAshSgw3T0-qz6z0CoRM4gtPPULX0pkfVpQCNFHGDsnQ"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-a90806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTYzMzEifQ.msyDgtWNboP_XNZRBEX0W8A1WGLlDaZ2Ca1wtwMoe9vHnZehtD6INfgyXcHkWgWFrc8IqGpz9d6JnwuPIXMyDzUw1zd7E0JpsuRpy1lUnZcHMHCgWfzCcMOh7LXMMpIEkh0z_qpUt5BVv0CDWvMiw0JHItpTEwKrNMo6_n3Tpvp2LfJI8RN4tCTgtVHP3r8l9jS2BbKYEO15nLcbcncICBRgo_WCBKa7jbrSyjoPR2n1nfAleOqSU_sUoWkLTa1njzjVu3YmPALOj5JnGuAds2pTS1i8df6Zr5a0XshjRfkl8Zo6HrKeI_a_gaQwvabIu9Ssiju7Exhln-l98W7gg6eyICUECOyV9HhFrPBZUnUtslCIYmudeerUyOh4v6XyJIG_Z2kD5uiSbiuBen4aafd_Gnu4aFXG4nbUjA_Sxks.p0G9-aAOT2zZ8P1mcUgki4p4hS_Kar2F9wOGlMSbIEE&ApiVersion=2.0&AVOverride=1"
       },
       "nersemble_018": {
           "ref": "brush_gallery/nersemble_018.webp",
           "vid": "brush_gallery/nersemble_018_202_c.mp4",
           "poster": "brush_gallery/nersemble_018_202_poster.webp",
-          "url": "https://sprs2a.db.files.1drv.com/y4mclEs3-D09C6o8n7UQLQK-xjCDGkwQ2JDtX-ceu9TDQ-0u9ZsRmbW734_yGpH1ascGViNIlNkW9UFP2m5l9gdRYntfZsrFVQSmZXm_4abs_czUCbCVJuy2VgXXC896yq8kJLs2kMpXpv0N7WOWFjmN7QWIYAkAWPkwjblFrj3Wn8WLQn3VPlhVpam3jgudPP3_CGJa5HIDCdp-1C0x_E16A"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-c30806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTYzNzkifQ.CzqLO1g_Gg4rHjpkWQxdcSIp1kZyj70dhYeqAyAIkmqi2Jnl88m1a00NgdKkqbk2H_Vaj8NlKXCR_KaIDX1Oz8zoUhrD3G9QlYDXSdtjyFg7GfTW1fjFvbDDc3WjEspDdocRu89q2o1n2eQTHIlf9dAyj8J-Oa54LYqj2x4LF24O7LHb7PnPRuZMGyiR6LJLmyOAuuaOtF4qQxItqlqyrvnpATcKMAP2FSCgTzEj2cs5Y3Kb-_TWahaMPVUxBn2LioK4APwnzPUP8C26CQ2s179dArg4AM3Rl0GZ12bHCXy6kDTbrxBD5IvNAVVBH07XN29Qwqe64YFMY1jbUoqNHqyvH2pTQPbagv1U3Bg4Lix5YAV8S01DUD2OThM8mXLQ5Z8Ud3DKw-Sl5dYJ-QbvKWB0zqGuguE0NWwBPntthns.d3jACZ001TAoW02obtnH0ft1jXe9yEyzPkYILZ50P7U&ApiVersion=2.0&AVOverride=1"
       },
       "nersemble_124": {
           "ref": "brush_gallery/nersemble_124.webp",
           "vid": "brush_gallery/nersemble_124_202_c.mp4",
           "poster": "brush_gallery/nersemble_124_202_poster.webp",
-          "url": "https://ij8l7g.db.files.1drv.com/y4mw4gWeYQpORLGPZX5dVXzCW-lTZN9_1ecmsyXfCgn1lkg4kGT-CEuFys63QIhw-WHlQHzIHJj5zAo-us81zBc0bq3i_rNr8YARptQgHfhT1nBsrtv02KdGNH2ivqqChpiXZ1nYwBwbcPwTZSMjk62-PoMxZYw8EQOlMdgLSWRdQ9plpIbuMPek6zPYsmQos2hepQSP2tjWSzm_5qpE2MILQ"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-c50806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY0MTgifQ.W2q2YeWVunvGwEAG9aFS3OFdF_9YE177PY-hLmYKu95WRd1zJjxc3s8SVVzzYogmsurd0Hbd9ClmRj7HyrrTT0N62zvEqomVvwr0Auu-hC8vvdp_rPyEE79sFn0W_qMDgj_uqEx0OECZmf9Ah3LlYDjljGTjAecGASrlONuwqJGSSYi11Kdsu4ru6x1cERmwmRo3gT-8dwp_5D6s7IhN3wprilTxrJ1F0okxEYT2lg9oSY1lJo95bQX3J-XP4BqBEMGoZGrxzKylZLNJcQnkypAhGsPM_5la8ZUgVZKX1irD2fm5_SAGRnAzXITXwqd20YUM0DOhx4-N5mpyTEsm6ol6lDfJ2Dsxir5l94hr-aKN0cbvsELBRQDv1jhi1VCgSdt2RdjCyQWWMpWbt3D8xgRFdpVP5q3C3N1pXfZFtbA.WxiugKvjZ-tqTS4fyKH_O30MMML_itVSoMN1snUop9E&ApiVersion=2.0&AVOverride=1"
       },
       "nersemble_175": {
           "ref": "brush_gallery/nersemble_175.webp",
           "vid": "brush_gallery/nersemble_175_202_c.mp4",
           "poster": "brush_gallery/nersemble_175_202_poster.webp",
-          "url": "https://ryuong.db.files.1drv.com/y4m2ETpWim8ugaN8Nj4JWvPE_g15bxB9LbjG21gBT-HmAwszxig2HLUL3lUFoJezhsX45vVWdX-y1uh9ca__N-XLEsWRLho7mJo9A2BRMW-oCxjEbLD1S13-aSBLuP5yiyrD2be-NBY2rCG7geG9utB6EIrVdq17E6tQz-uLhNPSAVLgeJtSjlIsK-TX3qyDZTFgYEGHIDpyYjLAZ3cSbseGg"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-cc0806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY0NDUifQ.hy3l3uu8IyiKp2LurvL75tfbmCwhSX3C_pujhekoIiPzLGzdnPJ7R4zKwx_HcB5X4tA2h8EdAlcnsqwm592ahVktA5oAOR7YBGeTd1rqs8BWL8IbLSOhvusDW6yG2P14akQVzRy9mVQ69TT8AnKvmPsBJeY_ovKjSenupVOOmF682X-WqlDZV5RG8DoGcP2qgSAAHFZlMTovlEHFt8826AZJqE4poqABzs6G_M0GxvF6OkQsb2URoiB9Mw12e3NiezvI2LNTEFIv109T83UsujauQCoI7BQMcjm4LjElvA2CneXnCcvMIS-hkCMrJI5jm30mi4b-Zgi3q4mfMHw50OiySrS33PeQghiyvft_D0ueA3p5_CNT_Wuj6hijIVCfjkeCtQRtvE11ht0FDOGeVaJ6GRYvqOqJovaSga_J9qk.l2odQFvQnQqQ1ABH-0uBycDGK5XRP72v9CwPme8beMc&ApiVersion=2.0&AVOverride=1"
       },
       "nersemble_226": {
           "ref": "brush_gallery/nersemble_226.webp",
           "vid": "brush_gallery/nersemble_226_173_c.mp4",
           "poster": "brush_gallery/nersemble_226_173_poster.webp",
-          "url": "https://ryupng.db.files.1drv.com/y4mUlFr1dJQiJmNgVBcUlVpDChSRKb94eMLcZ1CrReCtGBBh9m-oKVXkM1xqelGmYUoAuPVUNNsilrm_Pcr0P1tteHuRfusl7NMHOu9Nyj_rxNJN7du7Juhyz0Zrx5Bau3Pb2heYCHyFK2LJFTg8dzYGFFyupGflwDIBmzOFqwLEi41TTiQdplDXmClVQqY6zSn9bEGPq7lheWyo-X4LeEd4A"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-d60806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY0NzQifQ.8AlMS5uGaF5SpLVKiqulq4v4n4GjrMo6hZU3GYxo6Tx0UkHQP7AXs-h8OG0RHw0OAHRXqMSpkFaKSo7q95160iPLg3VRg8LiXKX0wiW3yYp2nRHGuHuTA03M1oRdaS-MVgM-1CIq26UIzJgTGA2b5lfQnlBsXXNncYKuEfLO-iMRZk-R05hfa1IvhLiSnCyXAe4j8H3bOfc7hLzaiX8PImov47qTr2NaHafG2CpgtD8e1xTF81evozVe0_gcmyfb2InUxiwsPMxFCsn4x2MGr3h8-7iZ_IP-M0i2GeUvUv64L6G_JLRqFb-LxWtG14ggnPps2Va21k_wSlGSiq-0ueGtPmPf6W20JhtCniJB0HcRI2pwaMbXu9qywEbcyKrXWttUy3_eAcZGWINssx74_42fwkFNAM1KX8vf2bJxmMo.Dcp9C_exa5cJqUWzUP1GZ776dXdy0QHxcrlxGyWfnO0&ApiVersion=2.0&AVOverride=1"
       },
       "nersemble_240": {
           "ref": "brush_gallery/nersemble_240.webp",
           "vid": "brush_gallery/nersemble_240_173_c.mp4",
           "poster": "brush_gallery/nersemble_240_173_poster.webp",
-          "url": "https://8fwb1g.db.files.1drv.com/y4m_RYTXrr9i_mlp-9Y5YgqOZb0DKliWhlyQ2qpZjyxjRZMzPYgW0JGLvtcdso559nYOH-NcsPshIEFpP7SJPoA5Qy1ke_6h4XPpzS7ARzMsUhCnG6A0VXTK_57HHNtG9fx81seiQJuRlHtwhGKMEiklMDjGga-_IQuBdXWtRZfOIojyfDnMAGy0hSz_4dZ00HHNSNwstsHZRG4aQtuqiKdBA"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-c80806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY1MDAifQ.rG15HY6tk_DeIwJ9sZrQR5pGP4SeD4h_cE8Z_uXnYriCvE6UdlCbqG1lT6uCOb3tdxzuKJncaZAhsPb17P_5W14sMQNfXiYrmDUfhGlnmfixyEw9PQkI5A6r_pTeuuvOtimpuG2V_7SW2ewK3BLHiGMT1R1qhk5vVA9u1m4BC7ut0IL4PODPBUAgUhKUy_IL8gVX7pwEHOCpEbX-7PkGDT5XJEN3ZiJmkbsYHXi2RcROUhdGkNjD4q7zMehwEcPX704Am92Ve4qi-cxaSo9-bVMV7iuMWociqrYYdmMp-lAkxfv9apULmVXjPzlHjqY7KNA3seXxhNj4sLXIbbnKoUTpfWHzSeJlPG29cCdrZX37ckOD5J4QLe8EvnA40jT1nUFJONsZQdZq2tQews1Bx7VZewekn9MZHQE08uUDG4U.riVJ0gKn00X-uNNRTr_hrfrnLATFtEIqn018I-_f10s&ApiVersion=2.0&AVOverride=1"
       },
       "princess_diana": {
           "ref": "brush_gallery/princess_diana.webp",
           "vid": "brush_gallery/princess_diana_054_c.mp4",
           "poster": "brush_gallery/princess_diana_054_poster.webp",
-          "url": "https://txozka.db.files.1drv.com/y4m5Ueds5v-VL9s7t4oCMEcQTb_mC6UYNckuHjFyHsHXlERe8RUNNKnc_5phHjGSNy-pAY5LjQWEqsDK5OjfWXuAhRLXoWelIptpE7fBV9YUCK8Sk6ehJZ_o12Xr9nzEwgjKDvcYFX1rX5XotAfjRCb4oOCyKCWTIoIW0bmylV4TIxJB3mZECT9mbdZ7T37TuSSCpB_zSx1HrBOyuQV_C-NNQ"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-3a0706000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY1MzMifQ.SHtMZvlYUHwJdDc90OeLr2Kn4x9hW_DRdGPb8JB4NMF4zMvvR7e0PW4aduM5l5_cHpflZH25l9ydlM0sKOpOtM39GxW89lTxO2XXa4-TDgJ6iv1fSZdO3ic-1134mBtcGu5ZiGXDAvtlcmORBVdPwplAGq8EWsGKm2bekG684cm2gpocRvIZRNP1Rj88RrK519-BxCadR9MGZkmr2ApuW5309UXUMQS2VBnyYcMgkgOTS7dGNy6zpbG1gxJX3s-UU_gACfi2ZXs67LKJTH5m57vFufsTpthPmENJ_iDRYU2BUBjecobNQy5ErnA2Nv-TNpOkKOQA9Xxw3h5pXHwW237GXlYAU6S_R4XHGyAa60rT1Qp6N8QUA9gdZG9XQnDQZM0tIqzBppoyGqaCW4qtfjERJRvCIT7kae3t09AeFlw.6mWuz8cB5xMNZV1MEKZDU_Aeo0SdZeVGvv8MSMbbymw&ApiVersion=2.0&AVOverride=1"
       },
       "salma": {
           "ref": "brush_gallery/salma.webp",
           "vid": "brush_gallery/salma_018_c.mp4",
           "poster": "brush_gallery/salma_018_poster.webp",
-          "url": "https://vohfmw.db.files.1drv.com/y4mo0PCBgwREuvW9hWuvQv4NGT_loLTdmFlgA7KOJ6h-JFWbhsWrIGUo71Ye5wD7S-ym4o-GwBdRZXhF86m1djI0-RfGZqAAXdNxUq-k3SnurFxtOYZihdgkSf4EuH9Y99bKyoog3BeKOW-w880dwKsJprPYQEXkPUBt-dakT8Uvp3HsZhEGCO7kw1QU5vCUoof_HysPfO_zDsi-kAJIxMa0Q"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-ad0806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY1NzAifQ.5cuRj-4E-wenCOnJuTeuWcn7xfkraF5OFh7tAOQM9f-RvUqzYjdgGb9ODnk1OQV3w7xTR1kAQrnDjWtaQScHqPVq3aWvQi0Rglqx2SsNSZukxIMbo1w9dFSWYSZZE2W6I6oRzzZgRP9NMjczQQJVwijZujxsl4A3izhKXTHQTe3S2MdG4DO9xjmiFtoxuSbwajHIL2VcDkbMox_v-cub86_XABwK2FIDJy1CrnDFQ0i0oQtVQs1svd9pnK6TroGT2uGacPo8EsX1LJdMtOpEadWttlYX7GpKILnlItKA7RhMzN03Hhp-IgBN_hJAxYRovsneZ_N9cTg1SUeRd9OvWVUArVTB3ygWgwgCZcqK1ETrN8ZV2JNuU_orWX68k89xabvaEoXOQkT3WTtNxcZx-vm36emD8CVmOHozAX7JPVU.YvKUsCrY1jfuEa2ZZxLCamy-L4LoJ1fHDAagmrPp9-8&ApiVersion=2.0&AVOverride=1"
       },
       "sam_altman": {
           "ref": "brush_gallery/sam_altman.webp",
           "vid": "brush_gallery/sam_altman_257_c.mp4",
           "poster": "brush_gallery/sam_altman_257_poster.webp",
-          "url": "https://6bxlqa.db.files.1drv.com/y4ml-0ilh9IiYZnF3BESYGtuRabqNiFBHe8nVkvH9EtpJqnrf8MSZ_WpCZ5LPoOhVoYq3yHfTEunVCisJJlP7zdIVKCRVWfqN8dL0IG4WFZuXPCz_29qUwEF0FZSlDZXXoaOBdkyXKqNsovZgSf0G1NP08vS2W0RKWyMGuZT7o7nldDaEADjoyR_M0HBcKiJPNZ9FTaq4O7WfIefb5i04d6aQ"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-810806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY1OTgifQ.GtFum2nwfT-o-C_SQniqt0Le_f6k57OTIS6Ya_Mqe0CYJwwG3MekkT_EvX_rTRyEGCfdqZspUkvJKtIUUGbQURmuOhs5D2jg_4_I0pqIXL65-vGLg-KwY5eUsFbkKJyRG3RJQhNFO0l6E0LUGohVCvlvDUE-DZOdtlNF1PdjwqCmPXBxuBzDd4K8oUsCkXzQcjmFSqyDDSj-qUuJE2geKCEPw9ve16LRAgWH-2mIs5ecpSTxXkhG3-7h79Qt5QPUAdEv6gP2OTXq-3dgBCaqtn_dnpYULeAZA6lNTXDBZLmUZLPoaI9PPfOoDg-b5tyhUVdtTIJpDn2Z5GOVA-iC2PcMWRUITKwc_pQ57k600Axyeq298fQHGWrl88qg7FQiGxcEOG3urTKXkJvsHs0rhnA0V_0PTv_iSe4HPwokuzo.QGD0gBLHtYnnFnAQJEnCW8NwXRw0XCCValYRALqM12E&ApiVersion=2.0&AVOverride=1"
       },
       "sandra_bullock": {
           "ref": "brush_gallery/sandra_bullock.webp",
           "vid": "brush_gallery/sandra_bullock_054_c.mp4",
           "poster": "brush_gallery/sandra_bullock_054_poster.webp",
-          "url": "https://rqrd2a.db.files.1drv.com/y4m3ks2PmsHKkMLBs4z2tldkQx16C_2bhjx0OtxS5pNKgzdkKPUMmB5nT5_92FAzyhpDCC5MCacpxpc_Y3enxZqBhT9JKWX0fpEd8NajRPVs-DQG6PfoHv6UAqYJ55cdCfRV0YjIY2tZVR-VvxDa9nU_VMl4yPUcO846pmMI_B5OOqa--POLydmY0ztf68UsG0IsKu1hlk2FsQ5EDWEL-LCsQ"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-7d0806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY2MzIifQ.t2R-r-BOYu6LZA5wHJ7dKloBWKPXsvRb2LtUOpJm5cyJqSFPumDssa3PEOPK_KnXfYkzgxiH4m_oR0KtwJeH88SnqIIhCZBAfpbJmwazoHHZiqQfRI_2acoghTLYqWgk7NNMO52y8-j-21GXmOtLNgi0wxHGsNHvKdsSQ1EBpwiXRCARocshKiaM7EpbTkOU7y1yiFKuV_vGpS_SVEM6Yj8wtoeQkLQUlRays_UsXWJ-I7XW2yOIc8XbXIwxGMy6J7LPZczIL5M6F6nUjO_OMuZR-U0ij3LbRt84BfzsTJ3YZMR_JCJ2QDJ88Zi4_CMgP_SFKGz6ICdnKxN9X2oNtM0zhexm7TDPOoj04_kHa654e3f_w07Tc_hvYUOIE3rvWLpjIcShIifA-R-EkmNfGlFiM4qt380-Nbq6jMvFvG0.Ki6nU-2dfLIbKGXMMSBqY1td3KyrAQ15036-QWercrs&ApiVersion=2.0&AVOverride=1"
       },
       "suim": {
           "ref": "brush_gallery/suim.webp",
           "vid": "brush_gallery/suim_053_c.mp4",
           "poster": "brush_gallery/suim_053_poster.webp",
-          "url": "https://5rw9qa.db.files.1drv.com/y4mNYhbVAPbn1o7bgTmkJ00pdMUjAk1maom8HVP8-AFQFrIIw01Do2m2geNI6IwLddEnwwjiafCcLp41r_GS5K10YhdAvfK8-n_B-hkf1VpkpQCXBHamLuJry16TW58Ohm06eXajsZiqTEbg1cgwYpKVsrlZUUmxOK4CBIK15z2n8U69HQb_8Vm79b5ONh5TNXXPzgM8-uAb8OKAARBSEcckw"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-410706000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY2NTYifQ.daYtgzXuIcH2Ck4sWjulpxN-OHy-jtzIDlUEkEfOEYK-zdRE5ign2K0EXv9gX0gGrxr5FBMZdongIxZN-lPEF79c4v8wrk3TxgrjYQg7NAMgzWwvcLlNEUluUxZkTLPq46rAyRwgAQjoz72nuRbp5eCERWmKBXq5W7530fFPt3UGsIYW6YrIjSQjMoJOlCzXMT_u1NgZSAfIdn7d_--g2jMd8GwhCctvxBfnzHBxbKmAWDhvp2EDcfJMhpqY8GYrm3OpDTa1zDIrVn3cWuieYMIVABuFal1eufp3ic1hetaolrz2QL2HZ83MdVDh1jOjDanThkOsM1N5rgbPMFLmV3baShEdkLUnxiOlC3eS01_Hiz7CVnZv07WBd3zNiNWPMUzM6YVIHwfMToYPENBQ7cy-P959UApThJkzMRTIZ3w.sOQpER7I5r4x-lmc6ptjwXFnbkeO6xLccoLX8fB3UXA&ApiVersion=2.0&AVOverride=1"
       },
       "tim": {
           "ref": "brush_gallery/tim.webp",
           "vid": "brush_gallery/tim_112_c.mp4",
           "poster": "brush_gallery/tim_112_poster.webp",
-          "url": "https://t0eybg.db.files.1drv.com/y4mOCrqT8Oku0Ut9fokOh0OoUhYXxhAT9-WTReoOO4vbkA2p_oxnYurRKyBp7lwYX_F7tFzPzJGxKhRgAJG_NMouL36MadtavccuJsah3R0WTTGOzv16cO4k5NvZdJ790zuOPAjQLK3x_2GS_auGTqCphWZGseHOn-uXkAb0dzhMZbQpnftrCdGV9tbeyEPjeTd8_k3sjNP5BRhIqZdLzi8Yw"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-bc0806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY3MDAifQ.L9-Xzj9EsldxMUS4kRiZbQALel1fkZf7d5lYwC33k7AQr7xZz4001jpRwA-fS3MD-UtT3cY7fnQ82YCRfXk7qsSuvmy9sXjxmJ3JBH-VBlha-rgiEmAYVVT-U4zbjUBQW719d8TVEOAW_T_rbhbKRN9KWaKKl_Ocx6_vh1A3ecVSNtI8mGeVL6edpzTT79kiXDzuht3V6kVzC0CuH8CBzbmBR0zyoow6XskBJxAK78UR9oFDQiGpDL6SEdC_O0v5sbWJLHhifQXA7Fy36W3pmaxOdo23INk1Cftzgb1Z4pTQbhEX-RIyi6YC_yOJcfOOfbO20M50q1_g9CXfxNEmVaxFXlaNuBWmbFhixT8AYZqyVb45_fwanjnkONgUrManr2YVp5y6SK8gX0oLR6SvnH2n90cuGRJG1nCBqEiet6g.Pz7CWlqKVciY9q2VC25Iu-YJT4AH7zNVsg9PIrsA9WE&ApiVersion=2.0&AVOverride=1"
       },
       "van_gogh": {
           "ref": "brush_gallery/van_gogh.webp",
           "vid": "brush_gallery/van_gogh_237_c.mp4",
           "poster": "brush_gallery/van_gogh_237_poster.webp",
-          "url": "https://ij8r7g.db.files.1drv.com/y4m1OwlvLDT2seZT-FH2cbsRyxBbItImSiUIqn3lt8A21c6BAbJWpapRjGzJTZ7T1gGSXJF1ua43VQfjCL0VhzhPsVe87qWst2QF-BKusbadl3FZBZI5uqNvHJ-wQop1VxbOjEtz8m-kwqK1JusINA9dehlkOaJ2zHTKckkB5oZPnQhFV-XRHwdxHQniuLzXen8HWOpYkpmq68notu2ZQFytA"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-890806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY3MjQifQ.58ZvC4el7DRf0SimVVp3-G8xGiKe2tYEap2pTYZXC9737DhdPlda1Z-jAPXpMtXi5CbctHzM0hK5hiIeJGS6LgZtReVMBN3MvTp4B-VjOY4gYPMa2n4xlep-Eq0jupryzxnCc4NxiT32aPr6NpZswnObugjrxqgXpKuoRchi5ekPUiP-_5J-6LVfrOWeZHSrDndYwUOTWLTvdK6HplpN4oAyMGlLCSmTYL4_TNGjfh_NTsvq1jOCHI_PpnhZNVcDnKisDpYwIT95MSfRCvFnRy-H6pgGrAZqMkEY3lcLXXPNjGbqKl1cGDAgVER1tpPe0nx8qWgkdJEQTJ-rHSXHkqDn9z6LZRviDDjgYDlP438b0mJ2BebECLhzc_P58yrU48sw4RZr7ZEfF2t_Ahusz_kcmbUZtqbbSnOvyriGmi0._eaFF6-X27kAMByX1ZItuTrUBuGrmTHbUvcfaylGjl4&ApiVersion=2.0&AVOverride=1"
       },
       "wojtek": {
           "ref": "brush_gallery/wojtek.webp",
           "vid": "brush_gallery/wojtek_236_c.mp4",
           "poster": "brush_gallery/wojtek_236_poster.webp",
-          "url": "https://uxo2ka.db.files.1drv.com/y4mrD8DO0Egig7aEqoZIlf6F8anoLO2Eze6PYwfM6KF1bnr7i-O86DjPf35GkaC_u4Ag0eLW-Q2dho0y7u0EZbXukPHT2sd-4DW8Yy__4aZjvhPZ7corZ0nfhcTNF9z-FL1eNt3s_9IaPmzEw_wVrSP294CWN9gQic5sUp0cZcXBWyZojD0UHd05iv6MzgMHqFcjZ5-lGNmp7AdXuSVnc_qyA"
+          "url": "https://my.microsoftpersonalcontent.com/personal/ea356294c6263a37/_layouts/15/download.aspx?UniqueId=c6263a37-6294-2035-80ea-c00806000000&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI5ODg5NGVmNy00OTZhLTRjY2MtYWRlYy04OTRmYzIxZTY4NTgiLCJhcHBpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDA0ODE3MTBhNCIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9teS5taWNyb3NvZnRwZXJzb25hbGNvbnRlbnQuY29tQDkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZCIsImV4cCI6IjE3NDk0OTY3NDYifQ.KCsR9vhOztZTv9F9_cSIomMm2Bx-RXZPlZ6XK4pb8cCX_2gAUQWzlyKLyVNCkbMMkblbAvQfBnujeNb4sqfl-dfFsAFwG6FJaCf0uRZceCsWEXiXWhRAyKuj3q8p4akTaqDtG76bL86g8HT5zeGr1FK95Lpf7-yqiUv_NDOsHmY_tmdxh2ZFhISwEwGznpo8FazOx5J1UrTPJi6k_RlPRWPBDnU-p_UXFdT1P10IYW-xnJruQCilYd9bWWkJY6yWh2_gQA7ka-F8NHox29ql-PFpdHKOgaHlxCxZcg_IFvKD6uzUl-gTxjcXLxZKEv-s8vUQlEftWb1NquxEro0DnNUL8OiQzBbuSNClkQokhjuaq1e2f28EQJU4OYHtwvsI5DNUe_1_gdxQM5xqszloHyrqbzDIo6Ql84aM6aYXGUc.CZFyV3aMsj3xZwalK0WdnPmiFZMrE6s-l2bdaeoTOa0&ApiVersion=2.0&AVOverride=1"
       }
     }
 
@@ -1220,7 +1228,19 @@
 
       // Load the viewer URL
       if (window) {
+        // import init, * as bindings from './static/wasm/brush_app.js';
+        const settings = new window.wasmBindings.CameraSettings(
+          0.3,           // fov_y (f64)
+          0.0, 0.0, -1.0, // position x, y, z (f32)
+          0.0, 0.0, 0.0, // euler_x, euler_y, euler_z (f32, radians)
+          1.0,           // focus_distance (f32)
+          2.0,           // speed_scale (f32 | null)
+          0.66, 1.33,    // min_focus_distance, max_focus_distance
+          -15, 15,    // min_pitch, max_pitch
+          -45, 45,    // min_yaw, max_yaw
+        );
         window.viewer.load_url(liveItems[subject_id]["url"]); // This will trigger your viewer to load the content
+        window.viewer.set_camera_settings(settings);
       }
     }
 
