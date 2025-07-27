@@ -103,7 +103,7 @@
             <span class="icon">
               <i class="fab fa-github"></i>
             </span>
-            <span>Code (Coming Soon)</span>
+            <span>Code</span>
             </a>
           </div>
         </div>
@@ -162,11 +162,11 @@
     <h2 class="title is-3" style="text-align: center; margin-top: 20px">
       Interactive Viewer
     </h2>
-    <p class="text-center" style="max-width: 750px; text-align: center; margin: auto; margin-bottom: 10px; font-size: 18px;">
+    <!-- <p class="text-center" style="max-width: 750px; text-align: center; margin: auto; margin-bottom: 10px; font-size: 18px;">
       Click on the images below to inspect 4D avatars in your browser, powered by <a href="https://github.com/felixtaubner/brush_avatar">our modified version</a> of
       <a href="https://github.com/ArthurBrussee/brush">Brush</a>. Note that this is experimental and quality may be reduced. <br>
       <strong style="color: #880808;">Usage of this viewer may result in crashes. Please ensure that your available VRAM is greater than 3GB. Do not open this website in multiple tabs. </strong>
-    </p>
+    </p> -->
     <div style="display: flex; align-items: center; justify-content: center; gap: 0px; flex-wrap: wrap; margin-top: 20px;">
       <div class="controllable-image" style="flex: 1 1 40%; min-width: 250px; max-width: 40%; text-align: center;  margin-left: auto; margin-right: auto;">
         <img src="brush_gallery/abraham_lincoln.webp" id="reference_image" alt="Reference image" style="width: 100%; margin: auto;">
@@ -838,12 +838,15 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>
-@article{taubner2024cap4d,
-  title={{CAP4D}: Creating Animatable {4D} Portrait Avatars with Morphable Multi-View Diffusion Models}, 
-  author={Felix Taubner and Ruihang Zhang and Mathieu Tuli and David B. Lindell},
-  booktitle={arxiv},
-  year={2024}
-}</code></pre>
+      @inproceedings{taubner2025cap4d,
+        author    = {Taubner, Felix and Zhang, Ruihang and Tuli, Mathieu and Lindell, David B.},
+        title     = {{CAP4D}: Creating Animatable {4D} Portrait Avatars with Morphable Multi-View Diffusion Models},
+        booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+        month     = {June},
+        year      = {2025},
+        pages     = {5318-5330}
+    }
+  </code></pre>
   </div>
 </section>
 <!--End BibTex citation -->
@@ -922,7 +925,7 @@
     window.addEventListener("TrunkApplicationStarted", (e) => {
       // Load with an initial URL.
       console.log("starting")
-      var start_url = "https://felixtaubner.github.io/cap4d/gaussian_gallery/abraham_short.ply"
+      var start_url = "/cap4d/gaussian_gallery/abraham_short.ply"
       // const viewer = new window.wasmBindings.EmbeddedApp("brush_canvas", `?url=${start_url}&zen=true&focal=0.2&min_radius=1.3&max_radius=2.0&radius=1.5&min_pitch=-15.0&max_pitch=15.0&min_yaw=-45.0&max_yaw=45.0`)
       const viewer = new window.wasmBindings.EmbeddedApp("brush_canvas", `?url=${start_url}&zen=true`)
       window.viewer = viewer;
@@ -985,229 +988,230 @@
         "ref": "brush_gallery/abraham_lincoln.webp",
         "vid": "brush_gallery/abraham_lincoln_247_c.mp4",
         "poster": "brush_gallery/abraham_lincoln_247_poster.webp",
-        "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/abraham_lincoln.ply"
+        // "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/abraham_lincoln.ply"
+        "url": "/cap4d/gaussian_gallery/abraham_lincoln.ply"
       },
       "adrian": {
         "ref": "brush_gallery/adrian.webp",
         "vid": "brush_gallery/adrian_236_c.mp4",
         "poster": "brush_gallery/adrian_236_poster.webp",
-        "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/adrian_236.ply"
+        "url": "/cap4d/gaussian_gallery/adrian_236.ply"
       },
       "ai_man_1": {
         "ref": "brush_gallery/ai_man_1.webp",
         "vid": "brush_gallery/ai_man_1_c.mp4",
         "poster": "brush_gallery/ai_man_7_c_poster.webp",
-        "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/ai_man_1.ply"
+        "url": "/cap4d/gaussian_gallery/ai_man_1.ply"
       },
       "ai_man_7": {
         "ref": "brush_gallery/ai_man_7.webp",
         "vid": "brush_gallery/ai_man_7_067_c.mp4",
         "poster": "brush_gallery/ai_man_7_067_poster.webp",
-        "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/ai_man_7.ply"
+        "url": "/cap4d/gaussian_gallery/ai_man_7.ply"
       },
       "ai_obama": {
         "ref": "brush_gallery/ai_obama.webp",
         "vid": "brush_gallery/ai_obama_011_c.mp4",
         "poster": "brush_gallery/ai_obama_011_poster.webp",
-        "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/ai_obama.ply"
+        "url": "/cap4d/gaussian_gallery/ai_obama.ply"
       },
       "ai_woman_1": {
         "ref": "brush_gallery/ai_woman_1.webp",
         "vid": "brush_gallery/ai_woman_1_193_c.mp4",
         "poster": "brush_gallery/ai_woman_1_193_poster.webp",
-        "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/ai_woman_1.ply"
+        "url": "/cap4d/gaussian_gallery/ai_woman_1.ply"
       },
       "ai_woman_2": {
         "ref": "brush_gallery/ai_woman_2.webp",
         "vid": "brush_gallery/ai_woman_2_121_c.mp4",
         "poster": "brush_gallery/ai_woman_1_121_poster.webp",
-        "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/ai_woman_2.ply"
+        "url": "/cap4d/gaussian_gallery/ai_woman_2.ply"
       },
       "ai_woman_3": {
         "ref": "brush_gallery/ai_woman_3.webp",
         "vid": "brush_gallery/ai_woman_3_011_c.mp4",
         "poster": "brush_gallery/ai_woman_3_011_poster.webp",
-        "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/ai_woman_3.ply"
+        "url": "/cap4d/gaussian_gallery/ai_woman_3.ply"
       },
       "ai_woman_4": {
         "ref": "brush_gallery/ai_woman_4.webp",
         "vid": "brush_gallery/ai_woman_4_067_c.mp4",
         "poster": "brush_gallery/ai_woman_4_067_poster.webp",
-        "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/ai_woman_4.ply"
+        "url": "/cap4d/gaussian_gallery/ai_woman_4.ply"
       },
       "avatar_navi": {
         "ref": "brush_gallery/avatar_navi.webp",
         "vid": "brush_gallery/avatar_navi_079_c.mp4",
         "poster": "brush_gallery/avatar_navi_079_poster.webp",
-        "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/avatar_navi.ply"
+        "url": "/cap4d/gaussian_gallery/avatar_navi.ply"
       },
       "bala": {
         "ref": "brush_gallery/bala.webp",
         "vid": "brush_gallery/bala_112_c.mp4",
         "poster": "brush_gallery/bala_112_poster.webp",
-        "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/bala.ply"
+        "url": "/cap4d/gaussian_gallery/bala.ply"
       },
       "david_statue": {
           "ref": "brush_gallery/david_statue.webp",
           "vid": "brush_gallery/david_statue_117_c.mp4",
           "poster": "brush_gallery/david_statue_117_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/david_statue.ply"
+          "url": "/cap4d/gaussian_gallery/david_statue.ply"
       },
       "dirk": {
           "ref": "brush_gallery/dirk.webp",
           "vid": "brush_gallery/dirk_112_c.mp4",
           "poster": "brush_gallery/dirk_112_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/dirk.ply"
+          "url": "/cap4d/gaussian_gallery/dirk.ply"
       },
       "felix": {
           "ref": "brush_gallery/felix.webp",
           "vid": "brush_gallery/felix_112_c.mp4",
           "poster": "brush_gallery/felix_112_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/felix.ply"
+          "url": "/cap4d/gaussian_gallery/felix.ply"
       },
       "frida_kahlo": {
           "ref": "brush_gallery/frida_kahlo.webp",
           "vid": "brush_gallery/frida_kahlo_079_c.mp4",
           "poster": "brush_gallery/frida_kahlo_079_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/frida_kahlo.ply"
+          "url": "/cap4d/gaussian_gallery/frida_kahlo.ply"
       },
       "gengsheng": {
           "ref": "brush_gallery/gengsheng.webp",
           "vid": "brush_gallery/gengsheng_053_c.mp4",
           "poster": "brush_gallery/gengsheng_053_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/gengsheng.ply"
+          "url": "/cap4d/gaussian_gallery/gengsheng.ply"
       },
       "geoffrey_hinton": {
           "ref": "brush_gallery/geoffrey_hinton.webp",
           "vid": "brush_gallery/geoffrey_hinton_247_c.mp4",
           "poster": "brush_gallery/geoffrey_hinton_247_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/geoffrey_hinton.ply"
+          "url": "/cap4d/gaussian_gallery/geoffrey_hinton.ply"
       },
       "george_clooney": {
           "ref": "brush_gallery/george_clooney.webp",
           "vid": "brush_gallery/george_clooney_054_c.mp4",
           "poster": "brush_gallery/george_clooney_054_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/george_clooney.ply"
+          "url": "/cap4d/gaussian_gallery/george_clooney.ply"
       },
       "girl_with_pearl_earrings": {
           "ref": "brush_gallery/girl_with_pearl_earrings.webp",
           "vid": "brush_gallery/girl_with_pearl_earrings_261_c.mp4",
           "poster": "brush_gallery/girl_with_pearl_earrings_261_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/girl_with_pearl_earrings.ply"
+          "url": "/cap4d/gaussian_gallery/girl_with_pearl_earrings.ply"
       },
       "malte": {
           "ref": "brush_gallery/malte.webp",
           "vid": "brush_gallery/malte_236_c.mp4",
           "poster": "brush_gallery/malte_236_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/malte.ply"
+          "url": "/cap4d/gaussian_gallery/malte.ply"
       },
       "marie_curie": {
           "ref": "brush_gallery/marie_curie.webp",
           "vid": "brush_gallery/marie_curie_247_c.mp4",
           "poster": "brush_gallery/marie_curie_247_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/marie_curie.ply"
+          "url": "/cap4d/gaussian_gallery/marie_curie.ply"
       },
       "martin_luther_king": {
           "ref": "brush_gallery/martin_luther_king.webp",
           "vid": "brush_gallery/martin_luther_king_247_c.mp4",
           "poster": "brush_gallery/martin_luther_king_247_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/martin_luther_king.ply"
+          "url": "/cap4d/gaussian_gallery/martin_luther_king.ply"
       },
       "mead_1": {
           "ref": "brush_gallery/mead_1.webp",
           "vid": "brush_gallery/mead_1_018_c.mp4",
           "poster": "brush_gallery/mead_1_018_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/mead_1.ply"
+          "url": "/cap4d/gaussian_gallery/mead_1.ply"
       },
       "michelle_obama": {
           "ref": "brush_gallery/michelle_obama.webp",
           "vid": "brush_gallery/michelle_obama_247_c.mp4",
           "poster": "brush_gallery/michelle_obama_247_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/michelle_obama.ply"
+          "url": "/cap4d/gaussian_gallery/michelle_obama.ply"
       },
       "michi": {
           "ref": "brush_gallery/michi.webp",
           "vid": "brush_gallery/michi_018_c.mp4",
           "poster": "brush_gallery/michi_018_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/michi.ply"
+          "url": "/cap4d/gaussian_gallery/michi.ply"
       },
       "nersemble_018": {
           "ref": "brush_gallery/nersemble_018.webp",
           "vid": "brush_gallery/nersemble_018_202_c.mp4",
           "poster": "brush_gallery/nersemble_018_202_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/nersemble_018.ply"
+          "url": "/cap4d/gaussian_gallery/nersemble_018.ply"
       },
       "nersemble_124": {
           "ref": "brush_gallery/nersemble_124.webp",
           "vid": "brush_gallery/nersemble_124_202_c.mp4",
           "poster": "brush_gallery/nersemble_124_202_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/nersemble_124.ply"
+          "url": "/cap4d/gaussian_gallery/nersemble_124.ply"
       },
       "nersemble_175": {
           "ref": "brush_gallery/nersemble_175.webp",
           "vid": "brush_gallery/nersemble_175_202_c.mp4",
           "poster": "brush_gallery/nersemble_175_202_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/nersemble_175.ply"
+          "url": "/cap4d/gaussian_gallery/nersemble_175.ply"
       },
       "nersemble_226": {
           "ref": "brush_gallery/nersemble_226.webp",
           "vid": "brush_gallery/nersemble_226_173_c.mp4",
           "poster": "brush_gallery/nersemble_226_173_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/nersemble_226.ply"
+          "url": "/cap4d/gaussian_gallery/nersemble_226.ply"
       },
       "nersemble_240": {
           "ref": "brush_gallery/nersemble_240.webp",
           "vid": "brush_gallery/nersemble_240_173_c.mp4",
           "poster": "brush_gallery/nersemble_240_173_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/nersemble_240.ply"
+          "url": "/cap4d/gaussian_gallery/nersemble_240.ply"
       },
       "princess_diana": {
           "ref": "brush_gallery/princess_diana.webp",
           "vid": "brush_gallery/princess_diana_054_c.mp4",
           "poster": "brush_gallery/princess_diana_054_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/princess_diana.ply"
+          "url": "/cap4d/gaussian_gallery/princess_diana.ply"
       },
       "salma": {
           "ref": "brush_gallery/salma.webp",
           "vid": "brush_gallery/salma_018_c.mp4",
           "poster": "brush_gallery/salma_018_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/salma.ply"
+          "url": "/cap4d/gaussian_gallery/salma.ply"
       },
       "sam_altman": {
           "ref": "brush_gallery/sam_altman.webp",
           "vid": "brush_gallery/sam_altman_257_c.mp4",
           "poster": "brush_gallery/sam_altman_257_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/sam_altman.ply"
+          "url": "/cap4d/gaussian_gallery/sam_altman.ply"
       },
       "sandra_bullock": {
           "ref": "brush_gallery/sandra_bullock.webp",
           "vid": "brush_gallery/sandra_bullock_054_c.mp4",
           "poster": "brush_gallery/sandra_bullock_054_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/sandra_bullock.ply"
+          "url": "/cap4d/gaussian_gallery/sandra_bullock.ply"
       },
       "suim": {
           "ref": "brush_gallery/suim.webp",
           "vid": "brush_gallery/suim_053_c.mp4",
           "poster": "brush_gallery/suim_053_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/suim.ply"
+          "url": "/cap4d/gaussian_gallery/suim.ply"
       },
       "tim": {
           "ref": "brush_gallery/tim.webp",
           "vid": "brush_gallery/tim_112_c.mp4",
           "poster": "brush_gallery/tim_112_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/tim.ply"
+          "url": "/cap4d/gaussian_gallery/tim.ply"
       },
       "van_gogh": {
           "ref": "brush_gallery/van_gogh.webp",
           "vid": "brush_gallery/van_gogh_237_c.mp4",
           "poster": "brush_gallery/van_gogh_237_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/van_gogh.ply"
+          "url": "/cap4d/gaussian_gallery/van_gogh.ply"
       },
       "wojtek": {
           "ref": "brush_gallery/wojtek.webp",
           "vid": "brush_gallery/wojtek_236_c.mp4",
           "poster": "brush_gallery/wojtek_236_poster.webp",
-          "url": "https://felixtaubner.github.io/cap4d/gaussian_gallery/wojtek.ply"
+          "url": "/cap4d/gaussian_gallery/wojtek.ply"
       }
     }
 
