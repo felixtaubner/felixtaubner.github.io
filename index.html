@@ -190,6 +190,45 @@
       margin: 12px 0 28px;
     }
 
+    /* ---------- News ---------- */
+
+    .news { list-style: none; margin: 0; padding: 0; }
+
+    .news li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: baseline;
+      padding: 7px 0;
+    }
+
+    .news time {
+      color: var(--text-mute);
+      font-size: 13.5px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      text-align: right;
+    }
+    .news p {
+      position: relative;
+      margin: 0;
+      padding-left: 17px;
+      font-size: 15px;
+      color: var(--text-soft);
+    }
+    .news p::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      top: .62em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--text-mute);
+    }
+    .news b { color: var(--text); font-weight: 600; }
+
     /* ---------- Publications ---------- */
 
     .pubs { list-style: none; margin: 0; padding: 0; }
@@ -299,6 +338,8 @@
         margin: 0 -16px 4px;
       }
       .pub-thumb { max-width: 340px; }
+      .news li { grid-template-columns: 1fr; gap: 1px; padding: 8px 0; }
+      .news time { text-align: left; padding-left: 17px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -314,6 +355,7 @@
       <a class="brand" href="index.html">Felix Taubner</a>
       <nav class="site-nav">
         <a href="#about">About</a>
+        <a href="#news">News</a>
         <a href="#publications">Publications</a>
         <a href="cv_felix_taubner_01062026.pdf">CV</a>
       </nav>
@@ -328,24 +370,17 @@
         <h1>Felix Taubner</h1>
         <p class="tagline">PhD student in Computer Science, University of Toronto</p>
 
-        <p>I work on 4D generative models with a focus on digital humans, advised by
-          <a href="https://davidlindell.com/">David Lindell</a>.</p>
+        <p>I work on video diffusion models and making their output dynamic, controllable and
+          three-dimensional, advised by <a href="https://davidlindell.com/">David Lindell</a>.</p>
 
-        <p>Recently, I completed a research internship at
-          <a href="https://tech.facebook.com/reality-labs/">Meta Reality Labs</a> (Pittsburgh)
-          under the supervision of Michael Zollhoefer. Prior to this, I was an AI Research Scientist at
-          LG Electronics, working on 3D human face reconstruction and animation.</p>
-
-        <p>I completed my BSc. (Mechanical Engineering) and MSc. (Robotics) at ETH Zurich, specializing in
-          computer vision and control. Previously, I conducted research at the
-          <a href="https://asl.ethz.ch/">Autonomous Systems Lab</a> at
-          <a href="https://ethz.ch/en.html">ETH</a> under the supervision of
-          <a href="https://asl.ethz.ch/the-lab/people/person-detail.Mjk5ODE=.TGlzdC8yMDI4LDEyMDExMzk5Mjg=.html">Roland Siegwart</a>,
-          and at the <a href="https://tisl.cs.utoronto.ca/">Toronto Intelligent Systems Lab</a> at
-          <a href="https://www.utoronto.ca/">U of T</a> under the supervision of
-          <a href="https://www.gilitschenski.org/igor/">Igor Gilitschenski</a>.</p>
-
-        <p>My research interests are 3D computer vision, 4D generative AI and digital human animation.</p>
+        <p>Previously: research intern at
+          <a href="https://tech.facebook.com/reality-labs/">Meta Reality Labs</a>
+          (with Michael Zollhoefer); AI Research Scientist at LG Electronics; MSc in Robotics and
+          BSc in Mechanical Engineering at <a href="https://ethz.ch/en.html">ETH Zurich</a>,
+          with research at the <a href="https://asl.ethz.ch/">Autonomous Systems Lab</a>
+          (<a href="https://asl.ethz.ch/the-lab/people/person-detail.Mjk5ODE=.TGlzdC8yMDI4LDEyMDExMzk5Mjg=.html">Roland Siegwart</a>)
+          and the <a href="https://tisl.cs.utoronto.ca/">Toronto Intelligent Systems Lab</a>
+          (<a href="https://www.gilitschenski.org/igor/">Igor Gilitschenski</a>).</p>
 
         <ul class="links">
           <li><a href="mailto:ftaubner@cs.toronto.edu">
@@ -369,6 +404,31 @@
       <img class="portrait" src="img/profile.jpg" alt="Portrait of Felix Taubner" width="176" height="176">
     </section>
 
+    <!-- News -->
+    <section id="news">
+      <h2>News</h2>
+      <div class="rule"></div>
+
+      <ul class="news">
+        <li>
+          <p><b>ProxyPose</b> accepted to <b>NeurIPS 2026</b>.</p>
+          <time datetime="2026-09">Sep 2026</time>
+        </li>
+        <li>
+          <p>Completed a research internship at <b>Meta Reality Labs</b>.</p>
+          <time datetime="2026-03">Mar 2026</time>
+        </li>
+        <li>
+          <p><b>MVP4D</b> and <b>Generating the Past, Present and Future from a Motion-Blurred Image</b> accepted to <b>SIGGRAPH Asia 2025</b>.</p>
+          <time datetime="2025-10">Oct 2025</time>
+        </li>
+        <li>
+          <p><b>CAP4D</b> accepted to <b>CVPR 2025</b> as an <b>Oral</b>.</p>
+          <time datetime="2025-04">Apr 2025</time>
+        </li>
+      </ul>
+    </section>
+
     <!-- Publications -->
     <section id="publications">
       <h2>Publications</h2>
@@ -383,7 +443,7 @@
           <div>
             <a class="pub-title" href="https://ruihangzhang97.github.io/proxypose/">ProxyPose: 6-DoF Pose Tracking via Video-to-Video Translation</a>
             <p class="pub-authors">Ruihang Zhang*, <b>Felix Taubner*</b>, Pooja Ravi, Kiriakos N. Kutulakos, David B. Lindell</p>
-            <p class="pub-venue"><em>arXiv 2026</em></p>
+            <p class="pub-venue"><em>NeurIPS 2026</em></p>
             <div class="pub-links">
               <a href="https://arxiv.org/abs/2607.06555">arXiv</a>
               <a href="https://ruihangzhang97.github.io/proxypose/">Project Page</a>
